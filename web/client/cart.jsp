@@ -33,7 +33,7 @@
 </head>
 
 <body>
-    <%@include file="/components/header.jsp" %>
+    <%@include file="/client/components/header.jsp" %>
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
@@ -208,7 +208,7 @@
     <!-- Cart End -->
 
 
-    <%@include file="/components/footer.jsp" %>
+    <%@include file="/client/components/footer.jsp" %>
 </body>
 
 </html>
