@@ -1,3 +1,10 @@
+<%-- 
+    Document   : auth-login.jsp
+    Created on : 2 Jul 2024, 12:50:19
+    Author     : quoch
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
 
@@ -9,14 +16,14 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
 
     <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="/admin/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="/admin/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -31,8 +38,8 @@
                         <div class="mb-3">
                             <a href="#" class="auth-logo">
                                 <!-- Logo here -->
-                                <img src="assets/images/logo-dark.png" height="30" class="logo-dark mx-auto" alt="">
-                                <img src="assets/images/logo-light.png" height="30" class="logo-light mx-auto" alt="">
+                                <img src="/admin/assets/images/logo-dark.png" height="30" class="logo-dark mx-auto" alt="">
+                                <img src="/admin/assets/images/logo-light.png" height="30" class="logo-light mx-auto" alt="">
                             </a>
                         </div>
                     </div>
@@ -40,17 +47,17 @@
                     <h4 class="text-muted text-center font-size-18"><b>Sign In</b></h4>
 
                     <div class="p-3">
-                        <form class="form-horizontal mt-3" action="index.html">
+                        <form class="form-horizontal mt-3" action="/auth/admin?action=login" method="post">
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" type="text" required="" placeholder="Username">
+                                    <input name="username" class="form-control" type="text" required="" placeholder="Username">
                                 </div>
                             </div>
 
                             <div class="form-group mb-3 row">
                                 <div class="col-12">
-                                    <input class="form-control" type="password" required="" placeholder="Password">
+                                    <input name="password" class="form-control" type="password" required="" placeholder="Password">
                                 </div>
                             </div>
 
@@ -93,13 +100,13 @@
     <!-- end -->
 
     <!-- JAVASCRIPT -->
-    <script src="assets/libs/jquery/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
+    <script src="/admin/assets/libs/jquery/jquery.min.js"></script>
+    <script src="/admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/admin/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="/admin/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="/admin/assets/libs/node-waves/waves.min.js"></script>
 
-    <script src="assets/js/app.js"></script>
+    <script src="/admin/assets/js/app.js"></script>
 
 </body>
 

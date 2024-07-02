@@ -65,7 +65,7 @@
                     <tbody class="align-middle">
                         <tr>
                             <td class="align-middle"><img src="assets/img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">150 VNĐ</td>
+                            <td class="align-middle price" data-price="150">150 VNĐ</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -73,7 +73,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1" limit="3" disabled>
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
@@ -81,12 +81,12 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle"><span data-value="150" class="price">150</span> VNĐ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><span class="total-price" data-price="150">150 </span> VNĐ</td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary btn-remove"><i class="fa fa-times"></i></button></td>
                         </tr>
                         <tr>
-                            <td class="align-middle"><img src="img/product-2.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
+                            <td class="align-middle"><img src="assets/img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
+                            <td class="align-middle price" data-price="150">150 VNĐ</td>
                             <td class="align-middle">
                                 <div class="input-group quantity mx-auto" style="width: 100px;">
                                     <div class="input-group-btn">
@@ -94,7 +94,7 @@
                                         <i class="fa fa-minus"></i>
                                         </button>
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
+                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1" limit="3" disabled>
                                     <div class="input-group-btn">
                                         <button class="btn btn-sm btn-primary btn-plus">
                                             <i class="fa fa-plus"></i>
@@ -102,71 +102,8 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-3.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-4.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="img/product-5.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle">$150</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                            <td class="align-middle"><span class="total-price" data-price="150">150 </span> VNĐ</td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary btn-remove"><i class="fa fa-times"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -187,17 +124,17 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$150</h6>
+                            <h6 class="font-weight-medium"><span id="sub-total">200</span> VNĐ</h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
+                            <h6 class="font-weight-medium">Discount from coupon</h6>
+                            <h6 class="font-weight-medium"><span id="discount" data-discount="0.1">0</span> VNĐ</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold"><span id="final-total">200</span> VNĐ</h5>
                         </div>
                         <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
                     </div>
@@ -206,9 +143,57 @@
         </div>
     </div>
     <!-- Cart End -->
-
-
     <%@include file="/client/components/footer.jsp" %>
+    <script>
+        updateCartSummary();
+        function updateCartSummary(){
+            let total = 0;
+            $('.total-price').filter((index, item) => {
+                total += $(item).data('price');
+            });
+            let discount = $('#discount').data('discount')*total;
+            $('#discount').text(discount);
+            $('#sub-total').text(total);
+            let finalTotal = total-discount;
+            $('#final-total').text(finalTotal);
+        }
+        function updateTotalOfSingleProduct(element, price, quantity){
+            $(element).data('price', price*quantity);
+            $(element).text(price*quantity + " ");
+        }
+        $('.btn-minus').on("click", (e) => {
+            const container = $(e.currentTarget).closest('.quantity');
+            const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
+            const priceEl = $(e.currentTarget).closest('tr').find('.price');
+            const inputEl = $(container).find('input');
+            if($(inputEl).val() > 1) {
+                $(inputEl).val($(inputEl).val()-1);
+                updateTotalOfSingleProduct($(priceTotalEl), $(priceEl).data('price'), $(inputEl).val());
+                updateCartSummary();
+            }
+            // cật nhật quantity của cart_products
+        });
+        
+        $('.btn-plus').on("click", (e) => {
+            const container = $(e.currentTarget).closest('.quantity');
+            const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
+            const priceEl = $(e.currentTarget).closest('tr').find('.price');
+            const inputEl = $(container).find('input');
+            if($(inputEl).val() < $(inputEl).attr('limit')) {
+                $(inputEl).val(parseInt($(inputEl).val())+1);
+                updateTotalOfSingleProduct(priceTotalEl, $(priceEl).data('price'), $(inputEl).val());
+                updateCartSummary();
+            }
+            // cật nhật quantity của cart_products
+        });
+        
+        $('.btn-remove').on('click', (e) => {
+            const container = $(e.currentTarget).closest('tr');
+            console.log(container);
+            $(container).remove();
+            // gọi api xóa record của bảng cart_products
+        });
+    </script>
 </body>
 
 </html>
