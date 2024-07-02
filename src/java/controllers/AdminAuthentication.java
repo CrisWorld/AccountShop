@@ -10,6 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Database;
+import models.User;
+import untils.Authentication;
+
 
 /**
  *
@@ -56,7 +61,7 @@ public class AdminAuthentication extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("/admin/auth/auth-login.jsp").forward(request, response);
     }
 
     /**
@@ -70,9 +75,35 @@ public class AdminAuthentication extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        if(request.getParameter("action").equals("login")){
+            doLogin(request, response);
+        } else if (request.getParameter("action").equals("logout")){
+            doLogout(request, response);
+        }
     }
-
+    
+    protected void doLogin(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        if(username != null && password != null){
+            User user = Authentication.loginUser(username, password);
+            if(user == null) response.sendRedirect("/auth/admin");
+            else {
+                if(user.isIsAdmin()){
+                    session.setAttribute("admin", user);
+                    response.sendRedirect("/admin/product/list.jsp");
+                } else response.sendRedirect("/auth/admin");
+            }
+        }
+    }
+    
+    
+    protected void doLogout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+        session.invalidate();
+        response.sendRedirect("/auth/admin");
+    }
     /**
      * Returns a short description of the servlet.
      *
