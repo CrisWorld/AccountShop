@@ -24,6 +24,14 @@
         <servlet-name>AccountServlet</servlet-name>
         <url-pattern>/AccountServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>RequestContactServlet</servlet-name>
+        <servlet-class>controllers.RequestContactServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RequestContactServlet</servlet-name>
+        <url-pattern>/RequestContactServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

@@ -3,13 +3,13 @@
     Created on : Jul 2, 2024, 9:59:41 PM
     Author     : thaip
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Admin Page - Contact</title>
+        <title>Basic Tables | Upcube - Admin & Dashboard Template</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
@@ -32,10 +32,10 @@
         <div id="layout-wrapper">
 
             
-            <%@include file="/admin/components/header.jsp" %>
+            <%@ include file="/admin/components/header.jsp" %>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%@include file="/admin/components/menu.jsp" %>
+            <%@ include file="/admin/components/menu.jsp" %>
             <!-- Left Sidebar End -->
 
             
@@ -75,21 +75,6 @@
                                                         <td>
                                                             <button type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
                                                         </td>
-                                                    </tr>
-<!--                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Acc liên quân nhiều skin</td>
-                                                        <td>10</td>
-                                                        <td>Liên quân</td>
-                                                        <td>20.000 VNĐ</td>
-                                                        <td>
-                                                            <span class="badge bg-dark">Hidden</span>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-outline-info waves-effect waves-light"><i class="fas fa-edit"></i></button>
-                                                            <button type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
-                                                        </td>
-                                                    </tr>-->
                                                 </tbody>
                                             </table>
                                             <div class="mt-4">

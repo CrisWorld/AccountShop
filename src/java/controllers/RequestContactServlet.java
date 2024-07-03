@@ -1,27 +1,28 @@
 package controllers;
 
-import java.io.IOException;
+import models.Database;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
 
 public class RequestContactServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Retrieve form data
         String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String title = request.getParameter("title");
         String message = request.getParameter("message");
 
-        request.setAttribute("name", name);
-        request.setAttribute("email", email);
-        request.setAttribute("title", title);
-        request.setAttribute("message", message);
+        // Insert into database using Database class
+        boolean success = Database.insertContact(name, message);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/request-contact.jsp");
-        dispatcher.forward(request, response);
+        if (success) {
+            // Forward to admin.jsp if insertion was successful
+            response.sendRedirect("/client/contact.html");
+        } else {
+            // Handle failure scenario, possibly redirect to an error page
+            response.sendRedirect(request.getContextPath() + "/error.jsp");
+        }
     }
 }
