@@ -16,6 +16,10 @@
         <servlet-name>AccountServlet</servlet-name>
         <servlet-class>controllers.AccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContactServlet</servlet-name>
+        <servlet-class>controllers.ContactServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminAuthentication</servlet-name>
         <url-pattern>/auth/admin</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
         <url-pattern>/AccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactServlet</servlet-name>
+        <url-pattern>/admin/ContactServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

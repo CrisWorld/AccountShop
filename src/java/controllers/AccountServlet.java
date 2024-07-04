@@ -4,16 +4,20 @@
  */
 package controllers;
 
-import classes.Notification;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import models.Contact;
 import models.User;
 import untils.Account;
+import untils.Contact_Admin;
 
 /**
  *
@@ -80,7 +84,7 @@ public class AccountServlet extends HttpServlet {
             doUpdate(request, response);
         } else if(method.equals("delete")){
             doDelete(request, response);
-        }
+        } 
     }
     
     protected void doCreate(HttpServletRequest request, HttpServletResponse response)
@@ -122,6 +126,8 @@ public class AccountServlet extends HttpServlet {
             ex.printStackTrace();
         }
     }
+    
+   
     
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
