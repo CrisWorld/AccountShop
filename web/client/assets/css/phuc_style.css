@@ -19,7 +19,7 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url("/client/assets/img/gaming.jpg");
+    background-image: url("assets/img/gaming.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;

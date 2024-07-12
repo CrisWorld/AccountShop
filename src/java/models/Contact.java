@@ -8,6 +8,7 @@ import java.util.Date;
 
 /**
  *
+<<<<<<< HEAD
  * @author thaip
  */
 public class Contact {
@@ -25,6 +26,38 @@ public class Contact {
         this.create_date = create_date;
     }
 
+=======
+ * @author ASUS
+ */
+public class Contact {
+    private int id;
+    private String username;
+    private String message;
+    private Date createdAt;
+
+    // Constructors
+    public Contact() {}
+
+    public Contact(String username, String message) {
+        this.username = username;
+        this.message = message;
+    }
+
+    public Contact(String username, String message, Date createdAt) {
+        this.username = username;
+        this.message = message;
+        this.createdAt = createdAt;
+    }
+
+    public Contact(int id, String username, String message, Date createdAt) {
+        this.id = id;
+        this.username = username;
+        this.message = message;
+        this.createdAt = createdAt;
+    }
+    
+    // Getters and Setters
+>>>>>>> origin/Truong
     public int getId() {
         return id;
     }
@@ -49,17 +82,33 @@ public class Contact {
         this.message = message;
     }
 
+<<<<<<< HEAD
     public Date getCreate_date() {
         return create_date;
     }
 
     public void setCreate_date(Date create_date) {
         this.create_date = create_date;
+=======
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+>>>>>>> origin/Truong
     }
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "Contact{" + "id=" + id + ", username=" + username + ", message=" + message + ", create_date=" + create_date + '}';
     }
     
 }
+=======
+        return "Contact{" + "id=" + id + ", username=" + username + ", message=" + message + ", createdAt=" + createdAt + '}';
+    }
+}
+
+>>>>>>> origin/Truong

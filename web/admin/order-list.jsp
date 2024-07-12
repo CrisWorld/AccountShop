@@ -1,4 +1,11 @@
-<!doctype html>
+<%-- 
+    Document   : order-list
+    Created on : Jul 2, 2024, 7:01:09 PM
+    Author     : ASUS
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!doctype html> 
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -9,17 +16,32 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
+        <!-- jquery.vectormap css -->
+        <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+        <!-- DataTables -->
+        <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- Responsive datatable examples -->
+        <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />  
+
         <!-- Bootstrap Css -->
         <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
         <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
     </head>
+
     <body data-topbar="dark">
+    
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
         <!-- Begin page -->
         <div id="layout-wrapper">
+
+            
             <header id="page-topbar">
                 <div class="navbar-header">
                     <div class="d-flex">
@@ -33,6 +55,7 @@
                                     <img src="assets/images/logo-dark.png" alt="logo-dark" height="20">
                                 </span>
                             </a>
+
                             <a href="index.html" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-sm.png" alt="logo-sm-light" height="22">
@@ -445,21 +468,17 @@
                             </li>
 
                             <li>
-                                <a href="calendar.html" class=" waves-effect">
+                                <a href="account-manage.html" class=" waves-effect">
                                     <i class="ri-calendar-2-line"></i>
-                                    <span>Calendar</span>
+                                    <span>Account Management</span>
                                 </a>
                             </li>
-                
+               
                             <li>
-                                <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <a href="view-contact.jsp" class=" waves-effect">
                                     <i class="ri-mail-send-line"></i>
-                                    <span>Email</span>
+                                    <span>Contact</span>
                                 </a>
-                                <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="email-inbox.html">Inbox</a></li>
-                                    <li><a href="email-read.html">Read Email</a></li>
-                                </ul>
                             </li>
 
                             <li>
@@ -666,100 +685,130 @@
 
                 <div class="page-content">
                     <div class="container-fluid">
-
+                        
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Forms Elements</h4>
+                                    <h4 class="mb-sm-0">Order Lists</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                                            <li class="breadcrumb-item active">Forms Elements</li>
+                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Admin Page</a></li>
+                                            <li class="breadcrumb-item active">Order Lists</li>
                                         </ol>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                        <!-- end page title -->
-                        
+    
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-xl-12">
                                 <div class="card">
                                     <div class="card-body">
-
-                                        <h4 class="card-title">Textual inputs</h4>
-                                        <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
-                                            textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>
-                                        <div class="row mb-3">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label">Ful name</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="text" placeholder="Artisanal kale" id="example-text-input">
-                                            </div>
+                                        <h4 class="card-title mb-4">Latest Order</h4>
+                                        <div class="table-responsive">
+                                            <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
+                                                <thead class="table-light">
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Email</th>
+                                                        <th>Product</th>
+                                                        <th>Price</th>
+                                                        <th style="text-align: center;">Quantity</th>
+                                                        <th>Total</th>
+                                                        <th>Details</th>
+                                                    </tr>
+                                                </thead><!-- end thead -->
+                                                <tbody>
+                                                    <tr>
+                                                        <td><h6 class="mb-0">Truong</h6></td>
+                                                        <td>fptasdasdas@gmail.com</td>
+                                                        <td>TFT</td>
+                                                        <td>$150</td>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td>$150</td>
+                                                        <td>
+                                                            <button class="btn btn-primary">View</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h6 class="mb-0">Quoc</h6></td>
+                                                        <td>fptasdasdas@gmail.com</td>
+                                                        <td>League Of Legends</td>
+                                                        <td>$150</td>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td>$150</td>
+                                                        <td>
+                                                            <button class="btn btn-primary">View</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h6 class="mb-0">Dat</h6></td>
+                                                        <td>fptasdasdas@gmail.com</td>
+                                                        <td>FC Online</td>
+                                                        <td>$150</td>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td>$150</td>
+                                                        <td>
+                                                            <button class="btn btn-primary">View</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h6 class="mb-0">Phuc</h6></td>
+                                                        <td>fptasdasdas@gmail.com</td>
+                                                        <td>VALORANT</td>
+                                                        <td>$150</td>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td>$150</td>
+                                                        <td>
+                                                            <button class="btn btn-primary">View</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h6 class="mb-0">Vy</h6></td>
+                                                        <td>fptasdasdas@gmail.com</td>
+                                                        <td>Fortnite</td>
+                                                        <td>$150</td>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td>$150</td>
+                                                        <td>
+                                                            <button class="btn btn-primary">View</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h6 class="mb-0">Truong</h6></td>
+                                                        <td>fptasdasdas@gmail.com</td>
+                                                        <td>Roblox</td>
+                                                        <td>$150</td>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td>$150</td>
+                                                        <td>
+                                                            <button class="btn btn-primary">View</button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><h6 class="mb-0">Truong</h6></td>
+                                                        <td>fptasdasdas@gmail.com</td>
+                                                        <td>Minecraft</td>
+                                                        <td>$150</td>
+                                                        <td style="text-align: center;">1</td>
+                                                        <td>$150</td>
+                                                        <td>
+                                                            <button class="btn btn-primary">View</button>
+                                                        </td>
+                                                    </tr>
+                                                    <!-- end -->
+                                                </tbody><!-- end tbody -->
+                                            </table> <!-- end table -->
                                         </div>
-                                        <!-- end row -->
-                                        <div class="row mb-3">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label">username</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="text" placeholder="artisanalkale" id="example-text-input">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="password" value="hunter2" id="example-password-input">
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-                                        <div class="row mb-3">
-                                            <label for="example-number-input" class="col-sm-2 col-form-label">Cart id</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="number" value="42" id="example-number-input">
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-                                        
-                                        <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label">Select</label>
-                                            <div class="col-sm-10">
-                                                <select class="form-select" aria-label="Default select example">
-                                                    <option selected="">Choose role</option>
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">User</option>
-                                                    
-                                                    </select>
-                                            </div>
-                                        </div>
-                                        <!-- end row -->
-                                    </div>
-                                </div>
-                            </div> <!-- end col -->
-                        </div>
-                        <!-- end row -->
-
-
-                        <!-- end row -->
-                    </div> <!-- container-fluid -->
+                                    </div><!-- end card -->
+                                </div><!-- end card -->
+                            </div>
+                            <!-- end col -->
+                    </div>
                 </div>
                 <!-- End Page-content -->
-                
-                <footer class="footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Upcube.
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="text-sm-end d-none d-sm-block">
-                                    Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
-                
             </div>
             <!-- end main content-->
 
@@ -825,12 +874,26 @@
         <script src="assets/libs/simplebar/simplebar.min.js"></script>
         <script src="assets/libs/node-waves/waves.min.js"></script>
 
-        <!-- bs custom file input plugin -->
-        <script src="assets/libs/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+        
+        <!-- apexcharts -->
+        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
 
-        <script src="assets/js/pages/form-element.init.js"></script>
+        <!-- jquery.vectormap map -->
+        <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
 
+        <!-- Required datatable js -->
+        <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        
+        <!-- Responsive examples -->
+        <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+        <script src="assets/js/pages/dashboard.init.js"></script>
+
+        <!-- App js -->
         <script src="assets/js/app.js"></script>
-
     </body>
+
 </html>

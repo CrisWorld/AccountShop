@@ -3,8 +3,12 @@
     Created on : Jul 2, 2024, 9:59:41 PM
     Author     : thaip
 --%>
+<<<<<<< HEAD
 
 <%@page import="untils.Contact_Admin"%>
+=======
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+>>>>>>> origin/Truong
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="models.Contact" %>
@@ -27,6 +31,7 @@
         <!-- App Css-->
         <link href="/admin/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
     </head>
+    
     <body data-topbar="dark">
     
     <!-- <body data-layout="horizontal" data-topbar="dark"> -->
@@ -35,10 +40,10 @@
         <div id="layout-wrapper">
 
             
-            <%@include file="/admin/components/header.jsp" %>
+            <%@ include file="/admin/components/header.jsp" %>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%@include file="/admin/components/menu.jsp" %>
+            <%@ include file="/admin/components/menu.jsp" %>
             <!-- Left Sidebar End -->
 
             
@@ -87,6 +92,7 @@
                                                             <button type="submit" value="Delete_contact" name="_method" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
                                                             </form>
                                                         </td>
+<<<<<<< HEAD
                                                     </tr>
 <!--                                                    <tr>
                                                         <th scope="row">2</th>
@@ -103,6 +109,8 @@
                                                         </td>
                                                     </tr>-->
                                                    </c:forEach>   
+=======
+>>>>>>> origin/Truong
                                                 </tbody>
                                                   
                                             </table>
