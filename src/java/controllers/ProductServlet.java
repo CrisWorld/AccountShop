@@ -44,7 +44,6 @@ public class ProductServlet extends HttpServlet {
         
         switch (action) {
             case "create" -> showCreateForm(request, response);
-//            case "delete" -> deleteById(request, response);
             case "edit" -> showEditForm(request, response);
             default -> list(request, response);
         }
@@ -63,32 +62,69 @@ public class ProductServlet extends HttpServlet {
     /*============================================ GET METHOD =============================================================================*/
     // search method in list method
     private void list(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+        /* for search */
+        String titleSearch = request.getParameter("titleSearch");
+        String priceStartSearch = request.getParameter("priceStartSearch");
+        String priceEndSearch = request.getParameter("priceEndSearch");
+        String categorySearch = request.getParameter("categorySearch");
+        
+        if (titleSearch == null || titleSearch.isBlank()) {
+            titleSearch = "";
+        } 
+        
+        if (categorySearch == null || categorySearch.isBlank()) {
+            categorySearch = "";
+        } else {
+            Category category = categoryRepo.findCategoryById(Integer.parseInt(categorySearch));
+            request.setAttribute("category", category);
+        }
+        
+        if (priceStartSearch == null || priceStartSearch.isBlank()) {
+            request.setAttribute("priceStartSearch", "");    
+            priceStartSearch = "0";
+        } else request.setAttribute("priceStartSearch", priceStartSearch);    
+        
+        if (priceEndSearch == null || priceEndSearch.isBlank()) {
+            request.setAttribute("priceEndSearch", "");
+            priceEndSearch = "99999999";
+        } else request.setAttribute("priceEndSearch", priceEndSearch);
+        
+        /* for pagination */
         int page = 1;
         int recordsPerPage = 5;
-        int noOfRecords = productRepo.getNoOfRecords();
+        int noOfRecords = productRepo.getNoOfRecords(titleSearch, priceStartSearch, priceEndSearch);
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
         if(request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
-        
-        if (page < 1) {
-            response.sendRedirect("/admin/product?page=1");
-
-        } else if (page > noOfPages) {
-           response.sendRedirect("/admin/product?page=" + noOfPages);
-        }
-        
+             
+        /* for get list */
         List<Product> res;
-        res = productRepo.findAllProduct((page - 1) * recordsPerPage,recordsPerPage);
-       
+        res = productRepo.findAllProduct((page - 1) * recordsPerPage,recordsPerPage, titleSearch, priceStartSearch, priceEndSearch, categorySearch);
+        
+        if(!res.isEmpty()) {
+            if (page < 1) {
+                response.sendRedirect("/admin/product?page=1");
+
+            } else if (page > noOfPages) {
+               response.sendRedirect("/admin/product?page=" + noOfPages);
+            }
+        }      
+        
+        /* for pagination */
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
         request.setAttribute("list", res);
-
-        request.getRequestDispatcher("/admin/product/list.jsp").include(request, response);
+        request.setAttribute("categories", categoryRepo.findAll());
+        
+        /** for search **/
+        request.setAttribute("titleSearch", titleSearch);
+        request.setAttribute("categorySearch", categorySearch);
+        
+        request.getRequestDispatcher("/admin/product/list.jsp").forward(request, response);
     }
- 
+
     private void deleteById(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
@@ -110,7 +146,7 @@ public class ProductServlet extends HttpServlet {
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.setAttribute("categories", categoryRepo.findAll());
         request.getRequestDispatcher("/admin/product/edit.jsp").forward(request, response);
-    }
+    }   
     
     /*============================================ POST METHOD =============================================================================*/
   
@@ -126,7 +162,6 @@ public class ProductServlet extends HttpServlet {
         switch (action) {
             case "create" -> doCreate(request, response);
             case "edit" -> doEdit(request, response);
-//            case "search" -> doSearch(request, response);
             case "delete" -> deleteById(request, response);
         }
     }
@@ -200,25 +235,7 @@ public class ProductServlet extends HttpServlet {
 
         response.sendRedirect("/admin/product");
         
-    }
-    
-    
-//    private void doSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-//        HttpSession session = request.getSession(false);
-//        if (session == null || session.getAttribute("user") == null) {
-//            response.sendRedirect("/login");
-//        } 
-//        
-//        String key = request.getParameter("productName");
-//        if (key == null || key.isBlank()) {
-//            key = "";
-//        }
-//        List<Product> res;
-//        res = productRepo.findAllProduct(key);
-//            request.getSession().setAttribute("list", res);
-//            request.getRequestDispatcher("/pages/list.jsp").forward(request, response);
-//    }
-    
+    }    
     
     // ====================================
     private String doUploadFile(HttpServletRequest request){

@@ -20,9 +20,15 @@ public class ProductRepo {
     private int noOfRecords;
 
     private final static String GET_ALL_PRODUCT_SQL = """
-                                                      select * from products where status != ?
+                                                      select * from products where status != ? and title like ? and (price between ? and ?) and category_id = ?
                                                       ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY
                                                     """;
+    
+    private final static String GET_ALL_PRODUCT_NOT_CATEGORY_SQL = """
+                                                      select * from products where status != ? and title like ? and (price between ? and ?)
+                                                      ORDER BY id OFFSET ? ROWS FETCH NEXT ? ROWS ONLY
+                                                    """;
+    
     private final static String DELETE_PRODUCT_BY_ID_SQL = "update products set status = ? where id = ?";
     private final static String INSERT_NEW_PRODUCT_SQL = """ 
                                                          insert into products (category_id,title,image,quantity,slug,
@@ -51,14 +57,32 @@ public class ProductRepo {
                                                            """;
     private final static CategoryRepo categoryRepo = new CategoryRepo();
     
-    public List<Product> findAllProduct(int offset, int recordsPerPage) {
+    public List<Product> findAllProduct(int offset, int recordsPerPage, String titleSearch,String priceStartSearch, String priceEndSearch, String categorySearch) {
         List<Product> products = new ArrayList<>();
         Product product;
         try {
-            PreparedStatement preparedStatement = Database.getConnect().prepareStatement(GET_ALL_PRODUCT_SQL);
-            preparedStatement.setString(1, "deleted");
-            preparedStatement.setInt(2, offset);
-            preparedStatement.setInt(3, recordsPerPage);
+            PreparedStatement preparedStatement;
+            if (categorySearch.isBlank()) {
+                preparedStatement = Database.getConnect().prepareStatement(GET_ALL_PRODUCT_NOT_CATEGORY_SQL);
+                preparedStatement.setString(1, "deleted");
+                preparedStatement.setString(2, "%" + titleSearch + "%");
+    //            preparedStatement.setString(3, "%" + categorySearch + "%");
+                preparedStatement.setString(3, priceStartSearch);
+                preparedStatement.setString(4, priceEndSearch);
+                preparedStatement.setInt(5, offset);
+                preparedStatement.setInt(6, recordsPerPage);
+            } else {
+                preparedStatement = Database.getConnect().prepareStatement(GET_ALL_PRODUCT_SQL);
+                preparedStatement.setString(1, "deleted");
+                preparedStatement.setString(2, "%" + titleSearch + "%");
+    //            preparedStatement.setString(3, "%" + categorySearch + "%");
+                preparedStatement.setString(3, priceStartSearch);
+                preparedStatement.setString(4, priceEndSearch);
+                preparedStatement.setString(5, categorySearch);
+
+                preparedStatement.setInt(6, offset);
+                preparedStatement.setInt(7, recordsPerPage);
+            }
 //            preparedStatement.setString(2, "%" + key + "%");
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
@@ -101,6 +125,7 @@ public class ProductRepo {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
         return true;
     }
@@ -178,12 +203,16 @@ public class ProductRepo {
     }
    
     
-    public int getNoOfRecords() {
+    public int getNoOfRecords(String titleSearch, String priceStartSearch, String priceEndSearch) {
         try{
          // Getting the total number of records
-            String countQuery = "SELECT COUNT(*) FROM products";
-            Statement countStmt = Database.getConnect().createStatement();
-            ResultSet countRs = countStmt.executeQuery(countQuery);
+            String countQuery = "SELECT COUNT(*) FROM products where title like ? and price between ? and ?";
+            PreparedStatement preparedStatement = Database.getConnect().prepareStatement(countQuery);
+            preparedStatement.setString(1, "%" + titleSearch + "%");
+//            preparedStatement.setString(2, categorySearch);
+            preparedStatement.setString(2, priceStartSearch);
+            preparedStatement.setString(3, priceEndSearch);
+            ResultSet countRs = preparedStatement.executeQuery();
             if (countRs.next()) {
                 this.noOfRecords = countRs.getInt(1);
             }

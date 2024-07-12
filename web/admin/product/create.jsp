@@ -82,7 +82,7 @@
                                             <div class="col-sm-10">                                            
                                                 <select name="category" class="form-select">
                                                     
-                                                    <!--<option>Open this select menu</option>-->
+                                                 <!--<option>Open this select menu</option>-->
                                                     <c:forEach var="category" items="${requestScope.categories}">
                                                         <option value="${category.id}">${category.name}</option>
                                                     </c:forEach>
@@ -99,12 +99,14 @@
                                         </div>
                                         <!-- end row -->
                                         <div class="row mb-3">
+                                            
                                             <div class="col-3">
-                                                <label for="quantity" class="col-sm-12 col-form-label">Quantity</label>
+                                                <label for="quantity" class="col-sm-12 col-form-label">Quantity ???</label>
                                                 <div class="col-sm-12">
-                                                    <input class="form-control" min="0" type="number" placeholder="0" name="quantity">
+                                                    <input readonly class="form-control" value="1" type="number" placeholder="1" name="quantity">
                                                 </div>
                                             </div>
+                                            
                                             <div class="col-3">
                                                 <label for="price" class="col-sm-12 col-form-label">Price</label>
                                                 <div class="col-sm-12">
