@@ -3,8 +3,12 @@
     Created on : Jul 2, 2024, 9:59:41 PM
     Author     : thaip
 --%>
+<%@page import="models.Contact"%>
+<%@page import="java.util.List"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="untils.Contact_Admin"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -66,16 +70,27 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
+                                                <%
+                                                    Contact_Admin contact = new Contact_Admin();
+                                                    List<Contact> listContact = contact.Display_Contact();
+                                                    request.setAttribute("messages", listContact);
+                                                %>
                                                 <tbody>
+                                                    <c:forEach var="mess" items="${messages}">
                                                     <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>admin123</td>
-                                                        <td>loi login</td>
-                                                        <td>19:23 20/06/2024</td>
+                                                        <th scope="row">${mess.id}</th>
+                                                        <td>${mess.username}</td>
+                                                        <td>${mess.message}</td>
+                                                        <td>${mess.create_date}</td>
                                                         <td>
-                                                            <button type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
+                                                            <form action="ContactServlet" method="post">
+                                                            <input type="hidden" name="delete_contact" value="${mess.id}" />
+                                                            <button type="submit" value="Delete_contact" name="_method" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
+                                                            </form>
                                                         </td>
+                                                    </tr>
                                                 </tbody>
+                                                  
                                             </table>
                                             <div class="mt-4">
                                                 <nav aria-label="...">
