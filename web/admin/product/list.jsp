@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!doctype html>
 <html lang="en">
 
@@ -35,10 +36,10 @@
         <div id="layout-wrapper">
 
             
-            <%@include file="/admin/components/header.jsp" %>
+            <%--<%@include file="/admin/components/header.jsp" %>--%>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%@include file="/admin/components/menu.jsp" %>
+            <%--<%@include file="/admin/components/menu.jsp" %>--%>
             <!-- Left Sidebar End -->
 
             
@@ -56,7 +57,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Product List</h4>
                                         <p class="card-title-desc">Product List</p>    
-                                        
+                                        <a href="/admin/product?action=create">Add</a>
                                         <div class="table-responsive">
                                             <table class="table table-hover mb-0">
         
@@ -66,59 +67,91 @@
                                                         <th>Title</th>
                                                         <th>Quantity</th>
                                                         <th>Type</th>
-                                                        <th>Price</th>
+                                                        <th>Price (VND)</th>
+                                                        <th>Image</th>
                                                         <th>Status</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Acc Free Fire súng đẹp</td>
-                                                        <td>10</td>
-                                                        <td>Free Fire</td>
-                                                        <td>20.000 VNĐ</td>
-                                                        <td>
-                                                            <span class="badge bg-success">Showing</span>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-outline-info waves-effect waves-light"><i class="fas fa-edit"></i></button>
-                                                            <button type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Acc liên quân nhiều skin</td>
-                                                        <td>10</td>
-                                                        <td>Liên quân</td>
-                                                        <td>20.000 VNĐ</td>
-                                                        <td>
-                                                            <span class="badge bg-dark">Hidden</span>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-outline-info waves-effect waves-light"><i class="fas fa-edit"></i></button>
-                                                            <button type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
-                                                        </td>
-                                                    </tr>
+                                                    <c:if test="${empty list}">
+                                                        <div>There is no account !!!</div>
+                                                    </c:if> 
+                                                    <c:forEach var="product" items="${list}">
+                                                        <tr>
+                                                            <th scope="row">${list.indexOf(product) + 1}</th>
+                                                            <td>${product.title}</td>
+                                                            <td>${product.quantity}</td>
+                                                            <td>${product.category.name}</td>
+                                                            <td>${product.price}</td>
+                                                            <td><img style="max-width: 100px; max-height: 100px;" src="${product.img}"/></td>
+                                                            <td>
+                                                                <span class="badge bg-success">${product.status}</span>
+                                                            </td>
+                                                            <td>
+                                                                <a  href="/admin/product?action=edit&id=${product.id}" type="button" class="btn btn-sm btn-outline-info waves-effect waves-light fas fa-edit"></a>
+                                                                <!--<a href="/admin/product?action=delete" type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light fas fa-trash-alt"></a>-->
+                                                                
+                                                                <button type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light fas fa-trash-alt" data-bs-toggle="modal"
+                                                                        data-bs-target="#delete${product.id}">
+                                                          
+                                                                </button>
+                                                                    
+                                                                        <form action="/admin/product?action=delete&id=${product.id}" method="post">
+                                                                    <div class="modal" id="delete${product.id}" tabindex="-1">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 style="color : red" class="modal-title">Delete Warning !!!</h5>
+                                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <p>You want to delete product having title " ${product.title} " ?</p>
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+           
                                                 </tbody>
                                             </table>
-                                            <div class="mt-4">
-                                                <nav aria-label="...">
-                                                    <ul class="pagination pagination-rounded justify-content-end">
+
+                                             <c:if test="${noOfPages > 1}">
+                                                <div class="pagination pagination-rounded justify-content-end">
+                                                    <c:if test="${currentPage !=  1}">
                                                         <li class="page-item">
-                                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                            <a class="page-link" href="/admin/product?page=${currentPage - 1}">Previous</a>
                                                         </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item active">
-                                                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    </c:if>
+                                                    <c:forEach var="i" begin="1" end="${noOfPages}">     
+                                                        <c:choose>
+                                                            <c:when test="${i == currentPage}">
+                                                                <li class="page-item active">
+                                                                    <span class="page-link">${i}</span>
+                                                                </li>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <li class="page-item">
+                                                                    <a class="page-link" href="/admin/product?page=${i}">${i}</a>
+                                                                </li>
+                                                            </c:otherwise>
+                                                        </c:choose>         
+                                                    </c:forEach>
+                                                    <c:if test="${currentPage < noOfPages}">
                                                         <li class="page-item">
-                                                            <a class="page-link" href="#">Next</a>
+                                                            <a class="page-link" href="/admin/product?page=${currentPage + 1}">Next</a>
                                                         </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
+                                                    </c:if>
+                                                </div>
+                                                
+                                            </c:if>
                                             
                                         </div>
         
