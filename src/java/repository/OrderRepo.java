@@ -34,18 +34,19 @@ public class OrderRepo {
     
   
     public int createOrder(Order order) {
-        String sql = "{CALL AddOrder(?, ?, ?, ?)}";
+        String sql = "{CALL AddOrder(?, ?, ?, ?, ?)}";
         try {
             CallableStatement stmt = Database.getConnect().prepareCall(sql);
 
             stmt.setString(1, order.getStatus());
             stmt.setDouble(2, order.getTotal_amount());
             stmt.setString(3, order.getUser().getUsername());
-            stmt.registerOutParameter(4, Types.INTEGER);
+            stmt.setString(4, order.getImage());
+            stmt.registerOutParameter(5, Types.INTEGER);
 
             stmt.execute();
 
-            return stmt.getInt(4);
+            return stmt.getInt(5);
         } catch (SQLException e) {
             return -1;
         }

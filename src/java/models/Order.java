@@ -14,6 +14,7 @@ public class Order {
     private int id;
     private double total_amount;
     private String status;
+    private String image;
     private Date orderDate;
     private User user;
     
@@ -57,6 +58,16 @@ public class Order {
         this.orderDate = orderDate;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Order{" + "id=" + id + ", total_amount=" + total_amount + ", status=" + status + ", orderDate=" + orderDate + ", user=" + user + '}';

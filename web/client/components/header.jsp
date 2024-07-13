@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -122,10 +123,14 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
-                        </div>
+                        
+                        <c:if test="${empty sessionScope.client}">
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="/auth/client" class="nav-item nav-link">Login ?</a>
+                                <a href="/auth/client?type=register" class="nav-item nav-link">Register</a>
+                            </div>
+                        </c:if>
+                        
                     </div>
                 </nav>
             </div>

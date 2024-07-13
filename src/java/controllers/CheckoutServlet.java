@@ -51,10 +51,15 @@ public class CheckoutServlet extends HttpServlet {
             User user = (User) session.getAttribute("client");
             Cart cart = cartDAO.getCartById(user.getCartId());
             List<Product> res = cart.getProducts();
+            
+            if (res.isEmpty()) {
+                request.setAttribute("message", "Cart is empty !!!");   
+            }
+            
             double subTotal = cartDAO.getCartTotal(cart.getId());
             double discount = 0;
             double total = subTotal - discount;
-
+            
             request.setAttribute("list", res);
             request.setAttribute("subtotal", subTotal);
             request.setAttribute("discount", discount);
