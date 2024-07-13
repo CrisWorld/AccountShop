@@ -57,10 +57,45 @@
                                     <div class="card-body">
                                         <h4 class="card-title">Product List</h4>
                                         <p class="card-title-desc">Product List</p>    
-                                        <a href="/admin/product?action=create">Add</a>
+                                        
+                                        <div class="row">
+                                            <form class="row col-11" method="get">
+                                                
+                                                <input style="margin-right : 10px" class="col-2" type="text" placeholder="Title" name="titleSearch" value="${titleSearch}"/>
+                                               
+                                                <select style="margin-right : 10px" name="categorySearch" class="col-2">
+                                                    <option value="">Category</option>
+                                                    <c:if test="${not empty category}">
+                                                        <option selected hidden value="${category.id}">${category.name}</option>
+                                                    </c:if>
+                                                    <!--<option>Open this select menu</option>-->
+                                                    <c:forEach var="category" items="${requestScope.categories}">
+                                                        <option value="${category.id}">${category.name}</option>
+                                                    </c:forEach>
+                                                </select>
+                             
+                                                <input style="margin-right : 10px" class="col-2" type="number" step="0.1" min="0" max="90000000" placeholder="Start Price" name="priceStartSearch" value="${priceStartSearch}"/>
+                                                
+                                                <input class="col-2" type="number" step="0.1" min="0" max="900000000" placeholder="End Price" name="priceEndSearch" value="${priceEndSearch}"/>
+                                                
+                                                <button class="btn btn-outline-light col-2" type="submit"><div class="fas fa-search" ></div></button>
+                                            </form>
+                                        
+                                            <a style="font-size: 25px" class="col-1 fas fa-plus-circle" href="/admin/product?action=create"></a>
+                                        </div>
+                                        
                                         <div class="table-responsive">
                                             <table class="table table-hover mb-0">
-        
+                                                
+                                                <c:if test="${empty list}">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>There is no account !!!</th>
+                                                        </tr>
+                                                    </thead>
+                                                </c:if> 
+                                                
+                                                <c:if test="${not empty list}">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
@@ -74,9 +109,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:if test="${empty list}">
-                                                        <div>There is no account !!!</div>
-                                                    </c:if> 
+                                              
                                                     <c:forEach var="product" items="${list}">
                                                         <tr>
                                                             <th scope="row">${list.indexOf(product) + 1}</th>
@@ -97,7 +130,7 @@
                                                           
                                                                 </button>
                                                                     
-                                                                        <form action="/admin/product?action=delete&id=${product.id}" method="post">
+                                                                <form action="/admin/product?action=delete&id=${product.id}" method="post">
                                                                     <div class="modal" id="delete${product.id}" tabindex="-1">
                                                                         <div class="modal-dialog">
                                                                             <div class="modal-content">
@@ -119,15 +152,16 @@
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
-           
+           `                                    </c:if> 
                                                 </tbody>
                                             </table>
-
+                                            
+                                           
                                              <c:if test="${noOfPages > 1}">
                                                 <div class="pagination pagination-rounded justify-content-end">
                                                     <c:if test="${currentPage !=  1}">
                                                         <li class="page-item">
-                                                            <a class="page-link" href="/admin/product?page=${currentPage - 1}">Previous</a>
+                                                            <a class="page-link" href="/admin/product?page=${currentPage - 1}&titleSearch=${titleSearch}&categorySearch=${categorySearch}&priceStartSearch=${priceStartSearch}&priceEndSearch=${priceEndSearch}">Previous</a>
                                                         </li>
                                                     </c:if>
                                                     <c:forEach var="i" begin="1" end="${noOfPages}">     
@@ -139,20 +173,20 @@
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <li class="page-item">
-                                                                    <a class="page-link" href="/admin/product?page=${i}">${i}</a>
+                                                                    <a class="page-link" href="/admin/product?page=${i}&titleSearch=${titleSearch}&categorySearch=${categorySearch}&priceStartSearch=${priceStartSearch}&priceEndSearch=${priceEndSearch}">${i}</a>
                                                                 </li>
                                                             </c:otherwise>
                                                         </c:choose>         
                                                     </c:forEach>
                                                     <c:if test="${currentPage < noOfPages}">
                                                         <li class="page-item">
-                                                            <a class="page-link" href="/admin/product?page=${currentPage + 1}">Next</a>
+                                                            <a class="page-link" href="/admin/product?page=${currentPage + 1}&titleSearch=${titleSearch}&categorySearch=${categorySearch}&priceStartSearch=${priceStartSearch}&priceEndSearch=${priceEndSearch}">Next</a>
                                                         </li>
                                                     </c:if>
                                                 </div>
                                                 
                                             </c:if>
-                                            
+                                                  
                                         </div>
         
                                     </div>
@@ -180,4 +214,3 @@
 
     </body>
 </html>
-

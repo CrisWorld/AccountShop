@@ -4,6 +4,8 @@
  */
 package models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PC
@@ -13,6 +15,8 @@ public class Category {
     private String name;
     private String description;
     private String banner;
+    private ArrayList<Category> childs;
+    private Integer parentId;
     
     public Category() {
     }
@@ -23,7 +27,18 @@ public class Category {
         this.description = description;
     }
 
-    
+    public Category(String name,  String banner, String description, Integer parentId) {
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+        this.parentId = parentId;
+    }
+
+    public Category(String name, String description, String banner) {
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+    }
     
     public int getId() {
         return id;
@@ -57,10 +72,25 @@ public class Category {
         this.banner = banner;
     }
 
-    @Override
-    public String toString() {
-        return "Category{" + "id=" + id + ", name=" + name + ", description=" + description + ", banner=" + banner + '}';
+    public ArrayList<Category> getChilds() {
+        return childs;
+    }
+
+    public void setChilds(ArrayList<Category> childs) {
+        this.childs = childs;
+    }
+
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
     
+    @Override
+    public String toString() {
+        return "Category{" + "id=" + id + ", name=" + name + ", description=" + description + ", banner=" + banner + ", parent_id=" + parentId + '}';
+    }
     
 }

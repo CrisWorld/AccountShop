@@ -187,7 +187,9 @@ public class Product {
     public void setMeta_keyword(String meta_keyword) {
         this.meta_keyword = meta_keyword;
     }
-    
-    
-   
+
+    @Override
+    public String toString() {
+        return "Product{" + "id=" + id + ", title=" + title + ", img=" + img + ", quantity=" + quantity + ", discount_percentage=" + discount_percentage + ", status=" + status + ", price=" + price + ", category=" + category + ", slug=" + slug + ", desc=" + desc + ", short_desc=" + short_desc + ", secret_info=" + secret_info + ", meta_title=" + meta_title + ", meta_description=" + meta_description + ", meta_keyword=" + meta_keyword + '}';
+    }
 }

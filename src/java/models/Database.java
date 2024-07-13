@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import repository.CategoryRepo;
+import repository.ProductRepo;
 
 
 public class Database implements DatabaseInfo{
@@ -28,13 +30,22 @@ public class Database implements DatabaseInfo{
     }
     
     public static void main(String[] a) {
-        ArrayList<Contact> list = Database.listAll();
-        for (Contact item : list) {
+//        ArrayList<Contact> list = MainRun.listAllContact();
+//        for (Contact item : list) {
+//            System.out.println(item);
+//        }
+        List<Category> listCategory = CategoryRepo.findAll();
+        for (Category item : listCategory) {
             System.out.println(item);
         }
+        
+//        List<Product> listProduct = ProductRepo.listAllProduct();
+//        for (Product item : listProduct) {
+//            System.out.println(item);
+//        }
     }
     
-    public static ArrayList<Contact> listAll() {
+    public static ArrayList<Contact> listAllContact() {
         ArrayList<Contact> list = new ArrayList<>();
         try (Connection con = getConnect()) {
             PreparedStatement stmt = con.prepareStatement("SELECT id, username, message, created_at FROM contacts");
@@ -59,7 +70,7 @@ public class Database implements DatabaseInfo{
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (Exception ex) {
-            ex.printStackTrace(); // Handle exception properly
+            ex.printStackTrace();
             return false;
         }
     }
