@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -19,14 +22,19 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Category;
 import models.User;
 import untils.Account;
+import untils.CartDAO;
+import java.sql.*;
+import models.Database;
+
 
 /**
  *
  * @author quoch
  */
-public class AdminLoginRequireFilter implements Filter {
+public class ClientLoginRequireFilter implements Filter {
     
     private static final boolean debug = true;
 
@@ -35,7 +43,7 @@ public class AdminLoginRequireFilter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
     
-    public AdminLoginRequireFilter() {
+    public ClientLoginRequireFilter() {
     }
 
     /**
@@ -47,8 +55,44 @@ public class AdminLoginRequireFilter implements Filter {
      * @exception IOException if an input/output error occurs
      * @exception ServletException if a servlet error occurs
      */
+    public List<Category> getCategories() throws SQLException {
+        Connection connection = Database.getConnect();
+        String query = "SELECT id, name, banner, [desc] AS description, parent_id FROM product_categories";
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Create a map to hold categories by their id
+        Map<Integer, Category> categoryMap = new HashMap<>();
+        List<Category> categories = new ArrayList<>();
+        List<Category> finalCategories = new ArrayList<>();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            String banner = resultSet.getString("banner");
+            String description = resultSet.getString("description");
+            Integer parentId = resultSet.getObject("parent_id") != null ? resultSet.getInt("parent_id") : null;
+            Category category = new Category(id, name, description, banner, new ArrayList<>(), parentId);
+            categories.add(category);
+            if (parentId == null) {
+                categoryMap.put(id, category);
+            }
+        }
+        for(Category category: categories){
+            System.out.println(category.getName());
+            if(category.getParentId() != null) categoryMap.get(((int)category.getParentId())).getChilds().add(category);
+            else finalCategories.add(category);
+        }
+
+        return finalCategories;
+    }
+    
+    public void initCategory(HttpServletRequest request, HttpServletResponse response) throws SQLException{
+        ArrayList<Category> categories = (ArrayList<Category>) getCategories();
+        request.setAttribute("categories", categories);
+    }
+    
     public boolean isExclude(String uri){
-        List<String> excludedUrls = Arrays.asList("/admin/assets");
+        List<String> excludedUrls = Arrays.asList("/client/assets");
         boolean shouldExclude = excludedUrls.stream().anyMatch(uri::startsWith);
         return shouldExclude;
     }
@@ -58,7 +102,7 @@ public class AdminLoginRequireFilter implements Filter {
             throws IOException, ServletException {
         
         if (debug) {
-            log("AdminLoginRequireFilter:doFilter()");
+            log("ClientLoginRequireFilter:doFilter()");
         }
                 
         Throwable problem = null;
@@ -67,19 +111,26 @@ public class AdminLoginRequireFilter implements Filter {
             HttpServletRequest httpRequest = (HttpServletRequest) request;
             String uri = httpRequest.getRequestURI();
             boolean isExclude = isExclude(uri);
-
             HttpSession session = httpRequest.getSession(true);
             if(isExclude){
                 chain.doFilter(request, response);
-            } else if(session.getAttribute("admin") != null){
-                User admin = (User) session.getAttribute("admin");
-                User checkAdmin = Account.getAccountByUserName(admin.getUsername());
-                if(checkAdmin.isIsAdmin()) chain.doFilter(request, response);
+            } else if(session.getAttribute("client") != null){
+                User client = (User) session.getAttribute("client");
+                User checkClient = Account.getAccountByUserName(client.getUsername());
+                if(!checkClient.isIsAdmin()) {
+                    initCategory(httpRequest, httpResponse);
+                    // get number of item in card;
+                    CartDAO cartRepo = new CartDAO();
+                    if(checkClient.getCartId()==null) httpRequest.setAttribute("numberOfItemInCart", 0);
+                    else httpRequest.setAttribute("numberOfItemInCart", cartRepo.getCartById(checkClient.getCartId()).getProducts().size());
+                    
+                    chain.doFilter(request, response);
+                }
                 else {
-                    httpResponse.sendRedirect("/auth/admin");
+                    httpResponse.sendRedirect("/auth/client");
                 }
             } else {
-                httpResponse.sendRedirect("/auth/admin");
+                httpResponse.sendRedirect("/auth/client");
             }
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
@@ -131,7 +182,7 @@ public class AdminLoginRequireFilter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {                
-                log("AdminLoginRequireFilter:Initializing filter");
+                log("ClientLoginRequireFilter:Initializing filter");
             }
         }
     }
@@ -142,9 +193,9 @@ public class AdminLoginRequireFilter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("AdminLoginRequireFilter()");
+            return ("ClientLoginRequireFilter()");
         }
-        StringBuffer sb = new StringBuffer("AdminLoginRequireFilter(");
+        StringBuffer sb = new StringBuffer("ClientLoginRequireFilter(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

@@ -32,8 +32,36 @@
                                     <span>Dashboard</span>
                                 </a>
                             </li>
-
                             <li>
+                                <a root-href="/admin/account" href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="ri-mail-send-line"></i>
+                                    <span>Account</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="/admin/account">List account</a></li>
+                                    <li><a href="/admin/account?action=create">Add a account</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <a root-href="/admin/product" href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="ri-mail-send-line"></i>
+                                    <span>Product</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="/admin/product">List product</a></li>
+                                    <li><a href="/admin/product?action=create">Add a product</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                                <a href="/admin/order" class="waves-effect">
+                                    <i class="ri-dashboard-line"></i>
+                                    <span>Orders</span>
+                                </a>
+                            </li>
+                            
+<!--                            <li>
                                 <a href="calendar.html" class=" waves-effect">
                                     <i class="ri-calendar-2-line"></i>
                                     <span>Calendar</span>
@@ -237,7 +265,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                            </li>
+                            </li>-->
 
                         </ul>
                     </div>

@@ -23,7 +23,7 @@ public class Account {
                                                     "FROM users " +
                                                     "LEFT JOIN roles ON users.role_id = roles.id " +
                                                     "WHERE users.isAdmin = 1;";
-    private static final String SELECT_ACCOUNT_BY_USERNAME_SQL = "SELECT users.username, users.fullname, users.image, users.role_id, roles.name AS role_name " +
+    private static final String SELECT_ACCOUNT_BY_USERNAME_SQL = "SELECT users.username, users.fullname, users.image, users.role_id, users.cart_id, users.isAdmin, roles.name AS role_name " +
                                                     "FROM users " +
                                                     "LEFT JOIN roles ON users.role_id = roles.id " +
                                                     "WHERE users.username = ?;";
@@ -120,13 +120,14 @@ public class Account {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ACCOUNT_BY_USERNAME_SQL)) {
             preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
-
             while (rs.next()) {
                 String fullname = rs.getString("fullname");
                 String image = rs.getString("image");
+                Integer cart_id = rs.getObject("cart_id") == null ? null : (Integer) rs.getObject("cart_id");
                 Integer roleId = rs.getObject("role_id", Integer.class);
+                boolean isAdmin = rs.getBoolean("isAdmin");
                 String roleName = rs.getString("role_name");
-                account = new User(username, "", fullname, image, true, roleId, 0, roleName);
+                account = new User(username, "", fullname, image, isAdmin, roleId, cart_id, roleName);
             }
         } catch (Exception e) {
             e.printStackTrace();

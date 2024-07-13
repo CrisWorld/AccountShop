@@ -4,7 +4,16 @@
     Author     : quoch
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="models.Category"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%! 
+    ArrayList<Category> categories;
+%>
+<% 
+    categories = (ArrayList<Category>) request.getAttribute("categories");
+%>
 <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -56,13 +65,9 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
-                    <i class="fas fa-heart text-primary"></i>
-                    <span class="badge">0</span>
-                </a>
-                <a href="" class="btn border">
+                <a href="/cart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">${numberOfItemInCart}</span>
                 </a>
             </div>
         </div>
@@ -80,23 +85,20 @@
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">Men's Dresses</a>
-                                <a href="" class="dropdown-item">Women's Dresses</a>
-                                <a href="" class="dropdown-item">Baby's Dresses</a>
-                            </div>
-                        </div>
-                        <a href="" class="nav-item nav-link">Shirts</a>
-                        <a href="" class="nav-item nav-link">Jeans</a>
-                        <a href="" class="nav-item nav-link">Swimwear</a>
-                        <a href="" class="nav-item nav-link">Sleepwear</a>
-                        <a href="" class="nav-item nav-link">Sportswear</a>
-                        <a href="" class="nav-item nav-link">Jumpsuits</a>
-                        <a href="" class="nav-item nav-link">Blazers</a>
-                        <a href="" class="nav-item nav-link">Jackets</a>
-                        <a href="" class="nav-item nav-link">Shoes</a>
+                        <% for (Category category : categories) { %>
+                            <% if (category.getChilds().size() == 0) { %>
+                                <a href="#" class="nav-item nav-link"><%= category.getName() %></a>
+                            <% } else { %>
+                                <div class="nav-item dropdown">
+                                    <a href="#" class="nav-link" data-toggle="dropdown"><%= category.getName() %> <i class="fa fa-angle-down float-right mt-1"></i></a>
+                                    <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                        <% for (Category subCategory : category.getChilds()) { %>
+                                            <a href="#" class="dropdown-item"><%= subCategory.getName() %></a>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% } %>
                     </div>
                 </nav>
             </div>
@@ -122,10 +124,20 @@
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
-                        </div>
+                        <c:choose>
+                            <c:when test="${client != null}">
+                                <div class="navbar-nav ml-auto py-0">
+                                    <a class="nav-item nav-link">Hello, ${client.fullname}!</a>
+                                    <a href="/auth/client" class="nav-item nav-link">Logout</a>
+                                </div>
+                            </c:when>    
+                            <c:otherwise>
+                                <div class="navbar-nav ml-auto py-0">
+                                    <a href="/auth/client" class="nav-item nav-link">Login</a>
+                                    <a href="/auth/client?type=register" class="nav-item nav-link">Register</a>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </nav>
             </div>

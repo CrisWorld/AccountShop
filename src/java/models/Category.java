@@ -4,6 +4,8 @@
  */
 package models;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author PC
@@ -13,9 +15,13 @@ public class Category {
     private String name;
     private String description;
     private String banner;
+    private ArrayList<Category> childs;
+    private Integer parentId;
     
     public Category() {
     }
+    
+    
     
     public Category(int id) {
         this.id = id;
@@ -25,6 +31,23 @@ public class Category {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public Category(int id, String name, String description, String banner, ArrayList<Category> childs) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+        this.childs = childs;
+    }
+    
+    public Category(int id, String name, String description, String banner, ArrayList<Category> childs, Integer parentId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+        this.childs = childs;
+        this.parentId = parentId;
     }
 
     
@@ -45,6 +68,14 @@ public class Category {
         this.name = name;
     }
 
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -61,6 +92,15 @@ public class Category {
         this.banner = banner;
     }
 
+    public ArrayList<Category> getChilds() {
+        return childs;
+    }
+
+    public void setChilds(ArrayList<Category> childs) {
+        this.childs = childs;
+    }
+
+    
     @Override
     public String toString() {
         return "Category{" + "id=" + id + ", name=" + name + ", description=" + description + ", banner=" + banner + '}';
