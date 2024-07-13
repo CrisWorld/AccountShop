@@ -34,15 +34,16 @@ public class CartDAO {
                 productsStmt.setInt(1, cartId);
                 ResultSet productsRs = productsStmt.executeQuery();
                 while (productsRs.next()) {
+                    Category category = productsRs.getObject("category_id") == null ? new Category(productsRs.getInt("category_id")) : new Category();
                     Product product = new Product(
                         productsRs.getInt("id"),
                         productsRs.getString("title"),
-                        productsRs.getString("img"),
+                        productsRs.getString("image"),
                         productsRs.getInt("quantity"),
                         productsRs.getDouble("discount_percentage"),
                         productsRs.getString("status"),
                         productsRs.getDouble("price"),
-                        new Category(productsRs.getInt("category_id")),
+                        category,
                         productsRs.getString("slug"),
                         productsRs.getString("desc"),
                         productsRs.getString("short_desc"),
@@ -51,6 +52,7 @@ public class CartDAO {
                         productsRs.getString("meta_description"),
                         productsRs.getString("meta_keyword")
                     );
+                    System.out.println("vao day");
                     cart.getProducts().add(product);
                 }
             }
