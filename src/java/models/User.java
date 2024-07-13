@@ -17,6 +17,7 @@ public class User {
     private boolean isAdmin;
     private Integer roleId;
     private Integer cartId;
+    private String roleName;
 
     // Constructors, getters and setters
 
@@ -30,6 +31,17 @@ public class User {
         this.isAdmin = isAdmin;
         this.roleId = roleId;
         this.cartId = cartId;
+    }
+    
+    public User(String username, String password, String fullname, String image, boolean isAdmin, Integer roleId, Integer cartId, String roleName) {
+        this.username = username;
+        this.password = password;
+        this.fullname = fullname;
+        this.image = image;
+        this.isAdmin = isAdmin;
+        this.roleId = roleId;
+        this.cartId = cartId;
+        this.roleName = roleName;
     }
     
     // Getters and Setters for each field
@@ -89,4 +101,14 @@ public class User {
     public void setCartId(Integer cartId) {
         this.cartId = cartId;
     }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+    
+    
 }
