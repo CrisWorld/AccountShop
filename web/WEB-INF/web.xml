@@ -8,10 +8,7 @@
         <servlet-name>Product</servlet-name>
         <servlet-class>models.Product</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ProductServlet</servlet-name>
-        <servlet-class>controllers.ProductServlet</servlet-class>
-    </servlet>
+
     <servlet>
         <servlet-name>AccountServlet</servlet-name>
         <servlet-class>controllers.AccountServlet</servlet-class>

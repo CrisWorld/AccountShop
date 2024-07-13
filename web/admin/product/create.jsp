@@ -74,7 +74,7 @@
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                                             <div class="col-sm-10">
-                                                <input name="title" class="form-control" type="text" placeholder="Artisanal kale" id="example-text-input">
+                                                <input required name="title" class="form-control" type="text" placeholder="Artisanal kale" id="example-text-input">
                                             </div>                                         
                                         </div>
                                         <div class="row mb-3">
@@ -100,27 +100,27 @@
                                         <!-- end row -->
                                         <div class="row mb-3">
                                             
-                                            <div class="col-3">
+                                            <div hidden class="col-3">
                                                 <label for="quantity" class="col-sm-12 col-form-label">Quantity ???</label>
                                                 <div class="col-sm-12">
                                                     <input readonly class="form-control" value="1" type="number" placeholder="1" name="quantity">
                                                 </div>
                                             </div>
                                             
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="price" class="col-sm-12 col-form-label">Price</label>
                                                 <div class="col-sm-12">
                                                     <input name="price" class="form-control" type="number" placeholder="200000" id="price">
                                                 </div>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="status" class="col-sm-12 col-form-label">Status</label>
                                                 <select name="status" class="form-select">
                                                     <option value="showing" selected>Showing</option>
                                                     <option value="hidden">Hidden</option>
                                                 </select>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="discount" class="col-sm-12 col-form-label">Discount (%)</label>
                                                 <div class="col-sm-12">
                                                     <input name="discount" min="0" max="100" class="form-control" type="number" placeholder="0-100" id="discount">

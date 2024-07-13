@@ -66,7 +66,6 @@ public class ProductRepo {
                 preparedStatement = Database.getConnect().prepareStatement(GET_ALL_PRODUCT_NOT_CATEGORY_SQL);
                 preparedStatement.setString(1, "deleted");
                 preparedStatement.setString(2, "%" + titleSearch + "%");
-    //            preparedStatement.setString(3, "%" + categorySearch + "%");
                 preparedStatement.setString(3, priceStartSearch);
                 preparedStatement.setString(4, priceEndSearch);
                 preparedStatement.setInt(5, offset);
@@ -203,15 +202,25 @@ public class ProductRepo {
     }
    
     
-    public int getNoOfRecords(String titleSearch, String priceStartSearch, String priceEndSearch) {
+    public int getNoOfRecords(String titleSearch, String priceStartSearch, String priceEndSearch, String categorySearch) {
         try{
          // Getting the total number of records
-            String countQuery = "SELECT COUNT(*) FROM products where title like ? and price between ? and ?";
-            PreparedStatement preparedStatement = Database.getConnect().prepareStatement(countQuery);
-            preparedStatement.setString(1, "%" + titleSearch + "%");
-//            preparedStatement.setString(2, categorySearch);
-            preparedStatement.setString(2, priceStartSearch);
-            preparedStatement.setString(3, priceEndSearch);
+            String countQuery = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?)";
+            String countQueryNotCate = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?) and category_id = ?";
+            PreparedStatement preparedStatement;
+            if (categorySearch.isBlank()) {
+                preparedStatement = Database.getConnect().prepareStatement(countQuery);
+                preparedStatement.setString(1, "%" + titleSearch + "%");
+                preparedStatement.setString(2, priceStartSearch);
+                preparedStatement.setString(3, priceEndSearch);
+//            preparedStatement.setString(4, categorySearch);
+            } else {
+                preparedStatement = Database.getConnect().prepareStatement(countQueryNotCate);
+                preparedStatement.setString(1, "%" + titleSearch + "%");
+                preparedStatement.setString(2, priceStartSearch);
+                preparedStatement.setString(3, priceEndSearch);
+                preparedStatement.setString(4, categorySearch);
+            }
             ResultSet countRs = preparedStatement.executeQuery();
             if (countRs.next()) {
                 this.noOfRecords = countRs.getInt(1);
