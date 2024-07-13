@@ -67,7 +67,7 @@ public class AccountServlet extends HttpServlet {
             doUpdate(request, response);
         } else if(method.equals("delete")){
             doDelete(request, response);
-        }
+        } 
     }
     
     protected void doCreate(HttpServletRequest request, HttpServletResponse response)
@@ -158,6 +158,8 @@ public class AccountServlet extends HttpServlet {
             ex.printStackTrace();
         }
     }
+    
+   
     
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

@@ -51,6 +51,18 @@ public class Category {
     }
 
     
+    public Category(String name,  String banner, String description, Integer parentId) {
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+        this.parentId = parentId;
+    }
+
+    public Category(String name, String description, String banner) {
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+    }
     
     public int getId() {
         return id;
@@ -103,8 +115,7 @@ public class Category {
     
     @Override
     public String toString() {
-        return "Category{" + "id=" + id + ", name=" + name + ", description=" + description + ", banner=" + banner + '}';
+        return "Category{" + "id=" + id + ", name=" + name + ", description=" + description + ", banner=" + banner + ", parent_id=" + parentId + '}';
     }
-    
     
 }

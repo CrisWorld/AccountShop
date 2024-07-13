@@ -21,14 +21,6 @@
         <servlet-class>controllers.AdminAuthentication</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Product</servlet-name>
-        <servlet-class>models.Product</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProductServlet</servlet-name>
-        <servlet-class>controllers.ProductServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AccountServlet</servlet-name>
         <servlet-class>controllers.AccountServlet</servlet-class>
     </servlet>
@@ -40,9 +32,25 @@
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>controllers.CartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ContactServlet</servlet-name>
+        <servlet-class>controllers.ContactServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestContactServlet</servlet-name>
+        <servlet-class>controllers.RequestContactServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CategoryServlet</servlet-name>
+        <servlet-class>controllers.CategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderServlet</servlet-name>
+        <servlet-class>controllers.OrderServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminAuthentication</servlet-name>
-        <url-pattern>/auth/admin</url-pattern>
+        <url-pattern>/AdminAuthentication</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
@@ -53,8 +61,28 @@
         <url-pattern>/auth/client</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AdminAuthentication</servlet-name>
+        <url-pattern>/auth/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ContactServlet</servlet-name>
+        <url-pattern>/ContactServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RequestContactServlet</servlet-name>
+        <url-pattern>/RequestContactServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/admin/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderServlet</servlet-name>
+        <url-pattern>/admin/order</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
