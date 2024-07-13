@@ -1,9 +1,17 @@
+<%-- 
+    Document   : detail
+    Created on : Jul 12, 2024, 11:29:57 PM
+    Author     : thaip
+--%>
+<%@ page import="models.Product" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <title>EShopper - Bootstrap Shop Template</title>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>EShopper - Bootstrap Shop Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -23,9 +31,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet">
-</head>
-
-<body>
+    </head>
+    <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -176,29 +183,21 @@
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner border">
                         <div class="carousel-item active">
-                            <img class="w-100 h-100" src="img/product-1.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-2.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-3.jpg" alt="Image">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="w-100 h-100" src="img/product-4.jpg" alt="Image">
+                            <c:set var="nguonanh" value="assets/img/${product.img}.jpg"/>
+                            <img class="w-100 h-100" src="nguonanh" alt="Image">
                         </div>
                     </div>
-                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+<!--                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
                         <i class="fa fa-2x fa-angle-left text-dark"></i>
                     </a>
                     <a class="carousel-control-next" href="#product-carousel" data-slide="next">
                         <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a>
+                    </a>-->
                 </div>
             </div>
-
+                
             <div class="col-lg-7 pb-5">
-                <h3 class="font-weight-semi-bold">Colorful Stylish Shirt</h3>
+                <h3 class="font-weight-semi-bold"><c:out value="product.title" /></h3>
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -210,7 +209,7 @@
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
-                <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p>
+                <p class="mb-4"><c:out value="product.short_desc" /></p>
 <!--                <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                     <form>
@@ -306,8 +305,7 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3">Product Description</h4>
-                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
-                        <p>Dolore magna est eir mod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+                        <p><c:out value="product.meta_description" /></p>
                     </div>
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Meta Title</h4>
@@ -412,16 +410,19 @@
             <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
         </div>
         <div class="row px-xl-5">
+            
             <div class="col">
+                <c:forEach var="acc" items="list">
                 <div class="owl-carousel related-carousel">
                     <div class="card product-item border-0">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                            <c:set var="img" value="assets/img/${acc.img}.jpg"/>
+                            <img class="img-fluid w-100" src="img" alt="">
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                            <h6 class="text-truncate mb-3"><c:out value="${acc.title}"/></h6>
                             <div class="d-flex justify-content-center">
-                                <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+                                <h6><c:out value="${acc.price}"/></h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
@@ -429,7 +430,7 @@
                             <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                         </div>
                     </div>
-                    <div class="card product-item border-0">
+<!--                    <div class="card product-item border-0">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                             <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
                         </div>
@@ -488,9 +489,11 @@
                             <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                             <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
+                </c:forEach>
             </div>
+            
         </div>
     </div>
     <!-- Products End -->
@@ -584,5 +587,4 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-
 </html>

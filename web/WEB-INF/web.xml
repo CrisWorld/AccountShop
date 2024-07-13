@@ -28,11 +28,10 @@
         <servlet-name>AccountServlet</servlet-name>
         <url-pattern>/AccountServlet</url-pattern>
     </servlet-mapping>
-<!--<<<<<<< HEAD-->
     <servlet-mapping>
         <servlet-name>ContactServlet</servlet-name>
         <url-pattern>/admin/ContactServlet</url-pattern>
-<!--=======
+    </servlet-mapping>
     <servlet>
         <servlet-name>RequestContactServlet</servlet-name>
         <servlet-class>controllers.RequestContactServlet</servlet-class>
@@ -40,7 +39,6 @@
     <servlet-mapping>
         <servlet-name>RequestContactServlet</servlet-name>
         <url-pattern>/RequestContactServlet</url-pattern>
->>>>>>> origin/Truong-->
     </servlet-mapping>
     <session-config>
         <session-timeout>

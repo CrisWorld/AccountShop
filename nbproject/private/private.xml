@@ -3,7 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project_shopgame/web/client/shop.html</file>
+            <file>file:/D:/Project_shopgame/src/java/controllers/ContactServlet.java</file>
+            <file>file:/D:/Project_shopgame/nbproject/build-impl.xml</file>
+            <file>file:/D:/Project_shopgame/web/client/index.jsp</file>
+            <file>file:/D:/Project_shopgame/web/client/index.html</file>
+            <file>file:/D:/Project_shopgame/web/admin/ContactView.jsp</file>
+            <file>file:/D:/Project_shopgame/web/client/contact.html</file>
+            <file>file:/D:/Project_shopgame/src/java/controllers/ProductServlet.java</file>
+            <file>file:/D:/Project_shopgame/web/admin/index.html</file>
+            <file>file:/D:/Project_shopgame/web/client/detail.html</file>
+            <file>file:/D:/Project_shopgame/web/client/detail.jsp</file>
+            <file>file:/D:/Project_shopgame/web/META-INF/context.xml</file>
+            <file>file:/D:/Project_shopgame/src/java/models/Product.java</file>
         </group>
     </open-files>
 </project-private>

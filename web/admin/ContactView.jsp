@@ -92,25 +92,10 @@
                                                             <button type="submit" value="Delete_contact" name="_method" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
                                                             </form>
                                                         </td>
-<<<<<<< HEAD
                                                     </tr>
-<!--                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Acc liên quân nhiều skin</td>
-                                                        <td>10</td>
-                                                        <td>Liên quân</td>
-                                                        <td>20.000 VNĐ</td>
-                                                        <td>
-                                                            <span class="badge bg-dark">Hidden</span>
-                                                        </td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-sm btn-outline-info waves-effect waves-light"><i class="fas fa-edit"></i></button>
-                                                            <button type="button" class="btn btn-sm btn-outline-danger waves-effect waves-light"><i class="fas fa-trash-alt"></i></button>
-                                                        </td>
-                                                    </tr>-->
+                                               
                                                    </c:forEach>   
-=======
->>>>>>> origin/Truong
+
                                                 </tbody>
                                                   
                                             </table>
