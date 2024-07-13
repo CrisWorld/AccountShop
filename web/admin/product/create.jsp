@@ -4,6 +4,7 @@
     Author     : quoch
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!doctype html>
@@ -36,10 +37,10 @@
         <div id="layout-wrapper">
 
             
-            <%@include file="/admin/components/header.jsp" %>
+            <%--<%@include file="/admin/components/header.jsp" %>--%>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%@include file="/admin/components/menu.jsp" %>
+            <%--<%@include file="/admin/components/menu.jsp" %>--%>
             <!-- Left Sidebar End -->
 
             
@@ -54,14 +55,17 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                    <form action="" method="post" class="card-body" enctype="multipart/form-data">
+
+                                    <!--ACTION HERE-->
+                                    
+                                    <form method="post" class="card-body" enctype="multipart/form-data">
                                         <h4 class="card-title">Create Product</h4>
 <!--                                        <p class="card-title-desc">Here are examples of <code class="highlighter-rouge">.form-control</code> applied to each
                                             textual HTML5 <code class="highlighter-rouge">&lt;input&gt;</code> <code class="highlighter-rouge">type</code>.</p>-->
                                         <div class="row mb-3">
                                             <div class="preview col-12">
                                               <label for="file-input" class="col-sm-2 col-form-label">Image</label>
-                                              <input accept="image/*" type="file" id="file-input" />
+                                              <input accept="image/*" type="file" id="file-input" name="img"/>
                                             </div>
                                             <div class="col-12 d-flex justify-content-center">
                                                 <img id="img-preview" class="" src="" style="height: 100px"/>
@@ -71,7 +75,21 @@
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Title</label>
                                             <div class="col-sm-10">
                                                 <input name="title" class="form-control" type="text" placeholder="Artisanal kale" id="example-text-input">
-                                            </div>
+                                            </div>                                         
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="category" class="col-sm-2 col-form-label">Category</label>
+                                            <div class="col-sm-10">                                            
+                                                <select name="category" class="form-select">
+                                                    
+                                                 <!--<option>Open this select menu</option>-->
+                                                    <c:forEach var="category" items="${requestScope.categories}">
+                                                        <option value="${category.id}">${category.name}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>       
+                            
+                                            
                                         </div>
                                         <div class="row mb-2">
                                             <label for="slug" class="col-sm-2 col-form-label">Slug</label>
@@ -81,12 +99,14 @@
                                         </div>
                                         <!-- end row -->
                                         <div class="row mb-3">
+                                            
                                             <div class="col-3">
-                                                <label for="quantity" class="col-sm-12 col-form-label">Quantity</label>
+                                                <label for="quantity" class="col-sm-12 col-form-label">Quantity ???</label>
                                                 <div class="col-sm-12">
-                                                    <input class="form-control" min="0" type="number" placeholder="0" id="quantity">
+                                                    <input readonly class="form-control" value="1" type="number" placeholder="1" name="quantity">
                                                 </div>
                                             </div>
+                                            
                                             <div class="col-3">
                                                 <label for="price" class="col-sm-12 col-form-label">Price</label>
                                                 <div class="col-sm-12">
@@ -130,9 +150,9 @@
                                         </div>
                                         <!-- end row -->
                                         <div class="row mb-3">
-                                            <label for="slug" class="col-sm-2 col-form-label">Meta title</label>
+                                            <label for="meta_title" class="col-sm-2 col-form-label">Meta title</label>
                                             <div class="col-sm-10">
-                                                <input name="meta_title" class="form-control" type="text" placeholder="Title" id="slug">
+                                                <input name="meta_title" class="form-control" type="text" placeholder="Title" id="meta_title">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -146,6 +166,10 @@
                                             <div class="col-sm-10">
                                                 <textarea id="meta_description" class="form-control" name="meta_description"></textarea>
                                             </div>
+                                        </div>
+                                        
+                                        <div>
+                                            <button type="submit">Create</button>
                                         </div>
                                     </form>
                                 </div>
@@ -180,6 +204,17 @@
                     image.src = src;
                 }
             });
+            
+            // for change to base64string
+//            document.getElementById('fileInput').addEventListener('change', function() {
+//            const file = this.files[0];
+//            const reader = new FileReader();
+//            reader.onload = function() {
+//                const base64String = reader.result.split(',')[1];
+//                document.getElementById('base64String').value = base64String;
+//            };
+//            reader.readAsDataURL(file);
+//            });
         </script>
     </body>
 </html>
