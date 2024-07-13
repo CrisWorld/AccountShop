@@ -4,25 +4,40 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/Authentication.java</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/AdminAuthentication.java</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/assets/js/cart.js</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/Database.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/ClientAuthentication.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/cart.html</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/checkout.html</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/components/header.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/User.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/account/create.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/auth/login.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/components/header.jsp</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/product/edit.jsp</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/DatabaseInfo.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/RoleDAO.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/components/footer.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/auth/auth-login.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/product/create.jsp</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/Create.html</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/auth-login.html</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/components/menu.jsp</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/auth-login.jsp</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/conf/MANIFEST.MF</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/Role.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/product/list.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/META-INF/context.xml</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/contact.html</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/index.html</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/Account.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/AdminAuthentication.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/assets/js/cart.js</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/AccountServlet.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/Database.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/components/header.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/filters/AdminLoginRequireFilter.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/product/edit.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/DatabaseInfo.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/detail.html</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/auth-login.html</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/auth/register.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/account/list.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/components/menu.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/classes/Notification.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/account/edit.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/conf/MANIFEST.MF</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/assets/js/app.js</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/WEB-INF/web.xml</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/cart.jsp</file>
         </group>
