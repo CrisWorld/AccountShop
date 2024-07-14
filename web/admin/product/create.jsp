@@ -13,12 +13,12 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Basic Tables | Upcube - Admin & Dashboard Template</title>
+        <title>Admin Page - Game Account Shop</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/admin/assets/images/icon.jpg">
 
         <!-- Bootstrap Css -->
         <link href="/admin/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -169,6 +169,7 @@
                                         </div>
                                         
                                         <div>
+                                        <div class="d-flex justify-content-end">
                                             <button class="btn btn-primary" type="submit">Create</button>
                                         </div>
                                     </form>
@@ -194,7 +195,11 @@
         <script src="/admin/assets/js/app.js"></script>
         <script src="/admin/assets/libs/tinymce/tinymce.min.js"></script>
         <script src="/admin/assets/js/pages/form-editor.init.js"></script>
+
         <script src="/admin/assets/js/pages/form-validation.init.js"></script>
+
+        <script src="/admin/assets/js/menu.js"></script>
+
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');

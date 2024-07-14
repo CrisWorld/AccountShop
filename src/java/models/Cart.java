@@ -10,12 +10,11 @@ public class Cart {
     private ArrayList<Product> products;
     private String createdAt;
     private String updatedAt;
-    
     // Constructors, getters, and setters
     public Cart() {
         products = new ArrayList<>();
     }
-
+    
     public Cart(int id, String createdAt, String updatedAt) {
         this.id = id;
         this.createdAt = createdAt;

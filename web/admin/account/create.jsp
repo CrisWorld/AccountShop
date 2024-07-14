@@ -155,6 +155,7 @@
         <script src="/admin/assets/js/pages/form-element.init.js"></script>
 
         <script src="/admin/assets/js/app.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');
@@ -166,6 +167,7 @@
                 }
             });
         </script>
+
     </body>
 </html>
 

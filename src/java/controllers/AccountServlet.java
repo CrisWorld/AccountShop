@@ -35,7 +35,7 @@ public class AccountServlet extends HttpServlet {
             ArrayList<Role> roles = (ArrayList<Role>) RoleDAO.getAllRoles();
             request.setAttribute("roles", roles); 
             request.getRequestDispatcher("/admin/account/create.jsp").forward(request, response);
-        } if("edit".equalsIgnoreCase(action)) {
+        } else if("edit".equalsIgnoreCase(action)) {
             String username = request.getParameter("username");
             if(username == null) response.sendRedirect("/admin/account");
             else {
@@ -67,7 +67,7 @@ public class AccountServlet extends HttpServlet {
             doUpdate(request, response);
         } else if(method.equals("delete")){
             doDelete(request, response);
-        }
+        } 
     }
     
     protected void doCreate(HttpServletRequest request, HttpServletResponse response)
@@ -158,6 +158,8 @@ public class AccountServlet extends HttpServlet {
             ex.printStackTrace();
         }
     }
+    
+   
     
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

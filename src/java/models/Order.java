@@ -4,6 +4,7 @@
  */
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -17,6 +18,8 @@ public class Order {
     private String image;
     private Date orderDate;
     private User user;
+    private String username;
+    private ArrayList<Product> orderItems;
     
     public int getId() {
         return id;
@@ -66,6 +69,23 @@ public class Order {
         this.image = image;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public ArrayList<Product> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(ArrayList<Product> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    
     
     
     @Override

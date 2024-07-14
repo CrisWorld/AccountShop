@@ -15,7 +15,7 @@ public class CartDAO {
     public Cart getCartById(int cartId) {
         Cart cart = new Cart();
         String sqlCart = "SELECT * FROM carts WHERE id = ?";
-        String sqlProducts = "SELECT p.* FROM products p INNER JOIN cart_products cp ON p.id = cp.product_id WHERE cp.cart_id = ?";
+        String sqlProducts = "SELECT p.*, cp.quantity as cp_quantity FROM products p INNER JOIN cart_products cp ON p.id = cp.product_id WHERE cp.cart_id = ?";
 
         try (Connection connection = Database.getConnect()) {
             // Get Cart details
@@ -39,7 +39,7 @@ public class CartDAO {
                         productsRs.getInt("id"),
                         productsRs.getString("title"),
                         productsRs.getString("image"),
-                        productsRs.getInt("quantity"),
+                        productsRs.getInt("cp_quantity"),
                         productsRs.getDouble("discount_percentage"),
                         productsRs.getString("status"),
                         productsRs.getDouble("price"),
@@ -166,6 +166,37 @@ public class CartDAO {
         return null;
     }
     
+    public Cart createCartIfNotExist(int user_id) {
+        String sqlInsertCart = "INSERT INTO carts DEFAULT VALUES";
+        String sqlUpdateUser = "UPDATE users SET cart_id = ? WHERE id = ?";
+
+        try (Connection connection = Database.getConnect()) {
+            // Tạo giỏ hàng mới
+            int newCartId = -1;
+            try (PreparedStatement insertStmt = connection.prepareStatement(sqlInsertCart, Statement.RETURN_GENERATED_KEYS)) {
+                insertStmt.executeUpdate();
+                ResultSet generatedKeys = insertStmt.getGeneratedKeys();
+                if (generatedKeys.next()) {
+                    newCartId = generatedKeys.getInt(1);
+                }
+            }
+
+            if (newCartId != -1) {
+                // Cập nhật cart_id cho người dùng
+                try (PreparedStatement updateStmt = connection.prepareStatement(sqlUpdateUser)) {
+                    updateStmt.setInt(1, newCartId);
+                    updateStmt.setInt(2, user_id);
+                    updateStmt.executeUpdate();
+                }
+
+                return getCartById(newCartId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
     public double getCartTotal(int cartId) {
         String sql = "SELECT dbo.calculate_cart_total(?) AS total_amount";
         double totalAmount = 0.0;

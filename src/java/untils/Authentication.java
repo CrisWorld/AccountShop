@@ -31,8 +31,8 @@ public class Authentication {
                 user.setFullname(rs.getString("fullname"));
                 user.setImage(rs.getString("image"));
                 user.setIsAdmin(rs.getBoolean("isAdmin"));
-                user.setRoleId(rs.getInt("role_id"));
-                user.setCartId(rs.getInt("cart_id"));
+                user.setRoleId(rs.getObject("role_id") == null ? null : (Integer) rs.getObject("role_id"));
+                user.setCartId(rs.getObject("cart_id") == null ? null : (Integer) rs.getObject("cart_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -229,6 +229,7 @@
         <script src="/admin/assets/libs/node-waves/waves.min.js"></script>
 
         <script src="/admin/assets/js/app.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
 
         <!-- Magnific Popup-->
         <script src="/admin/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
@@ -302,4 +303,3 @@
         
     </body>
 </html>
-
