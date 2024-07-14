@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/SUMMER/GameAccountShop/AccountShop/web/client/displayall.jsp</file>
+            <file>file:/D:/SUMMER/GameAccountShop/AccountShop/src/java/controllers/ProductServlet.java</file>
+            <file>file:/D:/SUMMER/GameAccountShop/AccountShop/web/client/detailproduct.jsp</file>
+            <file>file:/D:/SUMMER/GameAccountShop/AccountShop/web/client/toGetDetail.jsp</file>
+            <file>file:/D:/SUMMER/GameAccountShop/AccountShop/src/java/untils/ProductDAO.java</file>
+        </group>
     </open-files>
 </project-private>

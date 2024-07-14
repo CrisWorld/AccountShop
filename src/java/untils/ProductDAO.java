@@ -1,5 +1,6 @@
-package models;
+package untils;
 
+import Connection.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,17 +8,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Product;
+
 public class ProductDAO {
 
     private Connection connection;
 
-    //you can you this 
-    public ProductDAO(Connection connection) {
-        this.connection = connection;
+    public ProductDAO() {
+        connection = DBConnection.getConnection();
     }
 
-    public ProductDAO() {
-        connection = Database.getConnect();
+    public ProductDAO(Connection connection) {
+        connection = DBConnection.getConnection();
     }
 
     public List<Product> getAllProducts() throws SQLException {
@@ -65,8 +67,8 @@ public class ProductDAO {
             product.setSlug(resultSet.getString("slug"));
             product.setDiscountPercentage(resultSet.getFloat("discount_percentage"));
             product.setStatus(resultSet.getString("status"));
-            product.setDescription(resultSet.getString("desc"));
-            product.setShortDescription(resultSet.getString("short_desc"));
+            product.setDescription(resultSet.getString("description"));
+            product.setShortDescription(resultSet.getString("short_description"));
             product.setPrice(resultSet.getFloat("price"));
             product.setMetaTitle(resultSet.getString("meta_title"));
             product.setMetaDescription(resultSet.getString("meta_description"));
@@ -95,8 +97,8 @@ public class ProductDAO {
             product.setSlug(resultSet.getString("slug"));
             product.setDiscountPercentage(resultSet.getFloat("discount_percentage"));
             product.setStatus(resultSet.getString("status"));
-            product.setDescription(resultSet.getString("desc"));
-            product.setShortDescription(resultSet.getString("short_desc"));
+            product.setDescription(resultSet.getString("description"));
+            product.setShortDescription(resultSet.getString("short_description"));
             product.setPrice(resultSet.getFloat("price"));
             product.setMetaTitle(resultSet.getString("meta_title"));
             product.setMetaDescription(resultSet.getString("meta_description"));
@@ -107,11 +109,11 @@ public class ProductDAO {
         return products;
     }
 
-    public Product getProductDetail(int productId) throws SQLException {
+    public Product getProductBySlug(String slug) throws SQLException {
         Product product = null;
-        String query = "SELECT * FROM products WHERE id = ?";
+        String query = "SELECT * FROM products WHERE slug = ?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, productId);
+        statement.setString(1, slug);
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next()) {
             product = new Product();
@@ -124,7 +126,7 @@ public class ProductDAO {
             product.setSlug(resultSet.getString("slug"));
             product.setDiscountPercentage(resultSet.getFloat("discount_percentage"));
             product.setStatus(resultSet.getString("status"));
-            product.setDescription(resultSet.getString("desc"));
+            product.setDescription(resultSet.getString("desc")); 
             product.setShortDescription(resultSet.getString("short_desc"));
             product.setPrice(resultSet.getFloat("price"));
             product.setMetaTitle(resultSet.getString("meta_title"));

@@ -1,9 +1,5 @@
 package models;
 
-/**
- *
- * @author EgiKarina
- */
 public class Product {
 
     private int id;

@@ -1,8 +1,11 @@
-package models;
+package untils;
 
+import Connection.DBConnection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import models.Database;
+import models.Order;
 
 /**
  *
@@ -10,21 +13,11 @@ import java.util.List;
  */
 public class OrderDAO {
 
-    private String url;
-    private String username;
-    private String password;
-    
     //url is the database's name, username and password is your 
-    public OrderDAO(String url, String username, String password) {
-        this.url = url;
-        this.username = username;
-        this.password = password;
-    }
-    
     public List<Order> getAllOrders() {
         List<Order> orders = new ArrayList<>();
 
-        try (Connection connection = DriverManager.getConnection(url, username, password); PreparedStatement statement = connection.prepareStatement("SELECT o.id, o.username, o.order_date, o.voucher_id, o.total_amount, o.status, "
+        try (Connection connection = DBConnection.getConnection(); PreparedStatement statement = connection.prepareStatement("SELECT o.id, o.username, o.order_date, o.voucher_id, o.total_amount, o.status, "
                 + "u.fullname, v.code AS voucher_code, v.discount_percentage "
                 + "FROM orders o "
                 + "LEFT JOIN users u ON o.username = u.username "
