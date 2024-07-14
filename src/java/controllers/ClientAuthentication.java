@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.User;
 import untils.Authentication;
+import untils.CartDAO;
 
 /**
  *
@@ -20,6 +21,8 @@ import untils.Authentication;
  */
 public class ClientAuthentication extends HttpServlet {
 
+    private final static CartDAO cartDao = new CartDAO();
+            
      // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -65,6 +68,9 @@ public class ClientAuthentication extends HttpServlet {
             User user = Authentication.loginUser(username, password);
             if(user == null) response.sendRedirect("/auth/client");
             else {
+                if (user.getCartId() == null) {
+                    user.setCartId(cartDao.createCartIfNotExist(user.getUsername()).getId());
+                }
                 if(!user.isIsAdmin()){
                     response.sendRedirect("/client/checkout");
                     

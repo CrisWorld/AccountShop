@@ -55,6 +55,7 @@ public class OrderServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession(false);
+        boolean isSuccess = true;
         if (session == null || session.getAttribute("client") == null) {
             response.sendRedirect("/auth/client");
         } else {
@@ -67,12 +68,22 @@ public class OrderServlet extends HttpServlet {
                 request.getRequestDispatcher("/client/checkout.jsp").forward(request, response);
             }
             
+            // CHECK PRODUCT IS AVAILABLE
+            for (Product p : res) {
+                Product pReal = productRepo.findProductById(p.getId());
+                if (!pReal.getStatus().equals("showing")) {
+                    isSuccess = false;
+                    session.setAttribute("showToast", isSuccess);        
+                    response.sendRedirect("/client/history");
+                }          
+            }
+            
             double total_amount = Double.parseDouble(request.getParameter("total"));
             String img = doUploadFile(request);
             
             // create order
             Order order = new Order();
-            order.setStatus("approve");
+            order.setStatus("processing");
             order.setTotal_amount(total_amount);
             order.setUser(user);
             order.setImage(img);
@@ -91,15 +102,22 @@ public class OrderServlet extends HttpServlet {
                     orderItem.setPrice(p.getPrice());
                     orderItem.setQuantity(1);
                     
-                    orderRepo.addOrderItem(orderItem, orderID);
+                    boolean addSuccess = orderRepo.addOrderItem(orderItem, orderID);
+                    if (!addSuccess) {
+                        isSuccess = false;
+                        continue;
+                    }
+                    
                     productRepo.updateStatusAfterOrder(p.getId());
                 }
+                
+                if (isSuccess) {
+                    cartDAO.clearAllProductsFromCart(cart.getId());
+                }
             }
-              
-            cartDAO.clearAllProductsFromCart(cart.getId());
             
-//        request.getRequestDispatcher("/client/checkout.jsp").forward(request, response);
-            response.sendRedirect("/client/checkout");
+            session.setAttribute("showToast", isSuccess);        
+            response.sendRedirect("/client/history");
         }
         
     }

@@ -118,8 +118,9 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                    <a href="/cart" class="dropdown-item">Shopping Cart</a>
+                                    <a href="/client/checkout" class="dropdown-item">Checkout</a>
+                                    <a href="/client/history" class="dropdown-item">Transaction</a>
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -128,7 +129,7 @@
                             <c:when test="${client != null}">
                                 <div class="navbar-nav ml-auto py-0">
                                     <a class="nav-item nav-link">Hello, ${client.fullname}!</a>
-                                    <a href="/auth/client" class="nav-item nav-link">Logout</a>
+                                    <a href="/client/logout" class="nav-item nav-link">Logout</a>
                                 </div>
                             </c:when>    
                             <c:otherwise>
