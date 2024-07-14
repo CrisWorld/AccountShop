@@ -14,6 +14,8 @@ import models.Product;
 import repository.ProductRepo;
 import java.sql.*;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -32,17 +34,35 @@ public class ClientProductServlet extends HttpServlet {
      protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductRepo productRepo = new ProductRepo();
         String slug = request.getParameter("slug");
-        if(slug == null){
+        String action = request.getParameter("action");
+        if(slug == null && action == null){
             List<Product> productList = productRepo.findAllProduct(0, 10, "", "0", "9999999999", "");
             request.setAttribute("productList", productList);
             System.out.println(productList.size());
             request.getRequestDispatcher("/client/displayall.jsp").forward(request, response);
+        } else if(action != null && action.equals("category")){
+            try {
+                showByCategory(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(ClientProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             Product product = productRepo.findProductBySlug(slug);
             request.setAttribute("product", product);
             request.getRequestDispatcher("/client/detailproduct.jsp").forward(request, response);  
         }
         
+    }
+     
+    protected void showByCategory(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException, SQLException {
+        ProductRepo productRepo = new ProductRepo();
+        String categoryTitle = request.getParameter("category");
+        if(categoryTitle == null) response.sendRedirect("/home");
+        else {
+            request.setAttribute("productList", productRepo.findAllProduct(0, 8, "", "0", "999999999", categoryTitle));
+            request.getRequestDispatcher("/client/displayall.jsp").forward(request, response);
+        }
     }
 
 }

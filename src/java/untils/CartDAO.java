@@ -113,21 +113,21 @@ public class CartDAO {
                 checkStmt.setInt(1, cartId);
                 checkStmt.setInt(2, productId);
                 ResultSet rs = checkStmt.executeQuery();
-                if (rs.next()) {
-                    try (PreparedStatement updateStmt = connection.prepareStatement(sqlUpdate)) {
-                        updateStmt.setInt(1, quantity);
-                        updateStmt.setInt(2, cartId);
-                        updateStmt.setInt(3, productId);
-                        updateStmt.executeUpdate();
-                    }
-                } else {
+//                if (rs.next()) {
+//                    try (PreparedStatement updateStmt = connection.prepareStatement(sqlUpdate)) {
+//                        updateStmt.setInt(1, quantity);
+//                        updateStmt.setInt(2, cartId);
+//                        updateStmt.setInt(3, productId);
+//                        updateStmt.executeUpdate();
+//                    }
+//                } else {
                     try (PreparedStatement insertStmt = connection.prepareStatement(sqlInsert)) {
                         insertStmt.setInt(1, cartId);
                         insertStmt.setInt(2, productId);
                         insertStmt.setInt(3, quantity);
                         insertStmt.executeUpdate();
                     }
-                }
+//                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -78,7 +78,6 @@ public class ClientLoginRequireFilter implements Filter {
             }
         }
         for(Category category: categories){
-            System.out.println(category.getName());
             if(category.getParentId() != null) categoryMap.get(((int)category.getParentId())).getChilds().add(category);
             else finalCategories.add(category);
         }
@@ -92,7 +91,7 @@ public class ClientLoginRequireFilter implements Filter {
     }
     
     public boolean isExclude(String uri){
-        List<String> excludedUrls = Arrays.asList("/client/assets", "/admin/", "/auth/client", "/auth/admin", "/products");
+        List<String> excludedUrls = Arrays.asList("/client/assets", "/admin/", "/auth/client", "/auth/admin", "/products", "/home", "/uploads", "/contact");
         boolean shouldExclude = excludedUrls.stream().anyMatch(uri::startsWith);
         return shouldExclude;
     }

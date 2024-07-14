@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="models.User"%>
 <%!
-    User user = null;
+    User user;
 %>
 <%
    user = (User) session.getAttribute("admin"); 

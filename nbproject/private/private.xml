@@ -11,11 +11,13 @@
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/Contact_Admin.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/components/header.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/RoleDAO.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/detailproduct.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/product/create.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/Create.html</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/repository/CategoryRepo.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/ContactServlet.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/order/details-order.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/search.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/index.html</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/OrderServlet.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/Account.java</file>
@@ -23,10 +25,12 @@
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/repository/OrderRepo.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/Database.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/components/header.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/HomeClient.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/Cart.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/filters/AdminLoginRequireFilter.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/contact/ContactView.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/repository/ProductRepo.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/index.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/DatabaseInfo.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/RequestContactServlet.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/auth-login.html</file>
@@ -35,9 +39,10 @@
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/order/order-list.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/account/edit.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/CartDAO.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/assets/js/main.js</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/untils/Authentication.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/CartServlet.java</file>
-            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/cart.html</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/displayall.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/User.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/account/create.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/category/list-category.jsp</file>
@@ -49,13 +54,18 @@
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/category/editCategory.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/product/list.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/META-INF/context.xml</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/ClientProductServlet.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/AdminOrderServlet.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/details-order.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/detail.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/AdminAuthentication.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/assets/js/cart.js</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/AccountServlet.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/contact.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/dashboard.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/repository/OrderItemRepo.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/filters/ClientLoginRequireFilter.java</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/HomeServlet.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/admin/product/edit.jsp</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/models/Product.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/auth/register.jsp</file>
@@ -68,6 +78,7 @@
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/WEB-INF/web.xml</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/CategoryServlet.java</file>
             <file>file:/D:/document/FPT/PRJ/GameAccountShop/web/client/cart.jsp</file>
+            <file>file:/D:/document/FPT/PRJ/GameAccountShop/src/java/controllers/ProductServlet.java</file>
         </group>
     </open-files>
 </project-private>
