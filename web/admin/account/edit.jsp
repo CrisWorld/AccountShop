@@ -41,10 +41,10 @@
     </head>
 
     <body data-topbar="dark">
-        <%@include file="/admin/components/header.jsp" %>
+        <%--<%@include file="/admin/components/header.jsp" %>--%>
 
         <!-- ========== Left Sidebar Start ========== -->
-        <%@include file="/admin/components/menu.jsp" %>
+        <%--<%@include file="/admin/components/menu.jsp" %>--%>
         <!-- Left Sidebar End -->
         <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 

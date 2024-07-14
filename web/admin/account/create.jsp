@@ -42,10 +42,10 @@
 
         <!-- Begin page -->
         <div id="layout-wrapper">
-            <%@include file="/admin/components/header.jsp" %>
+            <%--<%@include file="/admin/components/header.jsp" %>--%>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%@include file="/admin/components/menu.jsp" %>
+            <%--<%@include file="/admin/components/menu.jsp" %>--%>
             <!-- Left Sidebar End -->
             <!-- ============================================================== -->
             <!-- Start right Content here -->
