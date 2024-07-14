@@ -20,6 +20,10 @@
         <servlet-name>ContactServlet</servlet-name>
         <servlet-class>controllers.ContactServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>controllers.HomeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminAuthentication</servlet-name>
         <url-pattern>/auth/admin</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>RequestContactServlet</servlet-name>
         <url-pattern>/RequestContactServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/client/HomeServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -68,7 +68,7 @@
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left">
-                    <form action="ProductServlet" method="get">
+                    <form action="/client/HomeServlet" method="get">
                         <div class="input-group">
                             <input type="text" class="form-control" name="searchInfo" placeholder="Search for products">
                             <div class="input-group-append">

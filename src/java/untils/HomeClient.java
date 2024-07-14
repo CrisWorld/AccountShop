@@ -28,14 +28,21 @@ public class HomeClient {
         try( Connection con = Database.getConnect()){
             String condition = "SELECT * FROM products WHERE title LIKE ?";
             PreparedStatement stmt = con.prepareStatement(condition);
-            stmt.setString(1, title);
+            stmt.setString(1, "%" + title + "%");
             ResultSet rs = stmt.executeQuery();
             while(rs.next()){
-                list.add(new Product(rs.getString("title"), rs.getString("image"), rs.getInt("quantity"), rs.getDouble("discount_percentage"), rs.getString("status"), rs.getDouble("price"), categoryRepo.findAll(), rs.getString("slug"), rs.getString("desc"), rs.getString("short_desc"), rs.getString("secret_info"), rs.getString("meta_title"), rs.getString("meta_description"), rs.getString("meta_keyword")));
+                list.add(new Product(rs.getString("title"), rs.getString("image"), rs.getInt("quantity"), rs.getDouble("discount_percentage"), rs.getString("status"), rs.getDouble("price"), null, rs.getString("slug"), rs.getString("desc"), rs.getString("short_desc"), rs.getString("secret_info"), rs.getString("meta_title"), rs.getString("meta_description"), rs.getString("meta_keyword")));
             }
         }catch(SQLException ex ){
             Logger.getLogger(HomeClient.class.getName()).log(Level.SEVERE, null, ex);
         }
         return list;
+    }
+    public static void main(String[] args) throws SQLException {
+        List<Product> list = Search("Wireless");
+        
+        for (Product product : list) {
+            System.out.println(product.toString());
+        }
     }
 }
