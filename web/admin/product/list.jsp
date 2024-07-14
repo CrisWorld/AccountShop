@@ -18,7 +18,7 @@
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
-
+         <!--Toast-->
         <link rel="stylesheet" type="text/css" href="/admin/assets/libs/toastr/build/toastr.min.css">
         <!-- Bootstrap Css -->
         <link href="/admin/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -27,7 +27,19 @@
         <!-- App Css-->
         <link href="/admin/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="/admin/assets/libs/magnific-popup/magnific-popup.css">
-
+        
+        <style>
+            .full-page-message {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 50vh;
+                text-align: center;
+                font-size: 24px;
+                color: #333;
+            }
+        </style>
+        
     </head>
 
     <body data-topbar="dark">
@@ -90,11 +102,9 @@
                                             <table class="table table-hover mb-0">
 
                                                 <c:if test="${empty list}">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>There is no account !!!</th>
-                                                        </tr>
-                                                    </thead>
+                                                    <div class="full-page-message">
+                                                        No account available !!!
+                                                    </div>
                                                 </c:if> 
 
                                                 <c:if test="${not empty list}">
@@ -148,6 +158,7 @@
                                                                                         <p>You want to delete product having title " ${product.title} " ?</p>
                                                                                     </div>
                                                                                     <div class="modal-footer">
+                                                                                        <input hidden value="${currentPage}" name="currentPage"/>
                                                                                         <button type="submit" class="btn btn-danger">Delete</button>
                                                                                     </div>
                                                                                 </div>
@@ -162,9 +173,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <!--TOAST-->
-                                            <button type="button" class="btn btn-primary" id="showtoast">Show Toast</button>
-                                            <!--END TOAST-->
+
 
                                             <c:if test="${noOfPages > 1}">
                                                 <div class="pagination pagination-rounded justify-content-end">
@@ -232,6 +241,64 @@
 
         <!-- toastr init -->
         <script src="/admin/assets/js/pages/toastr.init.js"></script>
+        
+        
+        <c:if test="${sessionScope.showToast == true}">
+        <script>
+            $(document).ready(function() {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": true,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": 300,
+                    "hideDuration": 1000,
+                    "timeOut": 2000,
+                    "extendedTimeOut": 1000,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                  }
+                toastr.success('Successfull !!!', 'Success');
+            });
+        </script>
+        <%
+            session.removeAttribute("showToast");
+        %>
+        </c:if>
+        
+        <c:if test="${sessionScope.showToast == false}">
+        <script>
+            $(document).ready(function() {
+                toastr.options = {
+                    "closeButton": false,
+                    "debug": false,
+                    "newestOnTop": false,
+                    "progressBar": false,
+                    "positionClass": "toast-top-right",
+                    "preventDuplicates": false,
+                    "onclick": null,
+                    "showDuration": 300,
+                    "hideDuration": 1000,
+                    "timeOut": 2000,
+                    "extendedTimeOut": 1000,
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                  }
+                toastr.error('Error happpen !!!', 'Success');
+            });
+        </script>
+        <%
+            session.removeAttribute("showToast");
+        %>
+        </c:if>
+        
         
     </body>
 </html>

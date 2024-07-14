@@ -17,7 +17,8 @@
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
-
+        <!--Toast-->
+        <link rel="stylesheet" type="text/css" href="/admin/assets/libs/toastr/build/toastr.min.css">
         <!-- Bootstrap Css -->
         <link href="/admin/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
@@ -177,9 +178,9 @@
                                                 </textarea>
                                             </div>
                                         </div>
-                                        
+                                                
                                         <div>
-                                            <button class="btn btn-primary" type="submit">Edit</button>
+                                            <button class="btn btn-primary" id="showtoast" type="submit">Edit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -216,6 +217,14 @@
                 }
             });
         </script>
+        
+        <!-- toastr plugin -->
+        <script src="/admin/assets/libs/toastr/build/toastr.min.js"></script>
+
+        <!-- toastr init -->
+        <script src="/admin/assets/js/pages/toastr.init.js"></script>
+         
+        
     </body>
 </html>
 

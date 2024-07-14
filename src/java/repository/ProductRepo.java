@@ -138,7 +138,7 @@ public class ProductRepo {
     }
 
     
-    public void deleteProductById(int id) {
+    public boolean deleteProductById(int id) {
         try {
             PreparedStatement preparedStatement = Database.getConnect()
                     .prepareStatement(DELETE_PRODUCT_BY_ID_SQL);
@@ -146,7 +146,9 @@ public class ProductRepo {
             preparedStatement.setInt(2, id);
             preparedStatement.execute();
         } catch (SQLException e) {
+            return false;
         }
+        return true;
     }
 
     public Product findProductById(int id) {
@@ -228,21 +230,22 @@ public class ProductRepo {
     public int getNoOfRecords(String titleSearch, String priceStartSearch, String priceEndSearch, String categorySearch) {
         try{
          // Getting the total number of records
-            String countQuery = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?)";
-            String countQueryNotCate = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?) and category_id = ?";
+            String countQuery = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?) and status != ? ";
+            String countQueryNotCate = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?) and category_id = ? and status != ?";
             PreparedStatement preparedStatement;
             if (categorySearch.isBlank()) {
                 preparedStatement = Database.getConnect().prepareStatement(countQuery);
                 preparedStatement.setString(1, "%" + titleSearch + "%");
                 preparedStatement.setString(2, priceStartSearch);
                 preparedStatement.setString(3, priceEndSearch);
-//            preparedStatement.setString(4, categorySearch);
+                preparedStatement.setString(4, "deleted");
             } else {
                 preparedStatement = Database.getConnect().prepareStatement(countQueryNotCate);
                 preparedStatement.setString(1, "%" + titleSearch + "%");
                 preparedStatement.setString(2, priceStartSearch);
                 preparedStatement.setString(3, priceEndSearch);
                 preparedStatement.setString(4, categorySearch);
+                preparedStatement.setString(5, "deleted");
             }
             ResultSet countRs = preparedStatement.executeQuery();
             if (countRs.next()) {
