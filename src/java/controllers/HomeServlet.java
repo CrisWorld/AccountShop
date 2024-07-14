@@ -1,11 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,41 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import models.Product;
 import untils.HomeClient;
 
-/**
- *
- * @author thaip
- */
-
 public class HomeServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        if(action.equals("Search")){
+        if (action != null && action.equals("Search")) {
             try {
                 doShowContact(request, response);
             } catch (SQLException ex) {
@@ -60,27 +31,38 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
-     protected void doShowContact(HttpServletRequest request, HttpServletResponse response)
+    protected void doShowContact(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, SQLException {
-         String infoSearch = request.getParameter("searchInfo");
-         List<Product> list = HomeClient.Search(infoSearch);
-         request.setAttribute("listSearch", list);
-         request.getRequestDispatcher("search.jsp").forward(request, response);
-     }
+    String infoSearch = request.getParameter("searchInfo");
+    String pageParam = request.getParameter("page");
+    String pageSizeParam = request.getParameter("pageSize");
+    
+    int page = (pageParam != null) ? Integer.parseInt(pageParam) : 1; 
+    int pageSize = (pageSizeParam != null) ? Integer.parseInt(pageSizeParam) : 3; 
+
+    int totalRecords = HomeClient.getTotalRecords(infoSearch);
+    
+    int totalPages = (int) Math.ceil((double) totalRecords / pageSize);
+
+    List<Product> list = HomeClient.Search(infoSearch, page, pageSize);
+    request.setAttribute("listSearch", list);
+    request.setAttribute("currentPage", page);
+    request.setAttribute("pageSize", pageSize);
+    request.setAttribute("totalPages", totalPages);
+    
+    request.getRequestDispatcher("search.jsp").forward(request, response);
+}
+
+
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }

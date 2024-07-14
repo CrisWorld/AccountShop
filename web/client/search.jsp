@@ -222,7 +222,7 @@
                             <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                 <h6 class="text-truncate mb-3"><c:out value="${acc.title}"/></h6>
                                 <div class="d-flex justify-content-center">
-                                    <h6><c:out value="${acc.price * (1 - acc.discount_percentage/100)}"/></h6><h6 class="text-muted ml-2"><del><c:out value="${acc.discount_percentage}"/></del></h6>
+                                    <h6><c:out value="${acc.price * (1 - acc.discount_percentage/100)}"/></h6><h6 class="text-muted ml-2"><del><c:out value="${acc.discount_percentage}%"/></del></h6>
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
@@ -232,27 +232,38 @@
                         </div>
                     </div>
                     </c:forEach>
-                    <div class="col-12 pb-1">
-                        <nav aria-label="Page navigation">
-                          <ul class="pagination justify-content-center mb-3">
-                            <li class="page-item disabled">
-                              <a class="page-link" href="#" aria-label="Previous">
+                    <br>
+                     <c:if test="${totalPages > 1}">
+                            <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mb-3">
+                    <c:if test="${currentPage > 1}">
+                        <li class="page-item">
+                            <a class="page-link" href="?action=Search&searchInfo=${param.searchInfo}&page=${currentPage - 1}&pageSize=${pageSize}" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
-                              </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                              <a class="page-link" href="#" aria-label="Next">
+                            </a>
+                        </li>
+                    </c:if>
+
+                    <c:forEach var="i" begin="1" end="${totalPages}">
+                        <li class="page-item ${currentPage == i ? 'active' : ''}">
+                            <a class="page-link" href="?action=Search&searchInfo=${param.searchInfo}&page=${i}&pageSize=${pageSize}">${i}</a>
+                        </li>
+                    </c:forEach>
+
+                    <c:if test="${currentPage < totalPages}">
+                        <li class="page-item">
+                            <a class="page-link" href="?action=Search&searchInfo=${param.searchInfo}&page=${currentPage + 1}&pageSize=${pageSize}" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>
-                              </a>
-                            </li>
-                          </ul>
+                            </a>
+                        </li>
+                    </c:if>
+                        </ul>
                         </nav>
-                    </div>
+                    </c:if>
+
+
                 </div>
             </div>
             <!-- Shop Product End -->
@@ -269,7 +280,7 @@
                     <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 mr-1">E</span>Shopper</h1>
                 </a>
                 <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>FPT UNIVERSITY DA NANG</p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
             </div>

@@ -3,21 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project_shopgame/web/admin/Create.html</file>
-            <file>file:/D:/Project_shopgame/web/client/index.jsp</file>
-            <file>file:/D:/Project_shopgame/src/java/untils/HomeClient.java</file>
-            <file>file:/D:/Project_shopgame/src/java/models/Contact.java</file>
-            <file>file:/D:/Project_shopgame/web/client/Login.html</file>
-            <file>file:/D:/Project_shopgame/src/java/controllers/AdminAuthentication.java</file>
-            <file>file:/D:/Project_shopgame/src/java/models/Product.java</file>
             <file>file:/D:/Project_shopgame/src/java/models/ProductDAO.java</file>
-            <file>file:/D:/Project_shopgame/src/java/models/Category.java</file>
-            <file>file:/D:/Project_shopgame/src/java/models/User.java</file>
-            <file>file:/D:/Project_shopgame/src/java/controllers/ContactServlet.java</file>
+            <file>file:/D:/Project_shopgame/src/java/controllers/HomeServlet.java</file>
+            <file>file:/D:/Project_shopgame/web/client/search.jsp</file>
+            <file>file:/D:/Project_shopgame/web/client/index.jsp</file>
+            <file>file:/D:/Project_shopgame/web/client/assets/img/offer-1.png</file>
             <file>file:/D:/Project_shopgame/web/client/index.html</file>
+            <file>file:/D:/Project_shopgame/web/client/assets/img/gameimg1.jpg</file>
+            <file>file:/D:/Project_shopgame/web/client/assets/img/gaming.jpg</file>
             <file>file:/D:/Project_shopgame/src/java/models/OrderDAO.java</file>
             <file>file:/D:/Project_shopgame/src/java/controllers/ProductServlet.java</file>
-            <file>file:/D:/Project_shopgame/web/client/detail.jsp</file>
+            <file>file:/D:/Project_shopgame/src/java/models/Product.java</file>
         </group>
     </open-files>
 </project-private>
