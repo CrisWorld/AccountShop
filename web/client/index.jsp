@@ -1,13 +1,12 @@
 <%-- 
     Document   : index
-    Created on : Jul 12, 2024, 3:22:30 PM
-    Author     : ASUS
+    Created on : Jul 13, 2024, 12:15:33 AM
+    Author     : thaip
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
     <head>
         <meta charset="utf-8">
         <title>Game Account Shop</title>
@@ -29,7 +28,6 @@
         <!-- Customized Bootstrap Stylesheet -->
         <link href="assets/css/style.css" rel="stylesheet">
     </head>
-
     <body>
         <!-- Topbar Start -->
         <div class="container-fluid">
@@ -70,13 +68,14 @@
                     </a>
                 </div>
                 <div class="col-lg-6 col-6 text-left">
-                    <form action="">
+                    <form action="ProductServlet" method="get">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for products">
+                            <input type="text" class="form-control" name="searchInfo" placeholder="Search for products">
                             <div class="input-group-append">
-                                <span class="input-group-text bg-transparent text-primary">
+                                <button type="submit" name="action" value="Search" class="btn btn-primary">
                                     <i class="fa fa-search"></i>
-                                </span>
+                                </button>
+                                
                             </div>
                         </div>
                     </form>
@@ -135,12 +134,12 @@
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
                                 <a href="index.jsp" class="nav-item nav-link active">Home</a>
-                                <a href="shop.jsp" class="nav-item nav-link">Shop</a>
-                                <a href="detail.jsp" class="nav-item nav-link">Shop Detail</a>
+                                <a href="shop.html" class="nav-item nav-link">Shop</a>
+                                <a href="detailproduct.html" class="nav-item nav-link">Shop Detail</a>
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                     <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="cart.jsp" class="dropdown-item">Shopping Cart</a>
+                                        <a href="cart.html" class="dropdown-item">Shopping Cart</a>
                                         <a href="checkout.html" class="dropdown-item">Checkout</a>
                                     </div>
                                 </div>
@@ -685,7 +684,7 @@
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-dark mb-2" href="index.jsp"><i class="fa fa-angle-right mr-2"></i>Home</a>
                                 <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                                <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                                <a class="text-dark mb-2" href="detailproduct.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
                                 <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                                 <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                                 <a class="text-dark" href="contact.jsp"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
@@ -696,7 +695,7 @@
                             <div class="d-flex flex-column justify-content-start">
                                 <a class="text-dark mb-2" href="index.jsp"><i class="fa fa-angle-right mr-2"></i>Home</a>
                                 <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                                <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
+                                <a class="text-dark mb-2" href="detailproduct.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
                                 <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                                 <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                                 <a class="text-dark" href="contact.jsp"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>

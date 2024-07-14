@@ -92,7 +92,7 @@ public class ClientLoginRequireFilter implements Filter {
     }
     
     public boolean isExclude(String uri){
-        List<String> excludedUrls = Arrays.asList("/client/assets", "/admin/", "/auth/client", "/auth/admin");
+        List<String> excludedUrls = Arrays.asList("/client/assets", "/admin/", "/auth/client", "/auth/admin", "/products");
         boolean shouldExclude = excludedUrls.stream().anyMatch(uri::startsWith);
         return shouldExclude;
     }
@@ -109,6 +109,7 @@ public class ClientLoginRequireFilter implements Filter {
         try {
             HttpServletResponse httpResponse = (HttpServletResponse) response;
             HttpServletRequest httpRequest = (HttpServletRequest) request;
+            initCategory(httpRequest, httpResponse);
             String uri = httpRequest.getRequestURI();
             boolean isExclude = isExclude(uri);
             HttpSession session = httpRequest.getSession(true);
@@ -118,7 +119,6 @@ public class ClientLoginRequireFilter implements Filter {
                 User client = (User) session.getAttribute("client");
                 User checkClient = Account.getAccountByUserName(client.getUsername());
                 if(!checkClient.isIsAdmin()) {
-                    initCategory(httpRequest, httpResponse);
                     // get number of item in card;
                     CartDAO cartRepo = new CartDAO();
                     if(checkClient.getCartId()==null) httpRequest.setAttribute("numberOfItemInCart", 0);

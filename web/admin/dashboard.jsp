@@ -194,8 +194,8 @@
                                                                     <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-success align-middle me-2"></i>Approved</div>
                                                                 <%}%>
                                                                 
-                                                                <% if(item.getStatus().equals("cancled")){ %>
-                                                                    <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-danger align-middle me-2"></i>Cancled</div>
+                                                                <% if(item.getStatus().equals("cancelled")){ %>
+                                                                    <div class="font-size-13"><i class="ri-checkbox-blank-circle-fill font-size-10 text-danger align-middle me-2"></i>Cancelled</div>
                                                                 <%}%>
                                                                 
                                                                 <% if(item.getStatus().equals("processing")){ %>

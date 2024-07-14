@@ -34,7 +34,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="/client/assets/lib/owlcarousel//client/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/client/assets/lib/owlcarousel/owl.carousel.min.js" rel="stylesheet">
     
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/client/assets/css/style.css" rel="stylesheet">
@@ -80,17 +80,17 @@
                                 <td class="align-middle price" data-price="${item.price}">${item.price} VNĐ</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
-                                        <div class="input-group-btn">
+<!--                                        <div class="input-group-btn">
                                             <button class="btn btn-sm btn-primary btn-minus">
                                                 <i class="fa fa-minus"></i>
                                             </button>
-                                        </div>
+                                        </div>-->
                                         <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${item.quantity}" limit="1" disabled>
-                                        <div class="input-group-btn">
+<!--                                        <div class="input-group-btn">
                                             <button class="btn btn-sm btn-primary btn-plus">
                                                 <i class="fa fa-plus"></i>
                                             </button>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </td>
                                 <td class="align-middle">
@@ -130,7 +130,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Discount from coupon</h6>
-                            <h6 class="font-weight-medium"><span id="discount" data-discount="0.1">0</span> VNĐ</h6>
+                            <h6 class="font-weight-medium"><span id="discount" data-discount="0">0</span> VNĐ</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
@@ -145,55 +145,55 @@
         </div>
     </div>
     <!-- Cart End -->
-    <%@include file="/client/components/footer.jsp" %>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
-        updateCartSummary();
-        function updateCartSummary(){
-            let total = 0;
-            $('.total-price').filter((index, item) => {
-                total += $(item).data('price');
-            });
-            let discount = $('#discount').data('discount')*total;
-            $('#discount').text(discount);
-            $('#sub-total').text(total);
-            let finalTotal = total-discount;
-            $('#final-total').text(finalTotal);
-        }
-        function updateTotalOfSingleProduct(element, price, quantity){
-            $(element).data('price', price*quantity);
-            $(element).text(price*quantity + " ");
-        }
-        $('.btn-minus').on("click", (e) => {
-            const container = $(e.currentTarget).closest('.quantity');
-            const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
-            const priceEl = $(e.currentTarget).closest('tr').find('.price');
-            const inputEl = $(container).find('input');
-            if($(inputEl).val() > 1) {
-                $(inputEl).val($(inputEl).val()-1);
-                updateTotalOfSingleProduct($(priceTotalEl), $(priceEl).data('price'), $(inputEl).val());
-                updateCartSummary();
+        $(() => {
+            updateCartSummary();
+            function updateCartSummary(){
+                let total = 0;
+                $('.total-price').filter((index, item) => {
+                    total += $(item).data('price');
+                });
+                let discount = $('#discount').data('discount')*total;
+                $('#discount').text(discount);
+                $('#sub-total').text(total);
+                let finalTotal = total-discount;
+                $('#final-total').text(finalTotal);
             }
-            // cật nhật quantity của cart_products
-        });
-        
-        $('.btn-plus').on("click", (e) => {
-            const container = $(e.currentTarget).closest('.quantity');
-            const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
-            const priceEl = $(e.currentTarget).closest('tr').find('.price');
-            const inputEl = $(container).find('input');
-            if($(inputEl).val() < $(inputEl).attr('limit')) {
-                $(inputEl).val(parseInt($(inputEl).val())+1);
-                updateTotalOfSingleProduct(priceTotalEl, $(priceEl).data('price'), $(inputEl).val());
-                updateCartSummary();
+            function updateTotalOfSingleProduct(element, price, quantity){
+                $(element).data('price', price*quantity);
+                $(element).text(price*quantity + " ");
             }
-            // cật nhật quantity của cart_products
+//            $('.btn-minus').on("click", (e) => {
+//                const container = $(e.currentTarget).closest('.quantity');
+//                const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
+//                const priceEl = $(e.currentTarget).closest('tr').find('.price');
+//                const inputEl = $(container).find('input');
+//                if($(inputEl).val() > 2) {
+//                    $(inputEl).val($(inputEl).val()-1);
+//                    updateTotalOfSingleProduct($(priceTotalEl), $(priceEl).data('price'), $(inputEl).val());
+//                    updateCartSummary();
+//                }
+//                // cật nhật quantity của cart_products
+//            });
+////
+//            $('.btn-plus').on("click", (e) => {
+//                const container = $(e.currentTarget).closest('.quantity');
+//                const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
+//                const priceEl = $(e.currentTarget).closest('tr').find('.price');
+//                const inputEl = $(container).find('input');
+//                console.log($(inputEl).val());
+//                if($(inputEl).val() < $(inputEl).attr('limit')) {
+//                    console.log($(inputEl).attr('limit'));
+//                    $(inputEl).val(parseInt($(inputEl).val())+1);
+//                    updateTotalOfSingleProduct(priceTotalEl, $(priceEl).data('price'), $(inputEl).val());
+//                    updateCartSummary();
+//                }
+//                // cật nhật quantity của cart_products
+//            });
         });
-//        $('.btn-remove').on('click', (e) => {
-////            const container = $(e.currentTarget).closest('tr');
-////            $(container).remove();
-//            // gọi api xóa record của bảng cart_products
-//        });
     </script>
+    <%@include file="/client/components/footer.jsp" %>
 </body>
 
 </html>

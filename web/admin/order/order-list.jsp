@@ -111,9 +111,9 @@
                                                                     <span class="badge rounded-pill bg-warning">Processing</span>
                                                                 <%}%>
                                                                 <% 
-                                                                    if(item.getStatus().equals("cancled")){
+                                                                    if(item.getStatus().equals("cancelled")){
                                                                 %>
-                                                                    <span class="badge rounded-pill bg-danger">Canceled</span>
+                                                                    <span class="badge rounded-pill bg-danger">Cancelled</span>
                                                                 <%}%>
                                                             </td>
                                                             <td>

@@ -139,7 +139,7 @@
                                                     <select name="status" class="form-control d-inline-block w-auto" style="margin-right: 10px;">
                                                         <option value="approved" <%= order.getStatus().equals("approved") ? "selected" : "" %>>Approved</option>
                                                         <option value="processing" <%= order.getStatus().equals("processing") ? "selected" : "" %>>Processing</option>
-                                                        <option value="cancled" <%= order.getStatus().equals("cancled") ? "selected" : "" %>>Cancled</option>
+                                                        <option value="cancled" <%= order.getStatus().equals("cancelled") ? "selected" : "" %>>Cancelled</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3">

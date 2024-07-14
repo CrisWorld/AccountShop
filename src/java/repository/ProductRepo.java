@@ -37,6 +37,7 @@ public class ProductRepo {
                                                                             values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                                                          """;
     private final static String GET_PRODUCT_BY_ID_SQL = "select * from products where id = ?";
+    private final static String GET_PRODUCT_BY_SLUG_SQL = "select * from products where slug = ?";
     private final static String UPDATE_PRODUCT_BY_ID_SQL = """
                                                            update products 
                                                            set  category_id = ?,
@@ -96,12 +97,14 @@ public class ProductRepo {
                 product = new Product();
                 product.setId(resultSet.getInt("id"));
                 product.setTitle(resultSet.getString("title"));
+                product.setSlug(resultSet.getString("slug"));
                 product.setDiscount_percentage(resultSet.getDouble("discount_percentage"));
                 product.setQuantity(resultSet.getInt("quantity"));
                 product.setStatus(resultSet.getString("status"));
                 product.setPrice(resultSet.getDouble("price"));
                 product.setCategory(categoryRepo.findCategoryById(resultSet.getInt("category_id")));
                 product.setImg(resultSet.getString("image"));
+                product.setShort_desc(resultSet.getString("short_desc"));
                 products.add(product);
             }
             
@@ -157,6 +160,37 @@ public class ProductRepo {
             PreparedStatement preparedStatement = Database.getConnect()
                     .prepareStatement(GET_PRODUCT_BY_ID_SQL);
             preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                product.setId(resultSet.getInt("id"));
+                product.setTitle(resultSet.getString("title"));
+                product.setDiscount_percentage(resultSet.getDouble("discount_percentage"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setStatus(resultSet.getString("status"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setCategory(categoryRepo.findCategoryById(resultSet.getInt("category_id")));
+                product.setImg(resultSet.getString("image"));
+               
+                product.setShort_desc(resultSet.getString("short_desc"));
+                product.setDesc(resultSet.getString("desc"));
+
+                product.setSlug(resultSet.getString("slug"));
+                product.setMeta_title(resultSet.getString("meta_title"));
+                product.setMeta_keyword(resultSet.getString("meta_keyword"));
+                product.setMeta_description(resultSet.getString("meta_description"));
+                product.setSecret_info(resultSet.getString("secret_info"));
+            }
+        } catch (SQLException e) {
+        }
+        return product;
+    }
+    
+    public Product findProductBySlug(String slug) {
+        Product product = new Product();
+        try {
+            PreparedStatement preparedStatement = Database.getConnect()
+                    .prepareStatement(GET_PRODUCT_BY_SLUG_SQL);
+            preparedStatement.setString(1, slug);
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
                 product.setId(resultSet.getInt("id"));
