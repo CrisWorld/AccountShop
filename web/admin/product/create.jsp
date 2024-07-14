@@ -169,7 +169,7 @@
                                         </div>
                                         
                                         <div>
-                                            <button type="submit">Create</button>
+                                            <button class="btn btn-primary" type="submit">Create</button>
                                         </div>
                                     </form>
                                 </div>

@@ -55,6 +55,14 @@ public class ProductRepo {
                                                                 secret_info = ?
                                                            where id = ?
                                                            """;
+    
+   private final static String UPDATE_STATUS_PRODUCT_BY_ID_AFTER_ORDER_SQL = """
+                                                           update products 
+                                                           set  status = ?,
+                                                           quantity = ?
+                                                           where id = ?
+                                                           """;
+    
     private final static CategoryRepo categoryRepo = new CategoryRepo();
     
     public List<Product> findAllProduct(int offset, int recordsPerPage, String titleSearch,String priceStartSearch, String priceEndSearch, String categorySearch) {
@@ -194,6 +202,21 @@ public class ProductRepo {
             preparedStatement.setInt(15, product.getId());
 
             
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+    
+    public boolean updateStatusAfterOrder(int id) {
+        try {
+            PreparedStatement preparedStatement = Database.getConnect()
+                    .prepareStatement(UPDATE_STATUS_PRODUCT_BY_ID_AFTER_ORDER_SQL);
+            preparedStatement.setString(1, "sold out");
+            preparedStatement.setInt(2, 0);
+            preparedStatement.setInt(3, id);
+         
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
