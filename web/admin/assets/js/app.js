@@ -180,4 +180,6 @@
       }
     ),
     Waves.init();
+    // customize
 })(jQuery);
+

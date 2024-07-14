@@ -35,7 +35,7 @@ public class AccountServlet extends HttpServlet {
             ArrayList<Role> roles = (ArrayList<Role>) RoleDAO.getAllRoles();
             request.setAttribute("roles", roles); 
             request.getRequestDispatcher("/admin/account/create.jsp").forward(request, response);
-        } if("edit".equalsIgnoreCase(action)) {
+        } else if("edit".equalsIgnoreCase(action)) {
             String username = request.getParameter("username");
             if(username == null) response.sendRedirect("/admin/account");
             else {
@@ -199,14 +199,5 @@ public class AccountServlet extends HttpServlet {
         return "";
     }
     
-    
-    public static void main(String[] args) {
-//        System.out.println("Nguyễn Minh Hoàng QUốc");
-    }
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
 
 }

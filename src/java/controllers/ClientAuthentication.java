@@ -66,6 +66,8 @@ public class ClientAuthentication extends HttpServlet {
             if(user == null) response.sendRedirect("/auth/client");
             else {
                 if(!user.isIsAdmin()){
+                    response.sendRedirect("/client/checkout");
+                    
                     session.setAttribute("client", user);
                     response.setContentType("text/html; charset=UTF-8");
                     response.setCharacterEncoding("UTF-8");

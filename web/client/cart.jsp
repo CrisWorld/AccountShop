@@ -138,7 +138,7 @@
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold"><span id="final-total">200</span> VNĐ</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        <a style="text-decoration: none" href="/client/checkout"><button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button></a>
                     </div>
                 </div>
             </div>

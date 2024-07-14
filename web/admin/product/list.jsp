@@ -36,10 +36,10 @@
         <div id="layout-wrapper">
 
             
-            <%--<%@include file="/admin/components/header.jsp" %>--%>
+            <%@include file="/admin/components/header.jsp" %>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%--<%@include file="/admin/components/menu.jsp" %>--%>
+            <%@include file="/admin/components/menu.jsp" %>
             <!-- Left Sidebar End -->
 
             
@@ -100,7 +100,7 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Title</th>
-                                                        <th>Quantity</th>
+                                                        <!--<th>Quantity</th>-->
                                                         <th>Type</th>
                                                         <th>Price (VND)</th>
                                                         <th>Image</th>
@@ -114,7 +114,7 @@
                                                         <tr>
                                                             <th scope="row">${list.indexOf(product) + 1}</th>
                                                             <td>${product.title}</td>
-                                                            <td>${product.quantity}</td>
+                                                            
                                                             <td>${product.category.name}</td>
                                                             <td>${product.price}</td>
                                                             <td><img style="max-width: 100px; max-height: 100px;" src="${product.img}"/></td>
@@ -211,6 +211,7 @@
         <script src="/admin/assets/libs/node-waves/waves.min.js"></script>
 
         <script src="/admin/assets/js/app.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
 
     </body>
 </html>

@@ -1,3 +1,8 @@
+<%@page import="models.Product"%>
+<%@page import="models.Order"%>
+<% 
+    Order order = (Order) request.getAttribute("order");
+%>
 <!doctype html>
 <html lang="en">
 
@@ -11,23 +16,23 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
 
         <!-- jquery.vectormap css -->
-        <link href="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <link href="/admin/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
 
         <!-- DataTables -->
-        <link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+        <link href="/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
         <!-- Responsive datatable examples -->
-        <link href="assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />  
+        <link href="/admin/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />  
 
         <!-- Bootstrap Css -->
-        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <link href="/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <!-- Icons Css -->
-        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
-        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <link href="/admin/assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
     </head>
 
@@ -37,6 +42,10 @@
 
         <!-- Begin page -->
         <div id="layout-wrapper">
+            <%@include file="/admin/components/header.jsp" %>
+
+            <!-- ========== Left Sidebar Start ========== -->
+            <%@include file="/admin/components/menu.jsp" %>
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
@@ -49,12 +58,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Order Details</h4>
+                                    <h4 class="mb-sm-0">Order</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Admin Page</a></li>
-                                            <li class="breadcrumb-item active">Order Details</li>
+                                            <li class="breadcrumb-item"><a href="/admin/order">Order</a></li>
+                                            <li class="breadcrumb-item active">Detail</li>
                                         </ol>
                                     </div>
 
@@ -80,13 +89,16 @@
                                                     </tr>
                                                 </thead><!-- end thead -->
                                                 <tbody>
-                                                    <tr>
-                                                        <td><h6 class="mb-0">FC Online</h6></td>
-                                                        <td>$10</td>
-                                                        <td style="text-align: center;">1</td>
-                                                        <td>$10</td>
-                                                    </tr>
-                                                    
+                                                    <% for(Product item: order.getOrderItems()) {%>
+                                                        <tr>
+                                                            <td><h6 class="mb-0"><%= item.getTitle() %></h6></td>
+                                                            <td><%= Math.round(item.getPrice()) %> VND</td>
+                                                            <td style="text-align: center;"><%= item.getQuantity() %></td>
+                                                            <td><%= Math.round(item.getQuantity()*item.getPrice()) %> VND</td>
+                                                        </tr>
+                                                    <%
+                                                        }
+                                                    %>
                                                 </tbody><!-- end tbody -->
                                             </table> <!-- end table -->
                                         </div>
@@ -101,58 +113,43 @@
 
                                         <div class="customer-info">
                                             <div class="mb-3">
-                                                <p><strong>Name:</strong> Truong</p>
+                                                <p><strong>Username: </strong> ${order.username}</p>
                                             </div>
                                             <div class="mb-3">
-                                                <p><strong>Email:</strong> fptasdasdas@gmail.com</p>
+                                                <p><strong>Fullname: </strong> ${order.user.fullname}</p>
                                             </div>
-                                            <div class="mb-3">
+<!--                                            <div class="mb-3">
                                                 <p><strong>Phone:</strong> (123) 456-7890</p>
                                             </div>
                                             <div class="mb-3">
                                                 <p><strong>Address:</strong> 123 Main Street, City, Country</p>
-                                            </div>
+                                            </div>-->
                                         </div>
-
                                     </div>
                                 </div><!-- end card -->
-                            </div> <!-- customer info -->
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-8">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-4">Transactions</h4>
-                                        <div class="text-center">
-                                            <img src="assets/images/banking.jpg" alt="megamenu-img" class="img-fluid mx-auto d-block" style="width: 200px; height: auto;">
-                                        </div>
-                                    </div><!-- end card-body -->
-                                </div><!-- end card -->
-                            </div><!-- end col -->
-
-                            <!-- end col -->
-                            <div class="col-xl-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Order Details</h4>
-
+                                        
                                         <div class="order-details">
-                                            <div class="mb-3">
-                                                <label><strong>Order Status:</strong></label>
-                                                <select class="form-control d-inline-block w-auto" style="margin-right: 10px;">
-                                                    <option>Completed</option>
-                                                    <option>Pending</option>
-                                                    <option>Processing</option>
-                                                </select>
-                                                <button class="btn btn-primary">Change</button>
-                                            </div>
+                                            <form action="/admin/order" method="post" class="row mb-3">
+                                                <label class="col-4"><strong>Order Status:</strong></label>
+                                                <input type="hidden" name="id" value="${order.id}" />
+                                                <div class="col-3 mx-4">
+                                                    <select name="status" class="form-control d-inline-block w-auto" style="margin-right: 10px;">
+                                                        <option value="approved" <%= order.getStatus().equals("approved") ? "selected" : "" %>>Approved</option>
+                                                        <option value="processing" <%= order.getStatus().equals("processing") ? "selected" : "" %>>Processing</option>
+                                                        <option value="cancled" <%= order.getStatus().equals("cancled") ? "selected" : "" %>>Cancled</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3">
+                                                    <button class="btn btn-primary">Change</button>
+                                                </div>
+                                                
+                                            </form>
                                             <div class="mb-3">
                                                 <p><strong>Date created:</strong></p>
-                                                <p>February 20, 2019 09:32:05</p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <p><strong>IP Address:</strong></p>
-                                                <p>127.0.0.1</p>
+                                                <p>${order.orderDate}</p>
                                             </div>
                                             <div class="mb-3">
                                                 <p><strong>Payment Method:</strong></p>
@@ -161,7 +158,21 @@
                                         </div>
                                     </div>
                                 </div><!-- end card -->
-                            </div>
+                            </div> <!-- customer info -->
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-4">Transactions</h4>
+                                        <div class="text-center">
+                                            <img src="${order.image}" alt="megamenu-img" class="img-fluid mx-auto d-block" style="width: 300px; height: auto;">
+                                        </div>
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
+                            </div><!-- end col -->
+
+                            <!-- end col -->
  <!-- customer info -->
                         </div>
                         <!-- end row -->
@@ -176,85 +187,33 @@
         </div>
         <!-- END layout-wrapper -->
 
-        <!-- Right Sidebar -->
-        <div class="right-bar">
-            <div data-simplebar class="h-100">
-                <div class="rightbar-title d-flex align-items-center px-3 py-4">
-            
-                    <h5 class="m-0 me-2">Settings</h5>
-
-                    <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
-                        <i class="mdi mdi-close noti-icon"></i>
-                    </a>
-                </div>
-
-                <!-- Settings -->
-                <hr class="mt-0" />
-                <h6 class="text-center mb-0">Choose Layouts</h6>
-
-                <div class="p-4">
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-1.jpg" class="img-fluid img-thumbnail" alt="layout-1">
-                    </div>
-
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="light-mode-switch" checked>
-                        <label class="form-check-label" for="light-mode-switch">Light Mode</label>
-                    </div>
-    
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-2.jpg" class="img-fluid img-thumbnail" alt="layout-2">
-                    </div>
-                    <div class="form-check form-switch mb-3">
-                        <input class="form-check-input theme-choice" type="checkbox" id="dark-mode-switch" data-bsStyle="assets/css/bootstrap-dark.min.css" data-appStyle="assets/css/app-dark.min.css">
-                        <label class="form-check-label" for="dark-mode-switch">Dark Mode</label>
-                    </div>
-    
-                    <div class="mb-2">
-                        <img src="assets/images/layouts/layout-3.jpg" class="img-fluid img-thumbnail" alt="layout-3">
-                    </div>
-                    <div class="form-check form-switch mb-5">
-                        <input class="form-check-input theme-choice" type="checkbox" id="rtl-mode-switch" data-appStyle="assets/css/app-rtl.min.css">
-                        <label class="form-check-label" for="rtl-mode-switch">RTL Mode</label>
-                    </div>
-
-            
-                </div>
-
-            </div> <!-- end slimscroll-menu-->
-        </div>
-        <!-- /Right-bar -->
-
         <!-- Right bar overlay-->
         <div class="rightbar-overlay"></div>
 
         <!-- JAVASCRIPT -->
-        <script src="assets/libs/jquery/jquery.min.js"></script>
-        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-        <script src="assets/libs/simplebar/simplebar.min.js"></script>
-        <script src="assets/libs/node-waves/waves.min.js"></script>
+        <script src="/admin/assets/libs/jquery/jquery.min.js"></script>
+        <script src="/admin/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/admin/assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="/admin/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="/admin/assets/libs/node-waves/waves.min.js"></script>
 
-        
-        <!-- apexcharts -->
-        <script src="assets/libs/apexcharts/apexcharts.min.js"></script>
 
         <!-- jquery.vectormap map -->
-        <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
-        <script src="assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
+        <script src="/admin/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="/admin/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
 
         <!-- Required datatable js -->
-        <script src="assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="/admin/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/admin/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
         
         <!-- Responsive examples -->
-        <script src="assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+        <script src="/admin/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/admin/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
-        <script src="assets/js/pages/dashboard.init.js"></script>
 
         <!-- App js -->
-        <script src="assets/js/app.js"></script>
+        <script src="/admin/assets/js/app.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
     </body>
 
 </html>

@@ -35,10 +35,10 @@
         <div id="layout-wrapper">
 
             
-            <%--<%@include file="/admin/components/header.jsp" %>--%>
+            <%@include file="/admin/components/header.jsp" %>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%--<%@include file="/admin/components/menu.jsp" %>--%>
+            <%@include file="/admin/components/menu.jsp" %>
             <!-- Left Sidebar End -->
 
             
@@ -102,19 +102,19 @@
                                         </div>
                                         <!-- end row -->
                                         <div class="row mb-3">
-                                            <div class="col-3">
+                                            <div hidden class="col-3">
                                                 <label for="quantity" class="col-sm-12 col-form-label">Quantity</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" min="0" type="number" name="quantity" value="${product.quantity}">
                                                 </div>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="price" class="col-sm-12 col-form-label">Price</label>
                                                 <div class="col-sm-12">
                                                     <input name="price" class="form-control" type="number" placeholder="200000" id="price" value="${product.price}">
                                                 </div>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="status" class="col-sm-12 col-form-label">Status</label>
                                                 <select name="status" class="form-select">
                                                     <option selected hidden value="${product.status}">${product.status}</option>
@@ -122,7 +122,7 @@
                                                     <option value="hidden">Hidden</option>
                                                 </select>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="discount" class="col-sm-12 col-form-label">Discount (%)</label>
                                                 <div class="col-sm-12">
                                                     <input name="discount" min="0" max="100" class="form-control" type="number" placeholder="0-100" id="discount" value="${product.discount_percentage}">
@@ -205,6 +205,7 @@
         <script src="/admin/assets/js/app.js"></script>
         <script src="/admin/assets/libs/tinymce/tinymce.min.js"></script>
         <script src="/admin/assets/js/pages/form-editor.init.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');

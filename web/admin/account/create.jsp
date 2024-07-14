@@ -155,6 +155,7 @@
         <script src="/admin/assets/js/pages/form-element.init.js"></script>
 
         <script src="/admin/assets/js/app.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');
@@ -165,12 +166,6 @@
                     image.src = src;
                 }
             });
-            $('li a').removeClass("active");
-            $('li').removeClass("mm-active");
-            $('li[root-href="'+window.location.pathname+'"]');
-            $('li:has(>a[href="'+window.location.pathname+window.location.search+'"])').toggleClass("mm-active");
-            $('a[href="'+window.location.pathname+window.location.search+'"])').addClass("active");
-            console.log(window.location.pathname);
         </script>
 
     </body>

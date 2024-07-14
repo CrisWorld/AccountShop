@@ -52,6 +52,7 @@ public class CartDAO {
                         productsRs.getString("meta_description"),
                         productsRs.getString("meta_keyword")
                     );
+                    System.out.println("vao day");
                     cart.getProducts().add(product);
                 }
             }
@@ -195,5 +196,25 @@ public class CartDAO {
         }
 
         return null;
+    }
+    public double getCartTotal(int cartId) {
+        String sql = "SELECT dbo.calculate_cart_total(?) AS total_amount";
+        double totalAmount = 0.0;
+        try {
+            PreparedStatement ps = Database.getConnect().prepareStatement(sql);
+            ps.setInt(1, cartId);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        totalAmount = rs.getDouble("total_amount");
+                    }
+                }
+            
+        } catch (SQLException e) {
+        }
+        return totalAmount;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(new CartDAO().getCartTotal(1));
     }
 }

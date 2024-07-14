@@ -22,34 +22,14 @@ import untils.Contact_Admin;
  * @author thaip
  */
 public class ContactServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            doShowContact(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContactServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -65,7 +45,7 @@ public class ContactServlet extends HttpServlet {
         Contact_Admin contact = new Contact_Admin();
         List<Contact> listContact = contact.Display_Contact();
         request.setAttribute("messages", listContact);
-        request.getRequestDispatcher("ContactView.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/contact/ContactView.jsp").forward(request, response);
     }
     
     protected void doDeleteContact(HttpServletRequest request, HttpServletResponse response)
@@ -74,9 +54,7 @@ public class ContactServlet extends HttpServlet {
         
         int id = Integer.parseInt(request.getParameter("delete_contact"));
         contact.delete_Contact(id);
-        List<Contact> listContact = contact.Display_Contact();
-        request.setAttribute("messages", listContact);
-        request.getRequestDispatcher("ContactView.jsp").forward(request, response);
+        response.sendRedirect("/admin/contact");
         
     }
     @Override

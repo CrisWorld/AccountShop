@@ -36,6 +36,7 @@ public class CategoryRepo {
                 category.setName(resultSet.getString("name"));
                 category.setDescription(resultSet.getString("desc"));
                 category.setBanner(resultSet.getString("banner"));
+                category.setParentId(resultSet.getObject("parent_id") == null ? null : resultSet.getInt("parent_id") );
                 categories.add(category);
             }
         } catch (SQLException e) {

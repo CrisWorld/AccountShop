@@ -28,13 +28,10 @@
 
         <!-- Begin page -->
         <div id="layout-wrapper">
-
-
-            <%--<%@include file="/admin/components/header.jsp" %>--%>
+            <%@include file="/admin/components/header.jsp" %>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%--<%@include file="/admin/components/menu.jsp" %>--%>
-            <!-- Left Sidebar End -->
+            <%@include file="/admin/components/menu.jsp" %>
 
 
 
@@ -45,6 +42,20 @@
 
                 <div class="page-content">
                     <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Categories</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="/admin/category">Categories</a></li>
+                                            <li class="breadcrumb-item active">Edit</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -83,7 +94,7 @@
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Parent Category</label>
                                             <div class="col-sm-10">                                            
                                                 <select name="parent_id" class="form-select">
-                                                    <option value="" ${category.parentId==null ? "selected" : ""}>Open this select menu</option>
+                                                    <option value="" ${category.parentId==null ? "selected" : ""}>Parent Category</option>
                                                     
                                                     <c:forEach var="categoryEdit" items="${categories}">
                                                         <c:if test="${category.id != categoryEdit.id}">
@@ -94,8 +105,8 @@
                                             </div>  
                                         </div>
                                         <!--button-->
-                                        <div>
-                                            <button type="submit">Edit</button>
+                                        <div class="d-flex justify-content-end">
+                                            <button class="btn btn-primary" type="submit">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -121,6 +132,7 @@
         <script src="/admin/assets/js/app.js"></script>
         <script src="/admin/assets/libs/tinymce/tinymce.min.js"></script>
         <script src="/admin/assets/js/pages/form-editor.init.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');

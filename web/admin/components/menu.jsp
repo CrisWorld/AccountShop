@@ -34,7 +34,7 @@
                             </li>
                             <li>
                                 <a root-href="/admin/account" href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-mail-send-line"></i>
+                                    <i class="fas fa-user-friends"></i>
                                     <span>Account</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
@@ -45,7 +45,7 @@
                             
                             <li>
                                 <a root-href="/admin/product" href="javascript: void(0);" class="has-arrow waves-effect">
-                                    <i class="ri-mail-send-line"></i>
+                                    <i class="fas fa-shopping-basket"></i>
                                     <span>Product</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
@@ -55,9 +55,27 @@
                             </li>
                             
                             <li>
+                                <a root-href="/admin/category" href="javascript: void(0);" class="has-arrow waves-effect">
+                                    <i class="fas fa-server"></i>
+                                    <span>Category</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="/admin/category">List category</a></li>
+                                    <li><a href="/admin/category?action=create">Add a category</a></li>
+                                </ul>
+                            </li>
+                            
+                            <li>
                                 <a href="/admin/order" class="waves-effect">
-                                    <i class="ri-dashboard-line"></i>
-                                    <span>Orders</span>
+                                    <i class="fas fa-truck-pickup"></i>
+                                    <span>Order</span>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="/admin/contact" class="waves-effect">
+                                    <i class="fas fa-phone"></i>
+                                    <span>Contact</span>
                                 </a>
                             </li>
                             

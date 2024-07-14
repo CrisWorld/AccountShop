@@ -114,6 +114,26 @@ public class Account {
         return accounts;
     }
      
+//     public static User getAccountByUserName(String username){
+//         User account = null;
+//         try (Connection connection = Database.getConnect();
+//            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ACCOUNT_BY_USERNAME_SQL)) {
+//            preparedStatement.setString(1, username);
+//            ResultSet rs = preparedStatement.executeQuery();
+//
+//            while (rs.next()) {
+//                String fullname = rs.getString("fullname");
+//                String image = rs.getString("image");
+//                Integer roleId = rs.getObject("role_id", Integer.class);
+//                String roleName = rs.getString("role_name");
+//                account = new User(username, "", fullname, image, true, roleId, 0, roleName);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return account;
+//     }
+     
      public static User getAccountByUserName(String username){
          User account = null;
          try (Connection connection = Database.getConnect();
@@ -134,4 +154,5 @@ public class Account {
         }
         return account;
      }
+     
 }

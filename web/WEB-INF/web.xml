@@ -45,8 +45,12 @@
         <servlet-class>controllers.CategoryServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>OrderServlet</servlet-name>
-        <servlet-class>controllers.OrderServlet</servlet-class>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <servlet-class>controllers.AdminOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>controllers.DashboardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminAuthentication</servlet-name>
@@ -70,7 +74,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ContactServlet</servlet-name>
-        <url-pattern>/ContactServlet</url-pattern>
+        <url-pattern>/admin/contact</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestContactServlet</servlet-name>
@@ -81,8 +85,12 @@
         <url-pattern>/admin/category</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>OrderServlet</servlet-name>
+        <servlet-name>AdminOrderServlet</servlet-name>
         <url-pattern>/admin/order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
