@@ -74,15 +74,10 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                                <%
-                                                    Contact_Admin contact = new Contact_Admin();
-                                                    List<Contact> listContact = contact.Display_Contact();
-                                                    request.setAttribute("messages", listContact);
-                                                %>
                                                 <tbody>
                                                     <c:forEach var="mess" items="${messages}">
                                                     <tr>
-                                                        <th scope="row">${mess.id}</th>
+                                                        <th scope="row">${messages.indexOf(mess) + 1}</th>
                                                         <td>${mess.username}</td>
                                                         <td>${mess.message}</td>
                                                         <td>${mess.create_date}</td>
@@ -100,22 +95,32 @@
                                                   
                                             </table>
                                             <div class="mt-4">
-                                                <nav aria-label="...">
-                                                    <ul class="pagination pagination-rounded justify-content-end">
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item active">
-                                                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">Next</a>
-                                                        </li>
-                                                    </ul>
-                                                </nav>
-                                            </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination pagination-rounded justify-content-end">
+            <!-- Previous Page Link -->
+            <c:if test="${currentPage > 1}">
+                <li class="page-item">
+                    <a class="page-link" href="?page=${currentPage - 1}" tabindex="-1">Previous</a>
+                </li>
+            </c:if>
+            
+            <!-- Page Number Links -->
+            <c:forEach var="i" begin="1" end="${totalPages}">
+                <li class="page-item <c:if test="${i == currentPage}">active</c:if>">
+                    <a class="page-link" href="?page=${i}">${i} <c:if test="${i == currentPage}"><span class="sr-only">(current)</span></c:if></a>
+                </li>
+            </c:forEach>
+            
+            <!-- Next Page Link -->
+            <c:if test="${currentPage < totalPages}">
+                <li class="page-item">
+                    <a class="page-link" href="?page=${currentPage + 1}">Next</a>
+                </li>
+            </c:if>
+        </ul>
+    </nav>
+</div>
+
                                             
                                         </div>
         

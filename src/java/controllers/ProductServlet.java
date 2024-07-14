@@ -50,24 +50,13 @@ public class ProductServlet extends HttpServlet {
             case "create" -> showCreateForm(request, response);
 //            case "delete" -> deleteById(request, response);
             case "edit" -> showEditForm(request, response);
-            case "Search" -> {
-                try {
-                    searchProduc(request, response);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            
 
             default -> list(request, response);
         }
     }
     
-    private void searchProduc(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException, ServletException {
-        String searchInfo = request.getParameter("searchInfo");
-        List<Product> list = HomeClient.Search(searchInfo);
-        request.setAttribute("list", list);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
+    
     /*============================================ Authenticate =============================================================================*/
 //    private boolean isAdmin(User user) {
 //        return user.getRole().stream().anyMatch(role -> "ADMIN".equals(role.getName()));
