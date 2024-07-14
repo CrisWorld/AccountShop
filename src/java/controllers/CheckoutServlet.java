@@ -57,7 +57,7 @@ public class CheckoutServlet extends HttpServlet {
             }
             
             double subTotal = cartDAO.getCartTotal(cart.getId());
-            double discount = 0;
+            double discount = cartDAO.getDiscountCartTotal(cart.getId());
             double total = subTotal - discount;
             
             request.setAttribute("list", res);

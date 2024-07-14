@@ -28,6 +28,7 @@
         <link href="/admin/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="/admin/assets/libs/magnific-popup/magnific-popup.css">
         
+        
         <style>
             .full-page-message {
                 display: flex;

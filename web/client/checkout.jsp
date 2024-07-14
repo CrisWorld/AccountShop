@@ -81,7 +81,8 @@
                                             <th scope="col">Products</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Quantity</th>
-                                            <th scope="col">Total (VND)</th>
+                                            <th scope="col">Discount</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,9 +91,9 @@
                                             <tr>
                                                 <th scope="row">${list.indexOf(product) + 1}</th>
                                                 <td>${product.title}</td>
-                                                <td>${product.price}</td>
+                                                <td>${Math.round(product.price)}</td>
                                                 <td>${product.quantity}</td>
-                                                <td>${product.price}</td>
+                                                <td>${product.discount_percentage}</td>
                                             </tr>                                
                                         </c:forEach>
 
