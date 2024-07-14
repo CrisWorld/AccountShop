@@ -92,7 +92,7 @@ public class ClientLoginRequireFilter implements Filter {
     }
     
     public boolean isExclude(String uri){
-        List<String> excludedUrls = Arrays.asList("/client/assets");
+        List<String> excludedUrls = Arrays.asList("/client/assets", "/admin/", "/auth/client", "/auth/admin");
         boolean shouldExclude = excludedUrls.stream().anyMatch(uri::startsWith);
         return shouldExclude;
     }

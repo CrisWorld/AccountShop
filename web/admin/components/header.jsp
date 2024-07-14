@@ -17,16 +17,16 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+<!--                            <a href="/admin/dashboard" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="/admin/assets/images/logo-dark.png" alt="logo-sm" height="22">
                                 </span>
                                 <span class="logo-lg">
                                     <img src="/admin/assets/images/logo-dark.png" alt="logo-dark" height="20">
                                 </span>
-                            </a>
+                            </a>-->
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="/admin/dashboard" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="/admin/assets/images/logo-sm.png" alt="logo-sm-light" height="22">
                                 </span>
