@@ -74,7 +74,11 @@
                           <button id="btn-submit" type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
                             Login
                           </button>
+                          
                         </form>
+                          <a href="/auth/client?type=register" class="btn btn-primary btn-block mb-4">
+                            Register
+                          </a>
                       </div>
                     </div>
                   </div>

@@ -59,13 +59,16 @@
                         <div class="row">
 
                             <c:if test="${not empty message}">
-                                <table class="table table-hover">
+<!--                                <table class="table table-hover">
                                     <thead>
                                         <tr>
                                             <th scope="col">${message}</th>
                                         </tr>
                                     </thead>
-                                </table>
+                                </table>-->
+                                <div style="justify-items: center">
+                                    <img width="500" src="https://i.pinimg.com/736x/2e/ac/fa/2eacfa305d7715bdcd86bb4956209038.jpg" alt="alt"/>
+                                </div>
                             </c:if>
 
 
