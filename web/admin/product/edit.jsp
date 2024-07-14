@@ -16,6 +16,9 @@
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
+        <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
+        <!--Toast-->
+        <link rel="stylesheet" type="text/css" href="/admin/assets/libs/toastr/build/toastr.min.css">
         <link rel="shortcut icon" href="/admin/assets/images/icon.jpg">
 
         <!-- Bootstrap Css -->
@@ -177,9 +180,9 @@
                                                 </textarea>
                                             </div>
                                         </div>
-                                        
+                                                
                                         <div>
-                                            <button type="submit">Edit</button>
+                                            <button class="btn btn-primary" id="showtoast" type="submit">Edit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -217,6 +220,14 @@
                 }
             });
         </script>
+        
+        <!-- toastr plugin -->
+        <script src="/admin/assets/libs/toastr/build/toastr.min.js"></script>
+
+        <!-- toastr init -->
+        <script src="/admin/assets/js/pages/toastr.init.js"></script>
+         
+        
     </body>
 </html>
 

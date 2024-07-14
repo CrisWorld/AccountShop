@@ -26,6 +26,7 @@ import models.OrderItem;
 import models.Product;
 import models.User;
 import repository.OrderRepo;
+import repository.ProductRepo;
 import untils.CartDAO;
 
 /**
@@ -39,6 +40,7 @@ public class OrderServlet extends HttpServlet {
 
     private final static OrderRepo orderRepo = new OrderRepo();
     private final static CartDAO cartDAO = new CartDAO();
+    private final static ProductRepo productRepo = new ProductRepo();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -89,7 +91,8 @@ public class OrderServlet extends HttpServlet {
                     orderItem.setPrice(p.getPrice());
                     orderItem.setQuantity(1);
                     
-                    orderRepo.addOrderItem(orderItem, orderID);   
+                    orderRepo.addOrderItem(orderItem, orderID);
+                    productRepo.updateStatusAfterOrder(p.getId());
                 }
             }
               
