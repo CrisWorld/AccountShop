@@ -94,14 +94,14 @@
                                         <div class="row mb-2">
                                             <label for="slug" class="col-sm-2 col-form-label">Slug</label>
                                             <div class="col-sm-10">
-                                                <input name="slug" class="form-control" type="text" placeholder="abc-xyz" id="slug">
+                                                <input required name="slug" class="form-control" type="text" placeholder="abc-xyz" id="slug">
                                             </div>
                                         </div>
                                         <!-- end row -->
                                         <div class="row mb-3">
                                             
                                             <div hidden class="col-3">
-                                                <label for="quantity" class="col-sm-12 col-form-label">Quantity ???</label>
+                                                <label for="quantity" class="col-sm-12 col-form-label">Quantity</label>
                                                 <div class="col-sm-12">
                                                     <input readonly class="form-control" value="1" type="number" placeholder="1" name="quantity">
                                                 </div>
@@ -110,7 +110,7 @@
                                             <div class="col-4">
                                                 <label for="price" class="col-sm-12 col-form-label">Price</label>
                                                 <div class="col-sm-12">
-                                                    <input name="price" class="form-control" type="number" placeholder="200000" id="price">
+                                                    <input required name="price" class="form-control" type="number" min="10000" max="99999999" id="price">
                                                 </div>
                                             </div>
                                             <div class="col-4">
@@ -123,7 +123,7 @@
                                             <div class="col-4">
                                                 <label for="discount" class="col-sm-12 col-form-label">Discount (%)</label>
                                                 <div class="col-sm-12">
-                                                    <input name="discount" min="0" max="100" class="form-control" type="number" placeholder="0-100" id="discount">
+                                                    <input required name="discount" min="0" max="100" class="form-control" type="number" placeholder="0-100" id="discount">
                                                 </div>
                                             </div>
                                         </div>
@@ -168,6 +168,7 @@
                                             </div>
                                         </div>
                                         
+                                        <div>
                                         <div class="d-flex justify-content-end">
                                             <button class="btn btn-primary" type="submit">Create</button>
                                         </div>
@@ -194,7 +195,11 @@
         <script src="/admin/assets/js/app.js"></script>
         <script src="/admin/assets/libs/tinymce/tinymce.min.js"></script>
         <script src="/admin/assets/js/pages/form-editor.init.js"></script>
+
+        <script src="/admin/assets/js/pages/form-validation.init.js"></script>
+
         <script src="/admin/assets/js/menu.js"></script>
+
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');

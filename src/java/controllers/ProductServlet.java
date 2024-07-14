@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import models.Category;
 import models.Product;
@@ -124,14 +125,6 @@ public class ProductServlet extends HttpServlet {
         
         request.getRequestDispatcher("/admin/product/list.jsp").forward(request, response);
     }
-
-    private void deleteById(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        productRepo.deleteProductById(id);
-    
-        response.sendRedirect("/admin/product");
-    }
     
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int id = Integer.parseInt(request.getParameter("id"));        
@@ -167,7 +160,8 @@ public class ProductServlet extends HttpServlet {
     }
     
     private void doCreate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        
+        HttpSession session = request.getSession();
+        boolean isSuccess;
         // upload file
         String img = doUploadFile(request);
        
@@ -189,12 +183,16 @@ public class ProductServlet extends HttpServlet {
         
         Product product = new Product(title, img, quantity, discount_percentage, status, price, category, slug, desc, short_desc, secret_info, meta_title, meta_description, meta_keyword);
 //           Product product = new Product(img, title, slug, quantity, price, secret_info);   
-        productRepo.add(product);
+        isSuccess = productRepo.add(product);
+        
+        session.setAttribute("showToast", isSuccess);
         
         response.sendRedirect("/admin/product");
     }
     
     private void doEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        HttpSession session = request.getSession();
+        boolean isSuccess;
         try {
         
             int id = Integer.parseInt(request.getParameter("product_id"));
@@ -227,15 +225,29 @@ public class ProductServlet extends HttpServlet {
 
             Product product = new Product(id, title, img, quantity, discount_percentage, status, price, category, slug, desc, short_desc, secret_info, meta_title, meta_description, meta_keyword);
 
-            productRepo.edit(product);
+            isSuccess = productRepo.edit(product);
 
         } catch (NumberFormatException e) {
-            
+            isSuccess = false;
         }
-
+        
+        session.setAttribute("showToast", isSuccess);
+        
         response.sendRedirect("/admin/product");
         
     }    
+    
+    private void deleteById(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        boolean isSuccess;
+        int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        isSuccess = productRepo.deleteProductById(id);
+        session.setAttribute("showToast", isSuccess);
+        
+        response.sendRedirect("/admin/product?page="+ currentPage);
+    }
     
     // ====================================
     private String doUploadFile(HttpServletRequest request){

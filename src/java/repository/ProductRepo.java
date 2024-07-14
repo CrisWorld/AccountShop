@@ -37,6 +37,7 @@ public class ProductRepo {
                                                                             values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
                                                          """;
     private final static String GET_PRODUCT_BY_ID_SQL = "select * from products where id = ?";
+    private final static String GET_PRODUCT_BY_SLUG_SQL = "select * from products where slug = ?";
     private final static String UPDATE_PRODUCT_BY_ID_SQL = """
                                                            update products 
                                                            set  category_id = ?,
@@ -55,6 +56,14 @@ public class ProductRepo {
                                                                 secret_info = ?
                                                            where id = ?
                                                            """;
+    
+   private final static String UPDATE_STATUS_PRODUCT_BY_ID_AFTER_ORDER_SQL = """
+                                                           update products 
+                                                           set  status = ?,
+                                                           quantity = ?
+                                                           where id = ?
+                                                           """;
+    
     private final static CategoryRepo categoryRepo = new CategoryRepo();
     
     public List<Product> findAllProduct(int offset, int recordsPerPage, String titleSearch,String priceStartSearch, String priceEndSearch, String categorySearch) {
@@ -88,12 +97,14 @@ public class ProductRepo {
                 product = new Product();
                 product.setId(resultSet.getInt("id"));
                 product.setTitle(resultSet.getString("title"));
+                product.setSlug(resultSet.getString("slug"));
                 product.setDiscount_percentage(resultSet.getDouble("discount_percentage"));
                 product.setQuantity(resultSet.getInt("quantity"));
                 product.setStatus(resultSet.getString("status"));
                 product.setPrice(resultSet.getDouble("price"));
                 product.setCategory(categoryRepo.findCategoryById(resultSet.getInt("category_id")));
                 product.setImg(resultSet.getString("image"));
+                product.setShort_desc(resultSet.getString("short_desc"));
                 products.add(product);
             }
             
@@ -130,7 +141,7 @@ public class ProductRepo {
     }
 
     
-    public void deleteProductById(int id) {
+    public boolean deleteProductById(int id) {
         try {
             PreparedStatement preparedStatement = Database.getConnect()
                     .prepareStatement(DELETE_PRODUCT_BY_ID_SQL);
@@ -138,7 +149,9 @@ public class ProductRepo {
             preparedStatement.setInt(2, id);
             preparedStatement.execute();
         } catch (SQLException e) {
+            return false;
         }
+        return true;
     }
 
     public Product findProductById(int id) {
@@ -147,6 +160,37 @@ public class ProductRepo {
             PreparedStatement preparedStatement = Database.getConnect()
                     .prepareStatement(GET_PRODUCT_BY_ID_SQL);
             preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()) {
+                product.setId(resultSet.getInt("id"));
+                product.setTitle(resultSet.getString("title"));
+                product.setDiscount_percentage(resultSet.getDouble("discount_percentage"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setStatus(resultSet.getString("status"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setCategory(categoryRepo.findCategoryById(resultSet.getInt("category_id")));
+                product.setImg(resultSet.getString("image"));
+               
+                product.setShort_desc(resultSet.getString("short_desc"));
+                product.setDesc(resultSet.getString("desc"));
+
+                product.setSlug(resultSet.getString("slug"));
+                product.setMeta_title(resultSet.getString("meta_title"));
+                product.setMeta_keyword(resultSet.getString("meta_keyword"));
+                product.setMeta_description(resultSet.getString("meta_description"));
+                product.setSecret_info(resultSet.getString("secret_info"));
+            }
+        } catch (SQLException e) {
+        }
+        return product;
+    }
+    
+    public Product findProductBySlug(String slug) {
+        Product product = new Product();
+        try {
+            PreparedStatement preparedStatement = Database.getConnect()
+                    .prepareStatement(GET_PRODUCT_BY_SLUG_SQL);
+            preparedStatement.setString(1, slug);
             ResultSet resultSet = preparedStatement.executeQuery();
             while(resultSet.next()) {
                 product.setId(resultSet.getInt("id"));
@@ -200,26 +244,42 @@ public class ProductRepo {
         }
         return true;
     }
+    
+    public boolean updateStatusAfterOrder(int id) {
+        try {
+            PreparedStatement preparedStatement = Database.getConnect()
+                    .prepareStatement(UPDATE_STATUS_PRODUCT_BY_ID_AFTER_ORDER_SQL);
+            preparedStatement.setString(1, "sold out");
+            preparedStatement.setInt(2, 0);
+            preparedStatement.setInt(3, id);
+         
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
    
     
     public int getNoOfRecords(String titleSearch, String priceStartSearch, String priceEndSearch, String categorySearch) {
         try{
          // Getting the total number of records
-            String countQuery = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?)";
-            String countQueryNotCate = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?) and category_id = ?";
+            String countQuery = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?) and status != ? ";
+            String countQueryNotCate = "SELECT COUNT(*) FROM products where title like ? and (price between ? and ?) and category_id = ? and status != ?";
             PreparedStatement preparedStatement;
             if (categorySearch.isBlank()) {
                 preparedStatement = Database.getConnect().prepareStatement(countQuery);
                 preparedStatement.setString(1, "%" + titleSearch + "%");
                 preparedStatement.setString(2, priceStartSearch);
                 preparedStatement.setString(3, priceEndSearch);
-//            preparedStatement.setString(4, categorySearch);
+                preparedStatement.setString(4, "deleted");
             } else {
                 preparedStatement = Database.getConnect().prepareStatement(countQueryNotCate);
                 preparedStatement.setString(1, "%" + titleSearch + "%");
                 preparedStatement.setString(2, priceStartSearch);
                 preparedStatement.setString(3, priceEndSearch);
                 preparedStatement.setString(4, categorySearch);
+                preparedStatement.setString(5, "deleted");
             }
             ResultSet countRs = preparedStatement.executeQuery();
             if (countRs.next()) {

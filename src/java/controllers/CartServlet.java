@@ -46,7 +46,7 @@ public class CartServlet extends HttpServlet {
             throws ServletException, IOException {
         String method = request.getParameter("_method");
         if(method == null){
-//            doCreated(request, response);
+            doCreate(request, response);
         } else if(method.equalsIgnoreCase("delete")){
             try {
                 doRemoveProductFromCart(request, response);

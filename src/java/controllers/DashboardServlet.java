@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import untils.DashboardDAO;
 
 /**
  *
@@ -20,6 +21,12 @@ public class DashboardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        DashboardDAO dashboardRepo = new DashboardDAO();
+        request.setAttribute("totalSale", dashboardRepo.getTotalOrder("approved"));
+        request.setAttribute("totalOrder", dashboardRepo.getTotalOrder());
+        request.setAttribute("totalUser", dashboardRepo.getToltalUser());
+        request.setAttribute("totalProduct", dashboardRepo.getToltalProduct());
+        request.setAttribute("orderLastest", dashboardRepo.getOrderLastest(7));
         request.getRequestDispatcher("/admin/dashboard.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

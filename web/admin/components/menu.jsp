@@ -5,6 +5,8 @@
 --%>
 <%@page import="models.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div class="vertical-menu">
 
                 <div data-simplebar class="h-100">
@@ -27,7 +29,7 @@
                             <li class="menu-title">Menu</li>
 
                             <li>
-                                <a href="index.html" class="waves-effect">
+                                <a href="/admin/dashboard" class="waves-effect">
                                     <i class="ri-dashboard-line"></i><span class="badge rounded-pill bg-success float-end">3</span>
                                     <span>Dashboard</span>
                                 </a>

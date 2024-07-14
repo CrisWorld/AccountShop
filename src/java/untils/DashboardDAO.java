@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import models.Cart;
 import models.Category;
 import models.Database;
+import models.Order;
 import models.Product;
 /**
  *
@@ -97,10 +98,30 @@ public class DashboardDAO {
         return 0;
     }
     
-    
-    
-    public static void main(String[] args) {
-        DashboardDAO dao = new DashboardDAO();
-        System.out.println(dao.getToltalProduct());
+    public ArrayList<Order> getOrderLastest(int number){
+        String sql = """
+                        SELECT id, username, order_date, total_amount, status
+                        FROM orders
+                        ORDER BY order_date DESC
+                        OFFSET 0 ROWS FETCH NEXT ? ROWS ONLY;
+                     """;
+        ArrayList<Order> orders = new ArrayList<Order>();
+        try (Connection connection = Database.getConnect();
+            PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, number);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()){
+                Order order = new Order();
+                order.setId(rs.getInt("id"));
+                order.setUsername(rs.getString("username"));
+                order.setTotal_amount(rs.getDouble("total_amount"));
+                order.setStatus(rs.getString("status"));
+                order.setOrderDate(rs.getDate("order_date"));
+                orders.add(order);
+            };
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
     }
 }
