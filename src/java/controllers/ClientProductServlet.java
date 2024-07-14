@@ -16,6 +16,8 @@ import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.Category;
+import repository.CategoryRepo;
 
 
 /**
@@ -57,10 +59,13 @@ public class ClientProductServlet extends HttpServlet {
     protected void showByCategory(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException, SQLException {
         ProductRepo productRepo = new ProductRepo();
-        String categoryTitle = request.getParameter("category");
-        if(categoryTitle == null) response.sendRedirect("/home");
+        String categoryId = request.getParameter("category");
+        if(categoryId == null) response.sendRedirect("/home");
         else {
-            request.setAttribute("productList", productRepo.findAllProduct(0, 8, "", "0", "999999999", categoryTitle));
+            CategoryRepo categoryRepo = new CategoryRepo();
+            Category category = categoryRepo.findCategoryById(Integer.parseInt(categoryId));
+            request.setAttribute("category", category);
+            request.setAttribute("productList", productRepo.findAllProduct(0, 8, "", "0", "999999999", categoryId));
             request.getRequestDispatcher("/client/displayall.jsp").forward(request, response);
         }
     }

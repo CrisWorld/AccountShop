@@ -72,12 +72,10 @@ public class ClientAuthentication extends HttpServlet {
                     user.setCartId(cartDao.createCartIfNotExist(user.getUsername()).getId());
                 }
                 if(!user.isIsAdmin()){
-                    response.sendRedirect("/client/checkout");
+                    response.sendRedirect("/home");
                     
                     session.setAttribute("client", user);
-                    response.setContentType("text/html; charset=UTF-8");
-                    response.setCharacterEncoding("UTF-8");
-                    response.getWriter().print("user được lưu vào thuộc tính 'client' của session");
+                    
                 } else response.sendRedirect("/auth/client");
             }
         }

@@ -91,7 +91,7 @@ public class ClientLoginRequireFilter implements Filter {
     }
     
     public boolean isExclude(String uri){
-        List<String> excludedUrls = Arrays.asList("/client/assets", "/admin/", "/auth/client", "/auth/admin", "/products", "/home", "/uploads", "/contact");
+        List<String> excludedUrls = Arrays.asList("/client/assets", "/admin/", "/auth/client", "/auth/admin", "/products", "/home", "/uploads", "/contact","/images");
         boolean shouldExclude = excludedUrls.stream().anyMatch(uri::startsWith);
         return shouldExclude;
     }
@@ -112,9 +112,7 @@ public class ClientLoginRequireFilter implements Filter {
             String uri = httpRequest.getRequestURI();
             boolean isExclude = isExclude(uri);
             HttpSession session = httpRequest.getSession(true);
-            if(isExclude){
-                chain.doFilter(request, response);
-            } else if(session.getAttribute("client") != null){
+            if(session.getAttribute("client") != null){
                 User client = (User) session.getAttribute("client");
                 User checkClient = Account.getAccountByUserName(client.getUsername());
                 if(!checkClient.isIsAdmin()) {
@@ -128,6 +126,8 @@ public class ClientLoginRequireFilter implements Filter {
                 else {
                     httpResponse.sendRedirect("/auth/client");
                 }
+            } else if(isExclude){
+                chain.doFilter(request, response);
             } else {
                 httpResponse.sendRedirect("/auth/client");
             }

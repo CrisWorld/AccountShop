@@ -55,16 +55,33 @@
     </head>
     <body>
         <%@include file="/client/components/header.jsp" %>
-        <div class="container-fluid bg-secondary mb-5">
-            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                <h1 class="font-weight-semi-bold text-uppercase mb-3">Products</h1>
-                <div class="d-inline-flex">
-                    <p class="m-0"><a href="">Home</a></p>
-                    <p class="m-0 px-2">-</p>
-                    <p class="m-0">Products</p>
+        <% if(request.getParameter("action") != null && request.getParameter("action").equals("category")) {%>
+                <div class="container-fluid bg-secondary mb-5" 
+                     style="background: linear-gradient(
+                                        rgba(0, 0, 0, 0.4), 
+                                        rgba(0, 0, 0, 0.4)
+                                      ), url('${category.banner}');
+                                      background-size: contain;
+                                      background-repeat: no-repeat;">
+                    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+                        <h1 class="font-weight-semi-bold text-uppercase mb-3">${category.name}</h1>
+                        <div class="d-inline-flex">
+                            <p class="m-0">${category.description}</p>
+                        </div>
+                    </div>
+                </div>
+        <%} else {%>
+            <div class="container-fluid bg-secondary mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+                    <h1 class="font-weight-semi-bold text-uppercase mb-3">Products</h1>
+                    <div class="d-inline-flex">
+                        <p class="m-0"><a href="">Home</a></p>
+                        <p class="m-0 px-2">-</p>
+                        <p class="m-0">Products</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        <%}%>
         <div class="container-fluid py-5">
             <div class="row px-xl-5">
                 <%
