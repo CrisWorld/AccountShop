@@ -17,13 +17,17 @@ public class RequestContactServlet extends HttpServlet {
             boolean success = Database.insertContact(name, message);
 
             if (success) {
-                response.sendRedirect(request.getContextPath() + "/client/contact.jsp?message=Message+sent+successfully!");
+                response.sendRedirect("/contact?message=Message+sent+successfully!");
             } else {
-                response.sendRedirect(request.getContextPath() + "/client/contact.jsp?error=Send+message+failed+!!!");
+                response.sendRedirect("/contact?error=Send+message+failed+!!!");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/client/contact.jsp?error=An+unexpected+error+occurred.+Please+try+again+later.");
+            response.sendRedirect("/contact?error=An+unexpected+error+occurred.+Please+try+again+later.");
         }
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       request.getRequestDispatcher("/client/contact.jsp").forward(request, response);
     }
 }

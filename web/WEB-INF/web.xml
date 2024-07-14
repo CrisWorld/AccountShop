@@ -52,6 +52,14 @@
         <servlet-name>DashboardServlet</servlet-name>
         <servlet-class>controllers.DashboardServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ClientProductServlet</servlet-name>
+        <servlet-class>controllers.ClientProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeServlet</servlet-name>
+        <servlet-class>controllers.HomeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AdminAuthentication</servlet-name>
         <url-pattern>/AdminAuthentication</url-pattern>
@@ -78,7 +86,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RequestContactServlet</servlet-name>
-        <url-pattern>/RequestContactServlet</url-pattern>
+        <url-pattern>/contact</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CategoryServlet</servlet-name>
@@ -90,7 +98,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DashboardServlet</servlet-name>
-        <url-pattern>/DashboardServlet</url-pattern>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientProductServlet</servlet-name>
+        <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeServlet</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

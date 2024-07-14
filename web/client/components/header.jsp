@@ -53,13 +53,13 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form action="/home" method="get">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" name="searchInfo" placeholder="Search for products">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+                            <button type="submit" name="action" value="Search" class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -87,13 +87,13 @@
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         <% for (Category category : categories) { %>
                             <% if (category.getChilds().size() == 0) { %>
-                                <a href="#" class="nav-item nav-link"><%= category.getName() %></a>
+                                <a href="/products?action=category&category=<%= category.getId() %>" class="nav-item nav-link"><%= category.getName() %></a>
                             <% } else { %>
                                 <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link" data-toggle="dropdown"><%= category.getName() %> <i class="fa fa-angle-down float-right mt-1"></i></a>
+                                    <a href="/products?action=category&category=<%= category.getId() %>" class="nav-link" data-toggle="dropdown"><%= category.getName() %> <i class="fa fa-angle-down float-right mt-1"></i></a>
                                     <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                         <% for (Category subCategory : category.getChilds()) { %>
-                                            <a href="#" class="dropdown-item"><%= subCategory.getName() %></a>
+                                            <a href="/products?action=category&category=<%= subCategory.getId() %>" class="dropdown-item"><%= subCategory.getName() %></a>
                                         <% } %>
                                     </div>
                                 </div>
@@ -141,6 +141,40 @@
                         </c:choose>
                     </div>
                 </nav>
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="/client/assets/img/gameimg.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">VIP Account</h3>
+                                    <a href="/products" class="btn btn-light py-2 px-3">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px;">
+                            <img class="img-fluid" src="/client/assets/img/gameimg1.jpg" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">Reasonable Price</h3>
+                                    <a href="" class="btn btn-light py-2 px-3">Shop Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
