@@ -7,6 +7,9 @@ package repository;
 import java.util.HashMap;
 import models.Database;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import models.RevenueData;
 /**
  *
  * @author PC
@@ -40,4 +43,31 @@ public class StaticRepo {
 
         return categoryData;
     }
+    
+    public List<RevenueData> getMonthlyRevenue() {
+        String sql = "SELECT YEAR(order_date) AS year, MONTH(order_date) AS month, SUM(total_amount) AS monthly_revenue " +
+                     "FROM orders " +
+                     "GROUP BY YEAR(order_date), MONTH(order_date) " +
+                     "ORDER BY year, month";
+        
+        List<RevenueData> revenueDataList = new ArrayList<>();
+        
+        try {
+            PreparedStatement statement = Database.getConnect().prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int year = resultSet.getInt("year");
+                int month = resultSet.getInt("month");
+                double monthlyRevenue = resultSet.getDouble("monthly_revenue");
+                RevenueData revenueData = new RevenueData(year, month, monthlyRevenue);
+                revenueDataList.add(revenueData);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return revenueDataList;
+    }
+    
 }

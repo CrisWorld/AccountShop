@@ -49,15 +49,26 @@
             <div class="main-content">
 
                 <div class="page-content">
-                    <div class="container-fluid">
-                        <div class="col-lg-12">
+                    <div class="row container-fluid">
+                        
+                        <div class="col-lg-6">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">Thống kê category bán được</h4>
+                                    <h4 class="card-title mb-4">Category</h4>
                                     <div id="pie_chart" class="apex-charts" dir="ltr"></div>  
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Monthly Revenue</h4>
+                                    <div id="line_chart" class="apex-charts" dir="ltr"></div>  
+                                </div>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
                 <!-- End Page-content -->
@@ -129,6 +140,61 @@
         </c:if>
         
         
+        <c:if test="${not empty revenueData}">
+            <c:set var="labels" value=""/>
+            <c:set var="data" value=""/>
+
+            <c:forEach items="${revenueData}" var="entry">
+                <c:set var="labels" value="${labels}'${entry.month}/${entry.year}',"/>
+                <c:set var="data" value="${data}${entry.monthlyRevenue},"/>
+            </c:forEach>
+
+            <c:if test="${not empty labels}">
+                <c:set var="labels" value="${fn:substring(labels, 0, fn:length(labels)-1)}"/> <!-- Xóa dấu phẩy cuối -->
+                <c:set var="data" value="${fn:substring(data, 0, fn:length(data)-1)}"/> <!-- Xóa dấu phẩy cuối -->
+            </c:if>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var options = {
+                        series: [{
+                            name: 'Revenue',
+                            data: [${data}] // Dữ liệu cho biểu đồ đường
+                        }],
+                        chart: {
+                            height: 350,
+                            type: 'line',
+                            zoom: {
+                                enabled: false
+                            }
+                        },
+                        dataLabels: {
+                            enabled: false
+                        },
+                        stroke: {
+                            curve: 'smooth'
+                        },
+                        title: {
+                            text: 'Monthly Revenue',
+                            align: 'left'
+                        },
+                        grid: {
+                            row: {
+                                colors: ['#f3f3f3', 'transparent'], // Màu của hàng
+                                opacity: 0.5
+                            },
+                        },
+                        xaxis: {
+                            categories: [${labels}], // Nhãn cho biểu đồ
+                        }
+                    };
+
+                    var chart = new ApexCharts(document.querySelector("#line_chart"), options);
+                    chart.render();
+                });
+            </script>
+        </c:if>
+                
     </body>
 </html>
 

@@ -81,6 +81,13 @@
                                 </a>
                             </li>
                             
+                            <li>
+                                <a href="/admin/static" class="waves-effect">
+                                    <i class="ri-trophy-fill"></i>
+                                    <span>Statics</span>
+                                </a>
+                            </li>
+                            
 <!--                            <li>
                                 <a href="calendar.html" class=" waves-effect">
                                     <i class="ri-calendar-2-line"></i>
