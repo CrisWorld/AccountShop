@@ -107,8 +107,11 @@ public class CategoryServlet extends HttpServlet {
     
     private void doEdit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String name = request.getParameter("name");
-        System.out.println(name);
+        int id = Integer.parseInt(request.getParameter("id"));
         String banner = doUploadFile(request);
+        if(banner.equals("")){
+            banner = categoryList.findCategoryById(id).getBanner();
+        }
         String description = request.getParameter("desc");
         String parentIDStr = request.getParameter("parent_id");
         Integer parentID = (parentIDStr != null && !parentIDStr.isEmpty()) ? Integer.parseInt(parentIDStr) : null;
@@ -119,6 +122,7 @@ public class CategoryServlet extends HttpServlet {
 //        }
 
         Category category = new Category(name, banner, description, parentID);
+        category.setId(id);
         categoryList.edit(category);
         response.sendRedirect("/admin/category");
     }    
@@ -129,6 +133,9 @@ public class CategoryServlet extends HttpServlet {
             Part part = request.getPart("img");
             String realPath = request.getServletContext().getRealPath("images/category");
             String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
+            if(fileName.equals("")){
+                throw new Exception("File is null");
+            }
             if (!Files.exists(Path.of(realPath))) {
                 Files.createDirectories(Path.of(realPath));              
             }

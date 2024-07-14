@@ -39,6 +39,14 @@ public class Category {
         this.description = description;
         this.banner = banner;
     }
+
+    public Category(int id, String name, String description, String banner, Integer parentId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+        this.parentId = parentId;
+    }
     
     public int getId() {
         return id;

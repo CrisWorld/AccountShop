@@ -96,6 +96,7 @@ public class CategoryRepo {
             } else {
                 preparedStatement.setNull(4, java.sql.Types.INTEGER);
             }
+            preparedStatement.setInt(5, category.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

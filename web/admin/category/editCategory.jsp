@@ -54,9 +54,10 @@
                                     <form method="post" action="/admin/category" class="card-body" enctype="multipart/form-data">
                                         <h4 class="card-title">Edit Category</h4>
                                         <input type="hidden" name="action" value="edit"/>
+                                        <input type="hidden" name="id" value="${category.id}"/> <!-- Ensure the ID is passed -->
                                         <!--name-->
                                         <div class="row mb-3">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label" >Name</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
                                             <div class="col-sm-10">
                                                 <input name="name" class="form-control" type="text" placeholder="Category Name" id="example-text-input" value="${category.name}">
                                             </div>                                         
@@ -81,11 +82,10 @@
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Parent Category</label>
                                             <div class="col-sm-10">                                            
-                                                <select name="category" class="form-select">
-                                                    <option value="" ${category.parentId==null ? "selected" : ""}>Open this select menu</option>
-                                                    
+                                                <select name="parent_id" class="form-select">
+                                                    <option value="" ${category.parentId == null ? "selected" : ""}>Open this select menu</option>
                                                     <c:forEach var="categoryEdit" items="${categories}">
-                                                        <option value="${categoryEdit.id}" ${category.parentId==categoryEdit.id ? "selected" : ""}>${categoryEdit.name}  </option>
+                                                        <option value="${categoryEdit.id}" ${category.parentId == categoryEdit.id ? "selected" : ""}>${categoryEdit.name}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>  
@@ -95,6 +95,8 @@
                                             <button type="submit">Edit</button>
                                         </div>
                                     </form>
+
+
                                 </div>
                             </div> <!-- end col -->
                         </div>
