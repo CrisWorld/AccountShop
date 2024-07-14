@@ -28,13 +28,10 @@
 
         <!-- Begin page -->
         <div id="layout-wrapper">
-
-
-            <%--<%@include file="/admin/components/header.jsp" %>--%>
+            <%@include file="/admin/components/header.jsp" %>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%--<%@include file="/admin/components/menu.jsp" %>--%>
-            <!-- Left Sidebar End -->
+            <%@include file="/admin/components/menu.jsp" %>
 
 
 
@@ -47,6 +44,20 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0">Categories</h4>
+
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="/admin/category">Categories</a></li>
+                                            <li class="breadcrumb-item active">Edit</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
                                 <div class="card">
 
                                     <!--ACTION HERE-->
@@ -54,10 +65,10 @@
                                     <form method="post" action="/admin/category" class="card-body" enctype="multipart/form-data">
                                         <h4 class="card-title">Edit Category</h4>
                                         <input type="hidden" name="action" value="edit"/>
-                                        <input type="hidden" name="id" value="${category.id}"/> <!-- Ensure the ID is passed -->
+                                        <input type="hidden" name="id" value="${category.id}"/>
                                         <!--name-->
                                         <div class="row mb-3">
-                                            <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
+                                            <label for="example-text-input" class="col-sm-2 col-form-label" >Name</label>
                                             <div class="col-sm-10">
                                                 <input name="name" class="form-control" type="text" placeholder="Category Name" id="example-text-input" value="${category.name}">
                                             </div>                                         
@@ -83,20 +94,21 @@
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Parent Category</label>
                                             <div class="col-sm-10">                                            
                                                 <select name="parent_id" class="form-select">
-                                                    <option value="" ${category.parentId == null ? "selected" : ""}>Open this select menu</option>
+                                                    <option value="" ${category.parentId==null ? "selected" : ""}>Parent Category</option>
+                                                    
                                                     <c:forEach var="categoryEdit" items="${categories}">
-                                                        <option value="${categoryEdit.id}" ${category.parentId == categoryEdit.id ? "selected" : ""}>${categoryEdit.name}</option>
+                                                        <c:if test="${category.id != categoryEdit.id}">
+                                                            <option value="${categoryEdit.id}" ${category.parentId==categoryEdit.id ? "selected" : ""}>${categoryEdit.name}</option>
+                                                        </c:if>
                                                     </c:forEach>
                                                 </select>
                                             </div>  
                                         </div>
                                         <!--button-->
-                                        <div>
-                                            <button type="submit">Edit</button>
+                                        <div class="d-flex justify-content-end">
+                                            <button class="btn btn-primary" type="submit">Save</button>
                                         </div>
                                     </form>
-
-
                                 </div>
                             </div> <!-- end col -->
                         </div>
@@ -120,6 +132,7 @@
         <script src="/admin/assets/js/app.js"></script>
         <script src="/admin/assets/libs/tinymce/tinymce.min.js"></script>
         <script src="/admin/assets/js/pages/form-editor.init.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');
@@ -133,4 +146,3 @@
         </script>
     </body>
 </html>
-

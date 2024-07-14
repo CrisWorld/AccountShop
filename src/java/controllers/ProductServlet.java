@@ -92,7 +92,7 @@ public class ProductServlet extends HttpServlet {
         /* for pagination */
         int page = 1;
         int recordsPerPage = 5;
-        int noOfRecords = productRepo.getNoOfRecords(titleSearch, priceStartSearch, priceEndSearch);
+        int noOfRecords = productRepo.getNoOfRecords(titleSearch, priceStartSearch, priceEndSearch, categorySearch);
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
 
         if(request.getParameter("page") != null) {
@@ -145,7 +145,7 @@ public class ProductServlet extends HttpServlet {
     
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         request.setAttribute("categories", categoryRepo.findAll());
-        request.getRequestDispatcher("/admin/product/edit.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/product/create.jsp").forward(request, response);
     }   
     
     /*============================================ POST METHOD =============================================================================*/

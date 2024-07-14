@@ -4,6 +4,8 @@
  */
 package models;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -14,7 +16,7 @@ public class Contact {
     private int id;
     private String username;
     private String message;
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     // Constructors
     public Contact() {}
@@ -24,13 +26,13 @@ public class Contact {
         this.message = message;
     }
 
-    public Contact(String username, String message, Date createdAt) {
+    public Contact(String username, String message, LocalDateTime createdAt) {
         this.username = username;
         this.message = message;
         this.createdAt = createdAt;
     }
 
-    public Contact(int id, String username, String message, Date createdAt) {
+    public Contact(int id, String username, String message, LocalDateTime createdAt) {
         this.id = id;
         this.username = username;
         this.message = message;
@@ -62,11 +64,12 @@ public class Contact {
         this.message = message;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public String getCreatedAt() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
+        return createdAt.format(formatter);
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

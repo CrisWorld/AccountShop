@@ -20,6 +20,12 @@ public class Category {
     
     public Category() {
     }
+    
+    
+    
+    public Category(int id) {
+        this.id = id;
+    }
 
     public Category(int id, String name, String description) {
         this.id = id;
@@ -27,6 +33,24 @@ public class Category {
         this.description = description;
     }
 
+    public Category(int id, String name, String description, String banner, ArrayList<Category> childs) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+        this.childs = childs;
+    }
+    
+    public Category(int id, String name, String description, String banner, ArrayList<Category> childs, Integer parentId) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.banner = banner;
+        this.childs = childs;
+        this.parentId = parentId;
+    }
+
+    
     public Category(String name,  String banner, String description, Integer parentId) {
         this.name = name;
         this.description = description;
@@ -64,6 +88,14 @@ public class Category {
         this.name = name;
     }
 
+    public Integer getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -88,13 +120,6 @@ public class Category {
         this.childs = childs;
     }
 
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
     
     @Override
     public String toString() {

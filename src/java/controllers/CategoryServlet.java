@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -60,13 +61,28 @@ public class CategoryServlet extends HttpServlet {
         Category category = categoryList.findById(categoryId);
         request.setAttribute("category", category);
         
+        // filter parent category
+        List<Category> categories = categoryList.findAll();
+        List<Category> categoriesParent = new ArrayList<Category>();
         
-        request.setAttribute("categories", categoryList.findAll());
+        for(Category cate: categories){
+            if(cate.getParentId() == null) categoriesParent.add(cate);
+        }
+        
+        request.setAttribute("categories", categoriesParent);
         request.getRequestDispatcher("/admin/category/editCategory.jsp").forward(request, response);
     }
     
     private void showCreateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("categories", categoryList.findAll());
+        // filter parent category
+        List<Category> categories = categoryList.findAll();
+        List<Category> categoriesParent = new ArrayList<Category>();
+        
+        for(Category category: categories){
+            if(category.getParentId() == null) categoriesParent.add(category);
+        }
+        
+        request.setAttribute("categories", categoriesParent);
         request.getRequestDispatcher("/admin/category/createCategory.jsp").forward(request, response);
     }
 

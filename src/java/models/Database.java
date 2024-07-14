@@ -51,7 +51,7 @@ public class Database implements DatabaseInfo{
             PreparedStatement stmt = con.prepareStatement("SELECT id, username, message, created_at FROM contacts");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                list.add(new Contact(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4)));
+                list.add(new Contact(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4).toLocalDateTime()));
             }
             return list;
         } catch (Exception ex) {
