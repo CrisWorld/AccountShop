@@ -13,8 +13,6 @@ import models.Product;
 import repository.CategoryRepo;
 
 public class HomeClient {
-    private final static CategoryRepo categoryRepo = new CategoryRepo();
-
     public static List<Product> Search(String title, int page, int pageSize) throws SQLException {
         List<Product> list = new ArrayList<>();
         try (Connection con = Database.getConnect()) {

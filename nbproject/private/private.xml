@@ -7,10 +7,7 @@
             <file>file:/D:/Project_shopgame/src/java/controllers/HomeServlet.java</file>
             <file>file:/D:/Project_shopgame/web/client/search.jsp</file>
             <file>file:/D:/Project_shopgame/web/client/index.jsp</file>
-            <file>file:/D:/Project_shopgame/web/client/assets/img/offer-1.png</file>
-            <file>file:/D:/Project_shopgame/web/client/index.html</file>
-            <file>file:/D:/Project_shopgame/web/client/assets/img/gameimg1.jpg</file>
-            <file>file:/D:/Project_shopgame/web/client/assets/img/gaming.jpg</file>
+            <file>file:/D:/Project_shopgame/src/java/untils/HomeClient.java</file>
             <file>file:/D:/Project_shopgame/src/java/models/OrderDAO.java</file>
             <file>file:/D:/Project_shopgame/src/java/controllers/ProductServlet.java</file>
             <file>file:/D:/Project_shopgame/src/java/models/Product.java</file>
