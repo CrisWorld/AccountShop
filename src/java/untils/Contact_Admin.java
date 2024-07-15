@@ -26,8 +26,10 @@ public class Contact_Admin {
             stmt.setInt(2, PAGE_SIZE);
             ResultSet rs = stmt.executeQuery();
 
+
             while (rs.next()) {
                 list.add(new Contact(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDate(4)));
+
             }
         }
         return list;

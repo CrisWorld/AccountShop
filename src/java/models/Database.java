@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import repository.CategoryRepo;
+import repository.ProductRepo;
 
 
 public class Database implements DatabaseInfo{
@@ -28,26 +30,22 @@ public class Database implements DatabaseInfo{
     }
     
     public static void main(String[] a) {
-        ArrayList<Contact> list = Database.listAll();
-        for (Contact item : list) {
+//        ArrayList<Contact> list = MainRun.listAllContact();
+//        for (Contact item : list) {
+//            System.out.println(item);
+//        }
+        List<Category> listCategory = CategoryRepo.findAll();
+        for (Category item : listCategory) {
             System.out.println(item);
         }
+        
+//        List<Product> listProduct = ProductRepo.listAllProduct();
+//        for (Product item : listProduct) {
+//            System.out.println(item);
+//        }
     }
     
-    public static ArrayList<Contact> listAll() {
-        ArrayList<Contact> list = new ArrayList<>();
-        try (Connection con = getConnect()) {
-            PreparedStatement stmt = con.prepareStatement("SELECT id, username, message, created_at FROM contacts");
-            ResultSet rs = stmt.executeQuery();
-            while (rs.next()) {
-                list.add(new Contact(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getTimestamp(4)));
-            }
-            return list;
-        } catch (Exception ex) {
-            Logger.getLogger(Contact.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
+    
     
     public static boolean insertContact(String name, String message) {
         String sql = "INSERT INTO contacts (username, message) VALUES (?, ?)";
@@ -59,7 +57,7 @@ public class Database implements DatabaseInfo{
             int rowsAffected = stmt.executeUpdate();
             return rowsAffected > 0;
         } catch (Exception ex) {
-            ex.printStackTrace(); // Handle exception properly
+            ex.printStackTrace();
             return false;
         }
     }

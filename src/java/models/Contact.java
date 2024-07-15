@@ -4,10 +4,13 @@
  */
 package models;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
  *
+<<<<<<< HEAD
 <<<<<<< HEAD
  * @author thaip
  */
@@ -27,6 +30,15 @@ public class Contact {
     }
 
 
+
+    
+
+    public Contact(String username, String message) {
+        this.username = username;
+        this.message = message;
+    }
+
+    
     public int getId() {
         return id;
     }
@@ -58,17 +70,19 @@ public class Contact {
 
     public void setCreate_date(Date create_date) {
         this.create_date = create_date;
-
     }
+
 
 
     @Override
     public String toString() {
 
+
         return "Contact{" + "id=" + id + ", username=" + username + ", message=" + message + ", create_date=" + create_date + '}';
     }
     
 }
+
 
 
 

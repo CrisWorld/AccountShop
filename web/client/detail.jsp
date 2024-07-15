@@ -1,5 +1,6 @@
 <%-- 
     Document   : detail
+<<<<<<< HEAD
     Created on : Jul 12, 2024, 11:29:57 PM
     Author     : thaip
 --%>
@@ -8,10 +9,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>EShopper - Bootstrap Shop Template</title>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Game Account Shop</title>
+
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
@@ -31,8 +37,13 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet">
+
     </head>
     <body>
+
+
+<body>
+
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-2 px-xl-5">
@@ -68,7 +79,11 @@
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="" class="text-decoration-none">
+
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">G</span>Account</h1>
+
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
@@ -102,6 +117,7 @@
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
+
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
@@ -132,15 +148,56 @@
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
                         <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+
+                    <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                        <h6 class="m-0">Games</h6>
+                        <i class="fa fa-angle-down text-dark"></i>
+                    </a>
+                    <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                        <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link" data-toggle="dropdown">League Of Legends <i class="fa fa-angle-down float-right mt-1"></i></a>
+                                <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                    <a href="" class="dropdown-item">League Of Legends Only </a>
+                                    <a href="" class="dropdown-item">Teamfight Tactics Only </a>
+                                </div>
+                            </div>
+                            <a href="" class="nav-item nav-link">PUBG: BATTLEGROUNDS</a>
+                            <a href="" class="nav-item nav-link">FC Online</a>
+                            <a href="" class="nav-item nav-link">VALORANT</a>
+                            <a href="" class="nav-item nav-link">Fortnite</a>
+                            <a href="" class="nav-item nav-link">Roblox</a>
+                            <a href="" class="nav-item nav-link">Minecraft </a>
+                            <a href="" class="nav-item nav-link">Apex Legends</a>
+                            <a href="" class="nav-item nav-link">Genshin Impact</a>
+                            <a href="" class="nav-item nav-link">Call of Duty</a>
+                        </div>
+                    </nav>
+                </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">G</span>Account</h1>
+
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
+
                             <a href="index.html" class="nav-item nav-link">Home</a>
                             <a href="shop.html" class="nav-item nav-link">Shop</a>
                             <a href="detail.html" class="nav-item nav-link active">Account Detail</a>
+
+                            <a href="index.html" class="nav-item nav-link">Home</a>
+                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <a href="detail.html" class="nav-item nav-link active">Account Detail</a>
+
+                            <a href="index.jsp" class="nav-item nav-link">Home</a>
+                            <a href="shop.jsp" class="nav-item nav-link">Shop</a>
+                            <a href="detail.jsp" class="nav-item nav-link active">Shop Detail</a>
+
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -148,7 +205,11 @@
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
+
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+                            <a href="contact.jsp" class="nav-item nav-link">Contact</a>
+
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <a href="" class="nav-item nav-link">Login</a>
@@ -167,7 +228,11 @@
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
             <h1 class="font-weight-semi-bold text-uppercase mb-3">Account Detail</h1>
             <div class="d-inline-flex">
+
                 <p class="m-0"><a href="">Home</a></p>
+
+                <p class="m-0"><a href="index.jsp">Home</a></p>
+
                 <p class="m-0 px-2">-</p>
                 <p class="m-0">Account Detail</p>
             </div>
@@ -183,21 +248,46 @@
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner border">
                         <div class="carousel-item active">
+
                             <c:set var="nguonanh" value="assets/img/${product.img}.jpg"/>
                             <img class="w-100 h-100" src="nguonanh" alt="Image">
                         </div>
                     </div>
 <!--                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+=======
+                            <img class="w-100 h-100" src="img/product-1.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="img/product-2.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="img/product-3.jpg" alt="Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="w-100 h-100" src="img/product-4.jpg" alt="Image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
+>>>>>>> 196865d8574d26a667fe6b0c52c1e3394a3365a7
                         <i class="fa fa-2x fa-angle-left text-dark"></i>
                     </a>
                     <a class="carousel-control-next" href="#product-carousel" data-slide="next">
                         <i class="fa fa-2x fa-angle-right text-dark"></i>
+<<<<<<< HEAD
                     </a>-->
                 </div>
             </div>
                 
             <div class="col-lg-7 pb-5">
                 <h3 class="font-weight-semi-bold"><c:out value="product.title" /></h3>
+
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-7 pb-5">
+                <h3 class="font-weight-semi-bold">Colorful Stylish Shirt</h3>
+
                 <div class="d-flex mb-3">
                     <div class="text-primary mr-2">
                         <small class="fas fa-star"></small>
@@ -209,7 +299,11 @@
                     <small class="pt-1">(50 Reviews)</small>
                 </div>
                 <h3 class="font-weight-semi-bold mb-4">$150.00</h3>
+
                 <p class="mb-4"><c:out value="product.short_desc" /></p>
+
+                <p class="mb-4">Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc invidunt ipsum et, labore clita lorem magna lorem ut. Erat lorem duo dolor no sea nonumy. Accus labore stet, est lorem sit diam sea et justo, amet at lorem et eirmod ipsum diam et rebum kasd rebum.</p>
+
 <!--                <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                     <form>
@@ -305,7 +399,12 @@
                 <div class="tab-content">
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h4 class="mb-3">Product Description</h4>
+
                         <p><c:out value="product.meta_description" /></p>
+
+                        <p>Eos no lorem eirmod diam diam, eos elitr et gubergren diam sea. Consetetur vero aliquyam invidunt duo dolores et duo sit. Vero diam ea vero et dolore rebum, dolor rebum eirmod consetetur invidunt sed sed et, lorem duo et eos elitr, sadipscing kasd ipsum rebum diam. Dolore diam stet rebum sed tempor kasd eirmod. Takimata kasd ipsum accusam sadipscing, eos dolores sit no ut diam consetetur duo justo est, sit sanctus diam tempor aliquyam eirmod nonumy rebum dolor accusam, ipsum kasd eos consetetur at sit rebum, diam kasd invidunt tempor lorem, ipsum lorem elitr sanctus eirmod takimata dolor ea invidunt.</p>
+                        <p>Dolore magna est eir mod sanctus dolor, amet diam et eirmod et ipsum. Amet dolore tempor consetetur sed lorem dolor sit lorem tempor. Gubergren amet amet labore sadipscing clita clita diam clita. Sea amet et sed ipsum lorem elitr et, amet et labore voluptua sit rebum. Ea erat sed et diam takimata sed justo. Magna takimata justo et amet magna et.</p>
+
                     </div>
                     <div class="tab-pane fade" id="tab-pane-2">
                         <h4 class="mb-3">Meta Title</h4>
@@ -410,6 +509,7 @@
             <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
         </div>
         <div class="row px-xl-5">
+
             
             <div class="col">
                 <c:forEach var="acc" items="list">
@@ -423,6 +523,18 @@
                             <h6 class="text-truncate mb-3"><c:out value="${acc.title}"/></h6>
                             <div class="d-flex justify-content-center">
                                 <h6><c:out value="${acc.price}"/></h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+
+            <div class="col">
+                <div class="owl-carousel related-carousel">
+                    <div class="card product-item border-0">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
+
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
@@ -430,7 +542,11 @@
                             <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                         </div>
                     </div>
+
 <!--                    <div class="card product-item border-0">
+=======
+                    <div class="card product-item border-0">
+>>>>>>> 196865d8574d26a667fe6b0c52c1e3394a3365a7
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                             <img class="img-fluid w-100" src="img/product-2.jpg" alt="">
                         </div>
@@ -489,11 +605,17 @@
                             <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
                             <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                         </div>
+<<<<<<< HEAD
                     </div>-->
                 </div>
                 </c:forEach>
             </div>
             
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- Products End -->
@@ -587,4 +709,5 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
+
 </html>

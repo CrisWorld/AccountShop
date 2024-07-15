@@ -92,7 +92,7 @@ public class AdminAuthentication extends HttpServlet {
             else {
                 if(user.isIsAdmin()){
                     session.setAttribute("admin", user);
-                    response.sendRedirect("/admin/product");
+                    response.sendRedirect("/admin/dashboard");
                 } else response.sendRedirect("/auth/admin");
             }
         }

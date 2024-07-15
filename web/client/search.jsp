@@ -1,7 +1,13 @@
 <%-- 
+<<<<<<< HEAD
     Document   : search
     Created on : Jul 14, 2024, 1:56:39 PM
     Author     : thaip
+=======
+    Document   : search.jsp
+    Created on : 14 Jul 2024, 18:25:34
+    Author     : quoch
+>>>>>>> 196865d8574d26a667fe6b0c52c1e3394a3365a7
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,7 +19,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+<<<<<<< HEAD
         <link href="img/favicon.ico" rel="icon">
+=======
+        <link href="/client/assets/img/favicon.ico" rel="icon">
+>>>>>>> 196865d8574d26a667fe6b0c52c1e3394a3365a7
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,6 +33,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
+<<<<<<< HEAD
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
@@ -171,6 +182,16 @@
     </div>
     <!-- Page Header End -->
 
+=======
+    <link href="/client/assets/lib/owlcarousel//client/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/client/assets/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    
+    <%@include file="/client/components/header.jsp" %>
+>>>>>>> 196865d8574d26a667fe6b0c52c1e3394a3365a7
 
     <!-- Shop Start -->
     <div class="container-fluid pt-5">
@@ -212,6 +233,7 @@
                             </div>
                         </div>
                     </div>
+<<<<<<< HEAD
                     <c:forEach var="acc" items="${listSearch}">
                     <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
                         <div class="card product-item border-0 mb-4">
@@ -265,6 +287,62 @@
 
 
                 </div>
+=======
+                        <c:forEach var="acc" items="${listSearch}">
+                            <div class="col-lg-4 col-md-6 col-sm-12 pb-1">
+                                <div class="card product-item border-0 mb-4">
+                                    <c:set var="nguonanh" value="${acc.img}"/>
+                                    <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                        <img class="img-fluid w-100" src="/client/assets/images/${nguonanh}.jpg" alt="">
+                                    </div>
+                                    <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                        <h6 class="text-truncate mb-3"><c:out value="${acc.title}"/></h6>
+                                        <div class="d-flex justify-content-center">
+                                            <h6><c:out value="${Math.round(acc.price * (1 - acc.discount_percentage/100))} VND"/></h6><h6 class="text-muted ml-2"><del><c:out value="${Math.round(acc.price)} VND"/></del></h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer d-flex justify-content-between bg-light border">
+                                        <a href="/products?slug=${acc.slug}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+
+                                        <form action="/cart" method="post">
+                                            <input type="hidden" name="product_id" value="${acc.id}">
+                                            <button class="btn btn-sm text-dark p-0 m-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                </div>
+                <c:if test="${totalPages > 1}">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center mb-3">
+                            <c:if test="${currentPage > 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="?action=Search&searchInfo=${param.searchInfo}&page=${currentPage - 1}&pageSize=${pageSize}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            </c:if>
+
+                            <c:forEach var="i" begin="1" end="${totalPages}">
+                                <li class="page-item ${currentPage == i ? 'active' : ''}">
+                                    <a class="page-link" href="?action=Search&searchInfo=${param.searchInfo}&page=${i}&pageSize=${pageSize}">${i}</a>
+                                </li>
+                            </c:forEach>
+
+                            <c:if test="${currentPage < totalPages}">
+                                <li class="page-item">
+                                    <a class="page-link" href="?action=Search&searchInfo=${param.searchInfo}&page=${currentPage + 1}&pageSize=${pageSize}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                        </ul>
+                    </nav>
+                </c:if>
+>>>>>>> 196865d8574d26a667fe6b0c52c1e3394a3365a7
             </div>
             <!-- Shop Product End -->
         </div>
@@ -272,6 +350,7 @@
     <!-- Shop End -->
 
 
+<<<<<<< HEAD
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
         <div class="row px-xl-5 pt-5">
@@ -361,3 +440,9 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+=======
+    <%@include file="/client/components/footer.jsp" %>
+
+</body>
+</html>
+>>>>>>> 196865d8574d26a667fe6b0c52c1e3394a3365a7

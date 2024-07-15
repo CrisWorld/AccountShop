@@ -4,7 +4,15 @@
     Author     : quoch
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="models.Cart"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%!
+    Cart cart;
+%>
+<% 
+    cart = (Cart) request.getAttribute("cart");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +24,7 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="assets/img/favicon.ico" rel="icon">
+    <link href="/client/assets/img/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,10 +34,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
+    <link href="/client/assets/lib/owlcarousel/owl.carousel.min.js" rel="stylesheet">
+    
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="/client/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -63,60 +71,54 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                        <tr>
-                            <td class="align-middle"><img src="assets/img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle price" data-price="150">150 VNĐ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
+                        <c:forEach var="item" items="${cart.products}">
+                            <tr>
+                                <td class="align-middle">
+                                    <img src="${item.img}" alt="${item.title}" style="width: 50px;">
+                                    ${item.title}
+                                </td>
+                                <td class="align-middle price" data-price="${Math.round(item.price*(100-item.discount_percentage)/100)}">${Math.round(item.price*(100-item.discount_percentage)/100)} VNĐ</td>
+                                <td class="align-middle">
+                                    <div class="input-group quantity mx-auto" style="width: 100px;">
+<!--                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-minus">
+                                                <i class="fa fa-minus"></i>
+                                            </button>
+                                        </div>-->
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-center" value="${item.quantity}" limit="1" disabled>
+<!--                                        <div class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary btn-plus">
+                                                <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>-->
                                     </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1" limit="3" disabled>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
+                                </td>
+                                <td class="align-middle">
+                                    <span class="total-price" data-price="${Math.round(item.price*(100-item.discount_percentage)/100*item.quantity)}">${Math.round(item.price*(100-item.discount_percentage)/100*item.quantity)}</span> VNĐ
+                                </td>
+                                <td class="align-middle">
+                                    <form action="/cart" method="post">
+                                        <input name="_method" type="hidden" value="delete"/>
+                                        <input name="product_id" type="hidden" value="${item.id}"/>
+                                        <button class="btn btn-sm btn-primary btn-remove">
+                                            <i class="fa fa-times"></i>
                                         </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle"><span class="total-price" data-price="150">150 </span> VNĐ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary btn-remove"><i class="fa fa-times"></i></button></td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle"><img src="assets/img/product-1.jpg" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle price" data-price="150">150 VNĐ</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-minus" >
-                                        <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" value="1" limit="3" disabled>
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-sm btn-primary btn-plus">
-                                            <i class="fa fa-plus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle"><span class="total-price" data-price="150">150 </span> VNĐ</td>
-                            <td class="align-middle"><button class="btn btn-sm btn-primary btn-remove"><i class="fa fa-times"></i></button></td>
-                        </tr>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
             <div class="col-lg-4">
-                <form class="mb-5" action="">
+<!--                <form class="mb-5" action="">
                     <div class="input-group">
                         <input type="text" class="form-control p-4" placeholder="Coupon Code">
                         <div class="input-group-append">
                             <button class="btn btn-primary">Apply Coupon</button>
                         </div>
                     </div>
-                </form>
+                </form>-->
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
                         <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
@@ -128,7 +130,7 @@
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Discount from coupon</h6>
-                            <h6 class="font-weight-medium"><span id="discount" data-discount="0.1">0</span> VNĐ</h6>
+                            <h6 class="font-weight-medium"><span id="discount" data-discount="0">0</span> VNĐ</h6>
                         </div>
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
@@ -136,64 +138,62 @@
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold"><span id="final-total">200</span> VNĐ</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        <a style="text-decoration: none" href="/client/checkout"><button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button></a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Cart End -->
-    <%@include file="/client/components/footer.jsp" %>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script>
-        updateCartSummary();
-        function updateCartSummary(){
-            let total = 0;
-            $('.total-price').filter((index, item) => {
-                total += $(item).data('price');
-            });
-            let discount = $('#discount').data('discount')*total;
-            $('#discount').text(discount);
-            $('#sub-total').text(total);
-            let finalTotal = total-discount;
-            $('#final-total').text(finalTotal);
-        }
-        function updateTotalOfSingleProduct(element, price, quantity){
-            $(element).data('price', price*quantity);
-            $(element).text(price*quantity + " ");
-        }
-        $('.btn-minus').on("click", (e) => {
-            const container = $(e.currentTarget).closest('.quantity');
-            const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
-            const priceEl = $(e.currentTarget).closest('tr').find('.price');
-            const inputEl = $(container).find('input');
-            if($(inputEl).val() > 1) {
-                $(inputEl).val($(inputEl).val()-1);
-                updateTotalOfSingleProduct($(priceTotalEl), $(priceEl).data('price'), $(inputEl).val());
-                updateCartSummary();
+        $(() => {
+            updateCartSummary();
+            function updateCartSummary(){
+                let total = 0;
+                $('.total-price').filter((index, item) => {
+                    total += $(item).data('price');
+                });
+                let discount = $('#discount').data('discount')*total;
+                $('#discount').text(discount);
+                $('#sub-total').text(total);
+                let finalTotal = total-discount;
+                $('#final-total').text(finalTotal);
             }
-            // cật nhật quantity của cart_products
-        });
-        
-        $('.btn-plus').on("click", (e) => {
-            const container = $(e.currentTarget).closest('.quantity');
-            const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
-            const priceEl = $(e.currentTarget).closest('tr').find('.price');
-            const inputEl = $(container).find('input');
-            if($(inputEl).val() < $(inputEl).attr('limit')) {
-                $(inputEl).val(parseInt($(inputEl).val())+1);
-                updateTotalOfSingleProduct(priceTotalEl, $(priceEl).data('price'), $(inputEl).val());
-                updateCartSummary();
+            function updateTotalOfSingleProduct(element, price, quantity){
+                $(element).data('price', price*quantity);
+                $(element).text(price*quantity + " ");
             }
-            // cật nhật quantity của cart_products
-        });
-        
-        $('.btn-remove').on('click', (e) => {
-            const container = $(e.currentTarget).closest('tr');
-            console.log(container);
-            $(container).remove();
-            // gọi api xóa record của bảng cart_products
+//            $('.btn-minus').on("click", (e) => {
+//                const container = $(e.currentTarget).closest('.quantity');
+//                const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
+//                const priceEl = $(e.currentTarget).closest('tr').find('.price');
+//                const inputEl = $(container).find('input');
+//                if($(inputEl).val() > 2) {
+//                    $(inputEl).val($(inputEl).val()-1);
+//                    updateTotalOfSingleProduct($(priceTotalEl), $(priceEl).data('price'), $(inputEl).val());
+//                    updateCartSummary();
+//                }
+//                // cật nhật quantity của cart_products
+//            });
+////
+//            $('.btn-plus').on("click", (e) => {
+//                const container = $(e.currentTarget).closest('.quantity');
+//                const priceTotalEl = $(e.currentTarget).closest('tr').find('.total-price');
+//                const priceEl = $(e.currentTarget).closest('tr').find('.price');
+//                const inputEl = $(container).find('input');
+//                console.log($(inputEl).val());
+//                if($(inputEl).val() < $(inputEl).attr('limit')) {
+//                    console.log($(inputEl).attr('limit'));
+//                    $(inputEl).val(parseInt($(inputEl).val())+1);
+//                    updateTotalOfSingleProduct(priceTotalEl, $(priceEl).data('price'), $(inputEl).val());
+//                    updateCartSummary();
+//                }
+//                // cật nhật quantity của cart_products
+//            });
         });
     </script>
+    <%@include file="/client/components/footer.jsp" %>
 </body>
 
 </html>

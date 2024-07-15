@@ -13,6 +13,9 @@ import models.Product;
 import repository.CategoryRepo;
 
 public class HomeClient {
+
+    private final static CategoryRepo categoryRepo = new CategoryRepo();
+
     public static List<Product> Search(String title, int page, int pageSize) throws SQLException {
         List<Product> list = new ArrayList<>();
         try (Connection con = Database.getConnect()) {
@@ -24,7 +27,9 @@ public class HomeClient {
             stmt.setInt(3, pageSize);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
+
                 list.add(new Product(rs.getString("title"), rs.getString("image"), rs.getInt("quantity"), rs.getDouble("discount_percentage"), rs.getString("status"), rs.getDouble("price"), null, rs.getString("slug"), rs.getString("desc"), rs.getString("short_desc"), rs.getString("secret_info"), rs.getString("meta_title"), rs.getString("meta_description"), rs.getString("meta_keyword")));
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(HomeClient.class.getName()).log(Level.SEVERE, null, ex);

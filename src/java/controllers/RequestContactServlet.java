@@ -10,19 +10,24 @@ import java.io.IOException;
 
 public class RequestContactServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Retrieve form data
         String name = request.getParameter("name");
         String message = request.getParameter("message");
 
-        // Insert into database using Database class
-        boolean success = Database.insertContact(name, message);
+        try {
+            boolean success = Database.insertContact(name, message);
 
-        if (success) {
-            // Forward to admin.jsp if insertion was successful
-            response.sendRedirect("/client/contact.html");
-        } else {
-            // Handle failure scenario, possibly redirect to an error page
-            response.sendRedirect(request.getContextPath() + "/error.jsp");
+            if (success) {
+                response.sendRedirect("/contact?message=Message+sent+successfully!");
+            } else {
+                response.sendRedirect("/contact?error=Send+message+failed+!!!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.sendRedirect("/contact?error=An+unexpected+error+occurred.+Please+try+again+later.");
         }
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       request.getRequestDispatcher("/client/contact.jsp").forward(request, response);
     }
 }

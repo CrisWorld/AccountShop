@@ -1,24 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="4.0" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+    <filter>
+        <filter-name>AdminLoginRequireFilter</filter-name>
+        <filter-class>filters.AdminLoginRequireFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>ClientLoginRequireFilter</filter-name>
+        <filter-class>filters.ClientLoginRequireFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ClientLoginRequireFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminLoginRequireFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>AdminAuthentication</servlet-name>
         <servlet-class>controllers.AdminAuthentication</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Product</servlet-name>
-        <servlet-class>models.Product</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ProductServlet</servlet-name>
-        <servlet-class>controllers.ProductServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AccountServlet</servlet-name>
         <servlet-class>controllers.AccountServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ClientAuthentication</servlet-name>
+        <servlet-class>controllers.ClientAuthentication</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>controllers.CartServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ContactServlet</servlet-name>
         <servlet-class>controllers.ContactServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RequestContactServlet</servlet-name>
+        <servlet-class>controllers.RequestContactServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CategoryServlet</servlet-name>
+        <servlet-class>controllers.CategoryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <servlet-class>controllers.AdminOrderServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>controllers.DashboardServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ClientProductServlet</servlet-name>
+        <servlet-class>controllers.ClientProductServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
@@ -26,31 +62,56 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminAuthentication</servlet-name>
-        <url-pattern>/auth/admin</url-pattern>
+        <url-pattern>/AdminAuthentication</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AccountServlet</servlet-name>
-        <url-pattern>/AccountServlet</url-pattern>
+        <url-pattern>/admin/account</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientAuthentication</servlet-name>
+        <url-pattern>/auth/client</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminAuthentication</servlet-name>
+        <url-pattern>/auth/admin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ContactServlet</servlet-name>
-        <url-pattern>/admin/ContactServlet</url-pattern>
+        <url-pattern>/admin/contact</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>RequestContactServlet</servlet-name>
-        <servlet-class>controllers.RequestContactServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>RequestContactServlet</servlet-name>
-        <url-pattern>/RequestContactServlet</url-pattern>
+        <url-pattern>/contact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CategoryServlet</servlet-name>
+        <url-pattern>/admin/category</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminOrderServlet</servlet-name>
+        <url-pattern>/admin/order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/admin/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientProductServlet</servlet-name>
+        <url-pattern>/products</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
-        <url-pattern>/client/HomeServlet</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <request-character-encoding>UTF-8</request-character-encoding>
 </web-app>

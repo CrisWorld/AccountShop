@@ -12,8 +12,11 @@
         <title>Game Account Shop</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <!-- Favicon -->
+
         <link href="assets/img/icon.jpg" rel="icon">
+
+        <link href="/client/assets/img/icon.jpg" rel="icon">
+
 
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,6 +26,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
         <!-- Libraries Stylesheet -->
+
         <link href="assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
         <!-- Customized Bootstrap Stylesheet -->
@@ -191,6 +195,15 @@
         <!-- Navbar End -->
 
 
+
+        <link href="/client/assets/lib/owlcarousel/owl.carousel.min.css" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="/client/assets/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <%@include file="/client/components/header.jsp" %>
+
         <!-- Featured Start -->
         <div class="container-fluid pt-5">
             <div class="row px-xl-5 pb-3">
@@ -223,7 +236,7 @@
         <!-- Featured End -->
 
 
-        <!-- Categories Start -->
+
         <div class="container-fluid pt-5">
             <div class="row px-xl-5 pb-3">
                 <div class="col-lg-4 col-md-6 pb-1">
@@ -282,6 +295,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5 pb-3">
+                <c:forEach var="item" items="${categoriesShow}">
+                    <div class="col-lg-4 col-md-6 pb-1">
+                        <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                            <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                                <img class="img-fluid" src="${item.banner}" alt="">
+                            </a>
+                            <h5 class="font-weight-semi-bold m-0">${item.name}</h5>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+
         <!-- Categories End -->
 
 
@@ -319,6 +348,7 @@
                 <h2 class="section-title px-5"><span class="px-2">Trandy Products</span></h2>
             </div>
             <div class="row px-xl-5 pb-3">
+
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
@@ -455,6 +485,31 @@
                         </div>
                     </div>
                 </div>
+
+                <c:forEach var="item" items="${products}">
+                    <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                        <div class="card product-item border-0 mb-4">
+                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                <img class="img-fluid" style="height: 250px; width: auto" src="${item.img}" alt="">
+                            </div>
+                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                <h6 class="text-truncate mb-3">${item.title}</h6>
+                                <p style="overflow: hidden;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;">${item.short_desc}</p>
+                                <div class="d-flex justify-content-center">
+                                    <h6>${Math.round(item.price*(100-item.discount_percentage)/100)} VNĐ</h6><h6 class="text-muted ml-2"><del>${item.price} VNĐ</del></h6>
+                                </div>
+                            </div>
+                            <form method="post" action="/cart" class="card-footer d-flex justify-content-between bg-light border">
+                                <input type="hidden" name="product_id" value="${item.id}"/>
+                                <a href="/products?slug=${item.slug}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                <button class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
+                            </form>
+                        </div>
+                    </div>
+                </c:forEach>
+
             </div>
         </div>
         <!-- Products End -->
@@ -468,6 +523,7 @@
                         <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">Stay Updated</span></h2>
                         <p>Receive the latest information on new accounts, exclusive offers, and special discounts. Ensure you never miss out on top-tier gaming experiences and unbeatable deals by staying connected.</p>
                     </div>
+
                     <form action="">
                         <div class="input-group">
                             <input type="text" class="form-control border-white p-4" placeholder="Email Goes Here">
@@ -476,10 +532,15 @@
                             </div>
                         </div>
                     </form>
+
+                    <div class="d-flex justify-content-center">
+                            <a href="/auth/client" class="btn btn-primary p-2">Register now</a>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Subscribe End -->
+
 
 
         <!-- Products Start -->
@@ -629,6 +690,7 @@
         <!-- Products End -->
 
 
+
         <!-- Vendor Start -->
 <!--        <div class="container-fluid py-5">
             <div class="row px-xl-5">
@@ -752,5 +814,7 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+
+        <%@include file="/client/components/footer.jsp" %>
     </body>
 </html>

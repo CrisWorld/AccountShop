@@ -11,12 +11,15 @@
     <head>
         
         <meta charset="utf-8" />
-        <title>Basic Tables | Upcube - Admin & Dashboard Template</title>
+        <title>Admin Page - Game Account Shop</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
         <meta content="Themesdesign" name="author" />
         <!-- App favicon -->
         <link rel="shortcut icon" href="/admin/assets/images/favicon.ico">
+        <!--Toast-->
+        <link rel="stylesheet" type="text/css" href="/admin/assets/libs/toastr/build/toastr.min.css">
+        <link rel="shortcut icon" href="/admin/assets/images/icon.jpg">
 
         <!-- Bootstrap Css -->
         <link href="/admin/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -35,10 +38,10 @@
         <div id="layout-wrapper">
 
             
-            <%--<%@include file="/admin/components/header.jsp" %>--%>
+            <%@include file="/admin/components/header.jsp" %>
 
             <!-- ========== Left Sidebar Start ========== -->
-            <%--<%@include file="/admin/components/menu.jsp" %>--%>
+            <%@include file="/admin/components/menu.jsp" %>
             <!-- Left Sidebar End -->
 
             
@@ -102,19 +105,19 @@
                                         </div>
                                         <!-- end row -->
                                         <div class="row mb-3">
-                                            <div class="col-3">
+                                            <div hidden class="col-3">
                                                 <label for="quantity" class="col-sm-12 col-form-label">Quantity</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" min="0" type="number" name="quantity" value="${product.quantity}">
                                                 </div>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="price" class="col-sm-12 col-form-label">Price</label>
                                                 <div class="col-sm-12">
                                                     <input name="price" class="form-control" type="number" placeholder="200000" id="price" value="${product.price}">
                                                 </div>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="status" class="col-sm-12 col-form-label">Status</label>
                                                 <select name="status" class="form-select">
                                                     <option selected hidden value="${product.status}">${product.status}</option>
@@ -122,7 +125,7 @@
                                                     <option value="hidden">Hidden</option>
                                                 </select>
                                             </div>
-                                            <div class="col-3">
+                                            <div class="col-4">
                                                 <label for="discount" class="col-sm-12 col-form-label">Discount (%)</label>
                                                 <div class="col-sm-12">
                                                     <input name="discount" min="0" max="100" class="form-control" type="number" placeholder="0-100" id="discount" value="${product.discount_percentage}">
@@ -177,9 +180,9 @@
                                                 </textarea>
                                             </div>
                                         </div>
-                                        
+                                                
                                         <div>
-                                            <button type="submit">Edit</button>
+                                            <button class="btn btn-primary" id="showtoast" type="submit">Edit</button>
                                         </div>
                                     </form>
                                 </div>
@@ -205,6 +208,7 @@
         <script src="/admin/assets/js/app.js"></script>
         <script src="/admin/assets/libs/tinymce/tinymce.min.js"></script>
         <script src="/admin/assets/js/pages/form-editor.init.js"></script>
+        <script src="/admin/assets/js/menu.js"></script>
         <script>
             const input = document.getElementById('file-input');
             const image = document.getElementById('img-preview');
@@ -216,6 +220,14 @@
                 }
             });
         </script>
+        
+        <!-- toastr plugin -->
+        <script src="/admin/assets/libs/toastr/build/toastr.min.js"></script>
+
+        <!-- toastr init -->
+        <script src="/admin/assets/js/pages/toastr.init.js"></script>
+         
+        
     </body>
 </html>
 

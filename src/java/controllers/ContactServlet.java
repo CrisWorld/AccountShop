@@ -22,34 +22,12 @@ import untils.Contact_Admin;
  * @author thaip
  */
 public class ContactServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         doShowContact(request, response);
+
     }
 
     
@@ -88,22 +66,25 @@ public class ContactServlet extends HttpServlet {
         
         // Thiết lập các thuộc tính cho JSP
         request.setAttribute("messages", listContact);
+
         request.setAttribute("currentPage", page);
         request.setAttribute("totalPages", totalPages);
         
         // Chuyển tiếp đến JSP
-        request.getRequestDispatcher("ContactView.jsp").forward(request, response);
+        request.getRequestDispatcher("/admin/contact/ContactView.jsp").forward(request, response);
     } catch (SQLException e) {
         e.printStackTrace(); // Hoặc xử lý lỗi theo cách khác
         // Có thể chuyển hướng đến một trang lỗi hoặc hiển thị thông báo lỗi
         request.setAttribute("errorMessage", "An error occurred while fetching contact data.");
         request.getRequestDispatcher("error.jsp").forward(request, response);
+
     }
 }
 
 
     
     protected void doDeleteContact(HttpServletRequest request, HttpServletResponse response)
+
         throws ServletException, IOException, SQLException {
     // Tạo đối tượng Contact_Admin
     Contact_Admin contactAdmin = new Contact_Admin();
@@ -123,6 +104,7 @@ public class ContactServlet extends HttpServlet {
         } catch (NumberFormatException e) {
             page = 1; // Nếu có lỗi khi phân tích tham số, quay lại trang mặc định
         }
+
     }
 
     // Lấy tổng số liên hệ và số trang hiện tại sau khi xóa
