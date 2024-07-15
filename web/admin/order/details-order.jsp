@@ -1,16 +1,16 @@
 <%@page import="models.Product"%>
 <%@page import="models.Order"%>
-<% 
+<%
     Order order = (Order) request.getAttribute("order");
 %>
 <!doctype html>
 <html lang="en">
 
     <head>
-        
+
         <meta charset="utf-8" />
         <title>Admin Page
-        
+
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
@@ -37,8 +37,8 @@
     </head>
 
     <body data-topbar="dark">
-    
-    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- <body data-layout="horizontal" data-topbar="dark"> -->
 
         <!-- Begin page -->
         <div id="layout-wrapper">
@@ -53,7 +53,7 @@
 
                 <div class="page-content">
                     <div class="container-fluid">
-                        
+
                         <!-- start page title -->
                         <div class="row">
                             <div class="col-12">
@@ -71,13 +71,13 @@
                             </div>
                         </div>
                         <!-- end page title -->
-    
+
                         <div class="row">
                             <div class="col-xl-8">
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Order Items</h4>
-    
+
                                         <div class="table-responsive">
                                             <table class="table table-centered mb-0 align-middle table-hover table-nowrap">
                                                 <thead class="table-light">
@@ -89,13 +89,13 @@
                                                     </tr>
                                                 </thead><!-- end thead -->
                                                 <tbody>
-                                                    <% for(Product item: order.getOrderItems()) {%>
-                                                        <tr>
-                                                            <td><h6 class="mb-0"><%= item.getTitle() %></h6></td>
-                                                            <td><%= Math.round(item.getPrice()) %> VND</td>
-                                                            <td style="text-align: center;"><%= item.getQuantity() %></td>
-                                                            <td><%= Math.round(item.getQuantity()*item.getPrice()) %> VND</td>
-                                                        </tr>
+                                                    <% for (Product item : order.getOrderItems()) {%>
+                                                    <tr>
+                                                        <td><h6 class="mb-0"><%= item.getTitle()%></h6></td>
+                                                        <td><%= Math.round(item.getPrice())%> VND</td>
+                                                        <td style="text-align: center;"><%= item.getQuantity()%></td>
+                                                        <td><%= Math.round(item.getQuantity() * item.getPrice())%> VND</td>
+                                                    </tr>
                                                     <%
                                                         }
                                                     %>
@@ -118,34 +118,28 @@
                                             <div class="mb-3">
                                                 <p><strong>Fullname: </strong> ${order.user.fullname}</p>
                                             </div>
-<!--                                            <div class="mb-3">
-                                                <p><strong>Phone:</strong> (123) 456-7890</p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <p><strong>Address:</strong> 123 Main Street, City, Country</p>
-                                            </div>-->
                                         </div>
                                     </div>
                                 </div><!-- end card -->
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Order Details</h4>
-                                        
+
                                         <div class="order-details">
                                             <form action="/admin/order" method="post" class="row mb-3">
                                                 <label class="col-4"><strong>Order Status:</strong></label>
                                                 <input type="hidden" name="id" value="${order.id}" />
                                                 <div class="col-3 mx-4">
                                                     <select name="status" class="form-control d-inline-block w-auto" style="margin-right: 10px;">
-                                                        <option value="approved" <%= order.getStatus().equals("approved") ? "selected" : "" %>>Approved</option>
-                                                        <option value="processing" <%= order.getStatus().equals("processing") ? "selected" : "" %>>Processing</option>
-                                                        <option value="cancelled" <%= order.getStatus().equals("cancelled") ? "selected" : "" %>>Cancelled</option>
+                                                        <option value="approved" <%= order.getStatus().equals("approved") ? "selected" : ""%>>Approved</option>
+                                                        <option value="processing" <%= order.getStatus().equals("processing") ? "selected" : ""%>>Processing</option>
+                                                        <option value="cancelled" <%= order.getStatus().equals("cancelled") ? "selected" : ""%>>Cancelled</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-3">
                                                     <button class="btn btn-primary">Change</button>
                                                 </div>
-                                                
+
                                             </form>
                                             <div class="mb-3">
                                                 <p><strong>Date created:</strong></p>
@@ -173,14 +167,14 @@
                             </div><!-- end col -->
 
                             <!-- end col -->
- <!-- customer info -->
+                            <!-- customer info -->
                         </div>
                         <!-- end row -->
                     </div>
-                    
+
                 </div>
                 <!-- End Page-content -->
-                
+
             </div>
             <!-- end main content-->
 
@@ -205,7 +199,7 @@
         <!-- Required datatable js -->
         <script src="/admin/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="/admin/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        
+
         <!-- Responsive examples -->
         <script src="/admin/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
         <script src="/admin/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>

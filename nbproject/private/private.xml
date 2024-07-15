@@ -3,43 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/WEB-INF/web.xml</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/untils/CartDAO.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/repository/CategoryRepo.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/auth-recoverpw.html</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/index.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/auth-login.html</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/product/list.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/index.html</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/untils/Contact_Admin.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/auth-register.html</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/models/DatabaseInfo.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/dashboard.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/Create.html</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/details-order.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/untils/DashboardDAO.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/auth/register.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/META-INF/context.xml</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/product/create.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/category/list-category.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/components/header.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/order/details-order.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/order/order-list.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/category/editCategory.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/auth/auth-login.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/components/menu.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/models/Database.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/order-list.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/category/createCategory.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/account/edit.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/filters/ClientLoginRequireFilter.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/filters/AdminLoginRequireFilter.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/auth/login.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/controllers/CategoryServlet.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/account/list.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/src/java/models/Order.java</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/account/create.jsp</file>
-            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/admin/contact/ContactView.jsp</file>
+            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/detailproduct.jsp</file>
+            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/displayall.jsp</file>
+            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/detail.jsp</file>
+            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/contact.jsp</file>
+            <file>file:/C:/FPT_Learning/Semester_4/PRJ301/GameAccountShopGit/AccountShop/web/client/history.jsp</file>
         </group>
     </open-files>
 </project-private>
