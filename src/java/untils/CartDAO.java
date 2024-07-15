@@ -214,6 +214,23 @@ public class CartDAO {
         return totalAmount;
     }
     
+    public double getDiscountCartTotal(int cartId) {
+        String sql = "SELECT dbo.calculate_discounted_cart_total(?) AS total_amount";
+        double totalAmount = 0.0;
+        try {
+            PreparedStatement ps = Database.getConnect().prepareStatement(sql);
+            ps.setInt(1, cartId);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        totalAmount = rs.getDouble("total_amount");
+                    }
+                }
+            
+        } catch (SQLException e) {
+        }
+        return totalAmount;
+    }
+    
     public static void main(String[] args) {
         System.out.println(new CartDAO().getCartTotal(1));
     }

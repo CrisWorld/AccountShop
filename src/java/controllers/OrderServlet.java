@@ -33,7 +33,6 @@ import untils.CartDAO;
  *
  * @author PC
  */
-
 @MultipartConfig(maxFileSize = 16177215)
 @WebServlet(name = "OrderServlet", urlPatterns = {"/client/order"})
 public class OrderServlet extends HttpServlet {
@@ -41,24 +40,25 @@ public class OrderServlet extends HttpServlet {
     private final static OrderRepo orderRepo = new OrderRepo();
     private final static CartDAO cartDAO = new CartDAO();
     private final static ProductRepo productRepo = new ProductRepo();
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            
+
 //        request.getRequestDispatcher("/client/checkout.jsp").forward(request, response);
 //        response.sendRedirect("/client/checkout");
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession(false);
+        boolean isSuccess = true;
         if (session == null || session.getAttribute("client") == null) {
             response.sendRedirect("/auth/client");
         } else {
-        
+
             User user = (User) session.getAttribute("client");
             Cart cart = cartDAO.getCartById(user.getCartId());
             List<Product> res = cart.getProducts();
@@ -66,47 +66,69 @@ public class OrderServlet extends HttpServlet {
                 request.setAttribute("message", "Cart is empty !!!");
                 request.getRequestDispatcher("/client/checkout.jsp").forward(request, response);
             }
-            
-            double total_amount = Double.parseDouble(request.getParameter("total"));
-            String img = doUploadFile(request);
-            
-            // create order
-            Order order = new Order();
-            order.setStatus("approve");
-            order.setTotal_amount(total_amount);
-            order.setUser(user);
-            order.setImage(img);
-            
-            int orderID = orderRepo.createOrder(order);
-      
-            if (orderID > 0) { 
-                // order_items
-                OrderItem orderItem;
-                
-                for (Product p : res) {
-                    orderItem = new OrderItem();
 
-                    orderItem.setOrder(order);
-                    orderItem.setProduct(p);
-                    orderItem.setPrice(p.getPrice());
-                    orderItem.setQuantity(1);
-                    
-                    orderRepo.addOrderItem(orderItem, orderID);
-                    productRepo.updateStatusAfterOrder(p.getId());
+            // CHECK PRODUCT IS AVAILABLE
+            for (Product p : res) {
+                Product pReal = productRepo.findProductById(p.getId());
+                if (!pReal.getStatus().equals("showing")) {
+                    isSuccess = false;
+                    cartDAO.clearAllProductsFromCart(cart.getId());
+                    session.setAttribute("showToast", isSuccess);
+                    response.sendRedirect("/client/history");
                 }
             }
-              
-            cartDAO.clearAllProductsFromCart(cart.getId());
-            
-//        request.getRequestDispatcher("/client/checkout.jsp").forward(request, response);
-            response.sendRedirect("/client/checkout");
+
+            if (isSuccess) {
+
+                double total_amount = Double.parseDouble(request.getParameter("total"));
+                String img = doUploadFile(request);
+
+                // create order
+                Order order = new Order();
+                order.setStatus("processing");
+                order.setTotal_amount(total_amount);
+                order.setUser(user);
+                order.setImage(img);
+
+                int orderID = orderRepo.createOrder(order);
+
+                if (orderID > 0) {
+                    // order_items
+                    OrderItem orderItem;
+
+                    for (Product p : res) {
+                        orderItem = new OrderItem();
+
+                        orderItem.setOrder(order);
+                        orderItem.setProduct(p);
+                        orderItem.setPrice(p.getPrice());
+                        orderItem.setQuantity(1);
+
+                        boolean addSuccess = orderRepo.addOrderItem(orderItem, orderID);
+                        if (!addSuccess) {
+                            isSuccess = false;
+                            continue;
+                        }
+
+                        productRepo.updateStatusAfterOrder(p.getId());
+                    }
+
+                    if (isSuccess) {
+                        cartDAO.clearAllProductsFromCart(cart.getId());
+                    }
+                }
+
+            }
+
+            session.setAttribute("showToast", isSuccess);
+            response.sendRedirect("/client/history");
         }
-        
+
     }
 
     // ====================================
-    private String doUploadFile(HttpServletRequest request){
-        
+    private String doUploadFile(HttpServletRequest request) {
+
         // upload file
         String img = "";
         try {
@@ -114,13 +136,13 @@ public class OrderServlet extends HttpServlet {
             String realPart = request.getServletContext().getRealPath("images/transaction");
             String fileName = Path.of(part.getSubmittedFileName()).getFileName().toString();
             if (!Files.exists(Path.of(realPart))) {
-                Files.createDirectories(Path.of(realPart));              
+                Files.createDirectories(Path.of(realPart));
             }
             img = "../images/transaction/" + fileName;
             part.write(realPart + "/" + fileName);
-        }catch (Exception e) {
+        } catch (Exception e) {
         }
         return img;
     }
-    
+
 }

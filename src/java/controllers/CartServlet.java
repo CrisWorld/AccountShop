@@ -86,7 +86,7 @@ public class CartServlet extends HttpServlet {
         if(product != null && product.getQuantity() > 0){
             cartRepo.addProductToCart(client.getCartId(), product_id, 1);
             response.sendRedirect("/cart");
-        } else response.sendRedirect("/");
+        } else response.sendRedirect("/products");
     }
     /**
      * Returns a short description of the servlet.

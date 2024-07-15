@@ -114,9 +114,9 @@ public class CategoryServlet extends HttpServlet {
         String description = request.getParameter("desc");
 
         String parentIDStr = request.getParameter("parent_id");
-        Integer parentID = (parentIDStr != null && !parentIDStr.isEmpty()) ? Integer.parseInt(parentIDStr) : null;
+        Integer parentID = (parentIDStr != null && !parentIDStr.equals("") ) ? Integer.parseInt(parentIDStr) : null;
 
-        Category category = new Category(name,banner, description, parentID);
+        Category category = new Category(name, banner, description, parentID);
         categoryList.add(category);
         response.sendRedirect("/admin/category");
     }

@@ -86,7 +86,7 @@
                                         <div class="row mb-3">
                                             <label for="example-text-input" class="col-sm-2 col-form-label">Parent Category</label>
                                             <div class="col-sm-10">                                            
-                                                <select name="category" class="form-select">
+                                                <select name="parent_id" class="form-select">
                                                     <option value="" selected>Parent Category</option>
                                                     <!--<option>Open this select menu</option>-->
                                                     <c:forEach var="category" items="${categories}">

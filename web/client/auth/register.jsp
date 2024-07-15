@@ -54,7 +54,7 @@
                           <div class="row">
                             <div class="col-md-12 mb-4">
                               <div data-mdb-input-init class="form-outline">
-                                <input name="fullname" type="text" id="form3Example1" class="form-control" />
+                                <input required name="fullname" type="text" id="form3Example1" class="form-control" />
                                 <label class="form-label" for="form3Example1">Full name</label>
                               </div>
                             </div>

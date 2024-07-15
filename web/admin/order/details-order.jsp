@@ -89,13 +89,14 @@
                                                     </tr>
                                                 </thead><!-- end thead -->
                                                 <tbody>
-                                                    <% for (Product item : order.getOrderItems()) {%>
-                                                    <tr>
-                                                        <td><h6 class="mb-0"><%= item.getTitle()%></h6></td>
-                                                        <td><%= Math.round(item.getPrice())%> VND</td>
-                                                        <td style="text-align: center;"><%= item.getQuantity()%></td>
-                                                        <td><%= Math.round(item.getQuantity() * item.getPrice())%> VND</td>
-                                                    </tr>
+                                                    
+                                                    <% for(Product item: order.getOrderItems()) {%>
+                                                        <tr>
+                                                            <td><h6 class="mb-0"><%= item.getTitle() %></h6></td>
+                                                            <td><%= Math.round(item.getPrice()) %> VND</td>
+                                                            <td style="text-align: center;"><%= item.getQuantity() %></td>
+                                                            <td><%= Math.round(item.getQuantity()*(item.getPrice() - item.getDiscount_percentage()/100*item.getPrice()) ) %> VND</td>
+                                                        </tr>
                                                     <%
                                                         }
                                                     %>

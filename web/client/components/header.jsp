@@ -112,23 +112,22 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                                </div>
-                            </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="/home" class="nav-item nav-link">Home</a>
+                            <a href="/products" class="nav-item nav-link">Shop</a>
+                            <a href="/contact" class="nav-item nav-link">Contact</a>
                         </div>
                         <c:choose>
                             <c:when test="${client != null}">
                                 <div class="navbar-nav ml-auto py-0">
-                                    <a class="nav-item nav-link">Hello, ${client.fullname}!</a>
-                                    <a href="/auth/client" class="nav-item nav-link">Logout</a>
+                                    <div class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown">Hello, ${client.fullname}!</a>
+                                        <div class="dropdown-menu rounded-0 m-0">
+                                            <a href="/cart" class="dropdown-item">Shopping Cart</a>
+                                            <a href="/client/checkout" class="dropdown-item">Checkout</a>
+                                            <a href="/client/history" class="dropdown-item">Transaction</a>
+                                        </div>
+                                    </div>
+                                    <a href="/client/logout" class="nav-item nav-link">Logout</a>
                                 </div>
                             </c:when>    
                             <c:otherwise>

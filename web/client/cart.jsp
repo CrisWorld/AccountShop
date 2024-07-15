@@ -77,7 +77,7 @@
                                     <img src="${item.img}" alt="${item.title}" style="width: 50px;">
                                     ${item.title}
                                 </td>
-                                <td class="align-middle price" data-price="${item.price}">${item.price} VNĐ</td>
+                                <td class="align-middle price" data-price="${Math.round(item.price*(100-item.discount_percentage)/100)}">${Math.round(item.price*(100-item.discount_percentage)/100)} VNĐ</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
 <!--                                        <div class="input-group-btn">
@@ -94,7 +94,7 @@
                                     </div>
                                 </td>
                                 <td class="align-middle">
-                                    <span class="total-price" data-price="${item.price * item.quantity}">${item.price * item.quantity}</span> VNĐ
+                                    <span class="total-price" data-price="${Math.round(item.price*(100-item.discount_percentage)/100*item.quantity)}">${Math.round(item.price*(100-item.discount_percentage)/100*item.quantity)}</span> VNĐ
                                 </td>
                                 <td class="align-middle">
                                     <form action="/cart" method="post">
